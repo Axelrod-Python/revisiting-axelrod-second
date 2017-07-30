@@ -42,8 +42,8 @@ dependencies:
 - xz=5.2.2=1
 - zlib=1.2.8=3
 - pip:
-  - axelrod==3.1.2
-  - axelrod-fortran==0.1.0
+  - axelrod==3.3.0
+  - axelrod-fortran==0.2.0
   - hypothesis==3.14.0
   - prompt-toolkit==1.0.15
   - tqdm==4.15.0
