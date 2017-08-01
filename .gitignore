@@ -221,5 +221,7 @@ TSWLatexianTemp*
 
 # Data files
 src/__pycache__/
-src/data/original_tournament/
-src/data/original_with_alt_k74r_tournament/
+src/data/original_tournament/*csv
+src/data/original_tournament/*gz
+src/data/original_with_alt_k74r_tournament/*csv
+src/data/original_with_alt_k74r_tournament/*gz
