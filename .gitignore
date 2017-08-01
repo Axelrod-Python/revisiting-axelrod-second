@@ -218,3 +218,8 @@ TSWLatexianTemp*
 
 # expex forward references with \gathertags
 *-tags.tex
+
+# Data files
+src/__pycache__/
+src/data/original_tournament/
+src/data/original_with_alt_k74r_tournament/
