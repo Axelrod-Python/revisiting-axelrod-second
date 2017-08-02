@@ -54,6 +54,11 @@ def main(players,
     np.savetxt(fname="{}/{}_{}_seed_wins.gz".format(outdir, prefix, seed),
                X=wins_per_tournament, delimiter=",")
 
+    match_lengths_per_tournament = np.mean(results.match_lengths, axis=2)
+    np.savetxt(fname="{}/{}_{}_seed_match_lengths_per_tournament.gz".format(outdir, prefix, seed),
+               X=match_lengths_per_tournament, delimiter=",")
+
     payoff_matrix = np.array(results.payoff_matrix)
     np.savetxt(fname="{}/{}_{}_seed_payoff_matrix.gz".format(outdir, prefix, seed),
                X=payoff_matrix, delimiter=",")
+
