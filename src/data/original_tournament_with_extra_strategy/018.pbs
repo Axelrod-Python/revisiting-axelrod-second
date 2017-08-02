@@ -1,0 +1,26 @@
+
+#!/bin/bash
+#PBS -q workq
+#PBS -N xtra18
+#PBS -P PR350
+#PBS -o xtra18-out.txt
+#PBS -e xtra18-err.txt
+#PBS -l select=1:ncpus=16:mpiprocs=16
+#PBS -l place=scatter:excl
+#PBS -l walltime=70:00:00
+
+export MPLBACKEND="agg"
+export LD_LIBRARY_PATH=$$LD_LIBRARY_PATH:/home/smavak/TourExec/bin
+# Run std
+cd /scratch/smavak/revisiting-axelrod-second/src
+    
+/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament.py 0 1000 18
+    
+/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament.py 1 1000 18
+    
+/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament.py 2 1000 18
+    
+/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament.py 3 1000 18
+    
+/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament.py 4 1000 18
+    
