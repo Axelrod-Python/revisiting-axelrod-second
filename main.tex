@@ -1,39 +1,246 @@
 \documentclass{article}
 
+\usepackage[margin=1.5cm, includefoot, footskip=30pt]{geometry}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multicol}
+
 \title{Reviving, reproducing and revisiting Axelrod's second tournamentt}
 
 \begin{document}
+
+\maketitle
 
 \section{Introduction}\label{sec:introduction}
 
 % TODO Describe the original work
 % TODO Describe the Axelrod library
 
+% TODO Emphasise that this work has not re written each strategy which would be
+% subject to interpretation but is rerunning the actual strategies that to the
+% best of the worlds' knowledge correspond to the same ones run for the
+% tournament.
+
 \section{Reviving the tournament}\label{sec:reviving}
 
-% TODO Describe Fortran, describe work done to the Fortran, describe the Python
-% stuff done as well?
+The original source code for Axelrod's second tournament was written in Fortan
+(some contributors submitted code in Basic), this was subsequently published
+at~\cite{Axelrod1980bCode}. This website maintained by the University of Michigan
+Center for the Study of Complex Systems was last updated (at the time of
+writing) in 1996. The source code available consists of a single file
+\texttt{TourExec1.1.f}.
+
+For the purposes of that work this Fortran code was minimally modified so that
+it would run on a modern Fortran compiler.
+% TODO Add some minor details
+Furthermore, each strategy was extracted in to a single modular file which
+follows modern best practice and makes analysis more readable. This has all been
+archived and is available at~\cite{owen_campbell_2017_834917}.
+
+Further to this, a Python library has been written that enables an interface to
+the Axelrod library described in the previous section. This library is referred
+to as the \texttt{Axelrod\_fortran} library and is available at~\cite{}.
+% TODO Find archived reference
+This library has the fortran code of the original tournament as a dependency but
+otherwise offers a straightforward to install (using standard scientific python
+packages) and use option for the study of
+the strategies of~\cite{Axelrod1980b}.
+This is made possible thanks to the translation of the compiled Fortran in to C
+and then magic happens and you type and it works.
+% TODO Add description about what it is that we do here.
 
 \section{Reproducing the tournament}\label{sec:reproducing}
 
-% TODO Reproduce the original work (5 tournaments with match lengths known to
-% players of 63, 77, % 151, 308 and 157).
-% Confirm results, further analysis made possible with Axelrod
+The original tournaments from~\cite{Axelrod1980b} have been recreated:
+
+\begin{itemize}
+    \item Matches have length from \(\{63, 77, 151, 308, 157\}\);
+    \item Players do not know the number of rounds in a given match;
+    \item A total of \input{assets/number_of_original_repetitions.tex}repetitions
+        across the various match lengths have been carried out.
+\end{itemize}
+
+The scores across all repetitions are shown in
+Figure~\ref{fig:original_tournament_scores}.
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/original_scores_boxplots.pdf}
+    \caption{The scores per turn of each strategy.}
+    \label{fig:original_tournament_scores}
+\end{figure}
+
+Whilst the results mainly agree with the original reported results, some
+strategies show distinct outliers:
+
+\begin{itemize}
+    \item k61r
+    \item k90r
+    \item k82r
+\end{itemize}
+% TODO Investigate
+
+Note that there are various approaches to calculating the ranks/results,
+Figure~\ref{fig:original_tournament_rankings} shows the rankings calculated in
+various ways as well as the mean absolute error (MAE).
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/original_tournament_rankings.pdf}
+    \caption{The rankings of each strategy.}
+    \label{fig:original_tournament_rankings}
+\end{figure}
+
+The top 15 strategies in the reproduced tournament are shown in
+Table~\ref{tbl:original_tournament_rankings}.
+
+\begin{table}[!hbtp]
+        \centering
+        \input{./assets/original_tournament_rankings.tex}
+        \caption{Top 15 strategies in the reproduced tournament}
+        \label{tbl:original_tournament_rankings}
+\end{table}
+
+In~\cite{Axelrod1980b}, a linear regression model is used to identify 5
+strategies, the scores against which are good predictors of the overall
+performance. The reported \(R^2\) value is \(0.979\) (indicating 97\% of
+variance accounted for by the model). The coefficients of this model are shown
+in Table~\ref{tbl:original_tournament_representative_model}.
+
+\begin{table}[!hbtp]
+        \centering
+        \input{./assets/original_tournament_representative_model.tex}
+        \caption{Linear model described in~\cite{Axelrod1980b} with
+             \(R^2=\protect\input{assets/original_tournament_representative_r_squared.tex}\)}
+        \label{tbl:original_tournament_representative_model}
+\end{table}
+
+Given the discrepancy in results shown in
+Figure~\ref{fig:original_tournament_rankings} and
+Table~\ref{tbl:original_tournament_rankings} it is not surprising to see that
+this model no longer performs as well with
+\(R^2=\input{assets/original_tournament_representative_r_squared.tex}\).
+
+Fitting a new model to the same 5 strategies gives the coefficients shown in
+Table~\ref{tbl:original_tournament_predictive_with_axelrod_5_model} with
+\(R^2=\input{assets/original_tournament_predictive_5_r_squared.tex}\)
+
+\begin{table}[!hbtp]
+        \centering
+        \input{./assets/original_tournament_predictive_with_axelrod_5_model.tex}
+        \caption{Linear model fitted to the same 5 strategies described
+                 in~\cite{Axelrod1980b} with
+             \(R^2=\protect\input{assets/original_tournament_predictive_5_r_squared.tex}\)}
+        \label{tbl:original_tournament_predictive_with_axelrod_5_model}
+\end{table}
+
+Using recursive feature elimination
+% TODO Include a text book reference
+It is possible to select the features (strategies) that give the best prediction
+for a given number of features. The \(R^2\) versus the number of features is
+shown in
+Figure~\ref{fig:original_tournament_r_squared_versus_number_of_features}.
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/original_tournament_r_squared_versus_number_of_features.pdf}
+    \caption{\(R^2\) for models obtained using recursive feature elimination.}
+    \label{fig:original_tournament_r_squared_versus_number_of_features}
+\end{figure}
+
+
+Tables~\ref{tbl:original_tournament_predictive_5_model}
+and~\ref{tbl:original_tournament_predictive_31_model} show the coefficients for
+linear models fitted to 5 and 31 strategies with
+\(R^2=\input{assets/original_tournament_predictive_5_r_squared.tex}\) and
+\(R^2=\input{assets/original_tournament_predictive_31_r_squared.tex}\)
+respectively (31 strategies is the smallest number of strategies for which
+\(R^2>95\).
+
+
+\begin{table}[!hbtp]
+        \centering
+        \input{./assets/original_tournament_predictive_5_model.tex}
+        \caption{Linear model best fitted to 5 strategies in the reproduced tournament
+                 with
+             \(R^2=\protect\input{assets/original_tournament_predictive_5_r_squared.tex}\)}
+        \label{tbl:original_tournament_predictive_5_model}
+\end{table}
+
+\begin{table}[!hbtp]
+        \centering
+        \input{./assets/original_tournament_predictive_31_model.tex}
+        \caption{Linear model best fitted to 31 strategies in the reproduced tournament
+                 with
+             \(R^2=\protect\input{assets/original_tournament_predictive_31_r_squared.tex}\)}
+        \label{tbl:original_tournament_predictive_31_model}
+\end{table}
+
+The predictions of these models are shown in
+Figure~\ref{fig:original_tournament_predictive_score_models}.
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/original_tournament_predictive_score_models.pdf}
+    \caption{Predicting the performance of strategies using the 4 models
+             discussed}
+    \label{fig:original_tournament_predictive_score_models}
+\end{figure}
+
+It is clear that the effectiveness of the predictive models with 5 strategies is
+low for the cluster of highly performing strategies (with a score great than
+2.5). To be able to obtain a good model even for high performing strategies 31
+seem to provide a good predictive model.
+
+% TODO Complement above by looking at:
+% Summary statistics for tournament, relate to cooperation rates, Markov
+% transition rates etc... Particular look at predictive strategies.
+% Match this to the discussion in Axelrod's original work about what a strong
+% performing strategy is.
 
 \section{Revisiting the tournament}\label{sec:revisiting}
 
 \subsection{Running with an extra invitation}\label{sec:extra_strategy}
 
+\subsubsection{Known strategies}
 % TODO Re run above with an extra strategy from the Axelrod library
 
-\subsection{Running with extortion}\label{sec:run_with_stewart_plotkin}
+\subsubsection{Trained strategies}
+% TODO Possibly look at training strategies: relate this to the predictive sets
+% of strategies identified using the regression models.
+
+\subsection{Further tournaments}
+
+% TODO As a brief conclusion show results for these two larger tournaments.
+
+\subsubsection{Running with extortion}\label{sec:run_with_stewart_plotkin}
 
 % TODO Re run with the set of strategies from Stewart and Plotkin
 
-\subsection{Running a large tournament}\label{sec:run_with_everyone}
+\subsubsection{Running a large tournament}\label{sec:run_with_everyone}
+
+% TODO Run with everyone
 
 \section{Conclusion}\label{sec:conclusion}
 
 \section*{Acknowledgements}
+
+% TODO Write appendices for the Axelrod strategies
+
+\bibliographystyle{plain}
+\bibliography{bibliography.bib}
+
+\appendix
+
+\section{List of original players}\label{app:list_of_original_players}
+
+
+\begin{multicols}{2}
+    \begin{enumerate}
+            \input{assets/list_of_original_tournament_players.tex}
+    \end{enumerate}
+\end{multicols}
+
 
 \end{document}
