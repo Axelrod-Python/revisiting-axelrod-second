@@ -1,7 +1,7 @@
 import axelrod as axl
 assert axl.__version__ == "3.3.0"
 
-repetitions = 1000
+repetitions = 500
 
 pbs_files = []
 for strategy_index, _ in enumerate(axl.strategies):
@@ -27,7 +27,7 @@ cd /scratch/smavak/revisiting-axelrod-second/src
 
     for seed in range(5):
         pbs_file += """
-/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament.py {seed} {repetitions} {strategy_index}
+/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament_with_extra_strategy.py {seed} {repetitions} {strategy_index}
     """.format(seed=seed,
                repetitions=repetitions,
                strategy_index=strategy_index)

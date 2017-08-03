@@ -14,13 +14,13 @@ export LD_LIBRARY_PATH=$$LD_LIBRARY_PATH:/home/smavak/TourExec/bin
 # Run std
 cd /scratch/smavak/revisiting-axelrod-second/src
     
-/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament.py 0 1000 16
+/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament_with_extra_strategy.py 0 500 16
     
-/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament.py 1 1000 16
+/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament_with_extra_strategy.py 1 500 16
     
-/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament.py 2 1000 16
+/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament_with_extra_strategy.py 2 500 16
     
-/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament.py 3 1000 16
+/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament_with_extra_strategy.py 3 500 16
     
-/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament.py 4 1000 16
+/home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament_with_extra_strategy.py 4 500 16
     
