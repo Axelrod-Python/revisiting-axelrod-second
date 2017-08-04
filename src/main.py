@@ -58,7 +58,7 @@ def main(players,
     np.savetxt(fname="{}/{}_{}_seed_match_lengths_per_tournament.gz".format(outdir, prefix, seed),
                X=match_lengths_per_tournament, delimiter=",")
 
-    cooperation_rates = np.mean(results.normalised_cooperation).transpose()
+    cooperation_rates = np.array(results.normalised_cooperation).transpose()
     np.savetxt(fname="{}/{}_{}_seed_cooperation_rates.gz".format(outdir, prefix, seed),
                X=cooperation_rates, delimiter=",")
 
