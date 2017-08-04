@@ -1,9 +1,11 @@
 \documentclass{article}
 
 \usepackage[margin=1.5cm, includefoot, footskip=30pt]{geometry}
+
 \usepackage{amsmath}
 \usepackage{booktabs}
 \usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage{multicol}
 
 \title{Reviving, reproducing and revisiting Axelrod's second tournamentt}
@@ -35,12 +37,15 @@ For the purposes of that work this Fortran code was minimally modified so that
 it would run on a modern Fortran compiler.
 % TODO Add some minor details
 Furthermore, each strategy was extracted in to a single modular file which
-follows modern best practice and makes analysis more readable. This has all been
-archived and is available at~\cite{owen_campbell_2017_834917}.
+follows modern best practice and makes analysis more readable. This can be found
+at \url{https://github.com/Axelrod-Python/TourExec} and has been archived
+at~\cite{TourExec}.
 
 Further to this, a Python library has been written that enables an interface to
 the Axelrod library described in the previous section. This library is referred
-to as the \texttt{Axelrod\_fortran} library and is available at~\cite{}.
+to as the \texttt{Axelrod\_fortran} library and is available
+at \url{https://github.com/Axelrod-Python/axelrod-fortran} and the specific
+version used for this work is~\cite{Axelrod_fortran}.
 % TODO Find archived reference
 This library has the fortran code of the original tournament as a dependency but
 otherwise offers a straightforward to install (using standard scientific python
