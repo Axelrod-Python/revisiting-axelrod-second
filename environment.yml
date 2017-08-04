@@ -83,7 +83,7 @@ dependencies:
 - zlib=1.2.8=3
 - pip:
   - axelrod==3.3.0
-  - axelrod-fortran==0.3.0
+  - axelrod-fortran==0.3.1
   - hypothesis==3.14.0
   - ipython-genutils==0.2.0
   - jupyter-client==5.1.0

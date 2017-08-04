@@ -1,6 +1,3 @@
-import axelrod as axl
-assert axl.__version__ == "3.3.0"
-
 # Low reps because this tournament is huge
 repetitions = 200
 
