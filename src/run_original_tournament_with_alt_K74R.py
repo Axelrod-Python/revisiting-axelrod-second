@@ -5,7 +5,7 @@ import axelrod_fortran as axlf
 
 import main
 assert axl.__version__ == "3.3.0"
-assert axlf.__version__ == "0.2.0"
+assert axlf.__version__ == "0.3.0"
 
 strategies = axlf.second_tournament_strategies
 strategies[strategies.index("k74r")] = "k74rxx"
