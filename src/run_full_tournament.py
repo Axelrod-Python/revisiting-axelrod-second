@@ -8,9 +8,11 @@ assert axl.__version__ == "3.3.0"
 assert axlf.__version__ == "0.3.1"
 
 players = [axlf.Player(name) for name in axlf.second_tournament_strategies]
-players += [s() for s in axl.strategies]
+implemented_strategies = [axlf.characteristics[name]['axelrod-python_class']
+                          for name in axlf.second_tournament_strategies]
+players += [s() for s in axl.strategies if s not in implemented_strategies]
 
-assert len(players) == 263
+assert len(players) == 259
 
 turns = [63, 77, 151, 308, 157]
 match_attributes={"length": float('inf')}
