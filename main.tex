@@ -156,11 +156,11 @@ Figure~\ref{fig:original_tournament_r_squared_versus_number_of_features}.
 
 
 Tables~\ref{tbl:original_tournament_predictive_5_model}
-and~\ref{tbl:original_tournament_predictive_31_model} show the coefficients for
-linear models fitted to 5 and 31 strategies with
+and~\ref{tbl:original_tournament_predictive_12_model} show the coefficients for
+linear models fitted to 5 and 12 strategies with
 \(R^2=\input{assets/original_tournament_predictive_5_r_squared.tex}\) and
-\(R^2=\input{assets/original_tournament_predictive_31_r_squared.tex}\)
-respectively (31 strategies is the smallest number of strategies for which
+\(R^2=\input{assets/original_tournament_predictive_12_r_squared.tex}\)
+respectively (12 strategies is the smallest number of strategies for which
 \(R^2>95\).
 
 
@@ -175,11 +175,11 @@ respectively (31 strategies is the smallest number of strategies for which
 
 \begin{table}[!hbtp]
         \centering
-        \input{./assets/original_tournament_predictive_31_model.tex}
-        \caption{Linear model best fitted to 31 strategies in the reproduced tournament
+        \input{./assets/original_tournament_predictive_12_model.tex}
+        \caption{Linear model best fitted to 12 strategies in the reproduced tournament
                  with
-             \(R^2=\protect\input{assets/original_tournament_predictive_31_r_squared.tex}\)}
-        \label{tbl:original_tournament_predictive_31_model}
+             \(R^2=\protect\input{assets/original_tournament_predictive_12_r_squared.tex}\)}
+        \label{tbl:original_tournament_predictive_12_model}
 \end{table}
 
 The predictions of these models are shown in
@@ -195,14 +195,34 @@ Figure~\ref{fig:original_tournament_predictive_score_models}.
 
 It is clear that the effectiveness of the predictive models with 5 strategies is
 low for the cluster of highly performing strategies (with a score great than
-2.5). To be able to obtain a good model even for high performing strategies 31
+2.5). To be able to obtain a good model even for high performing strategies 12
 seem to provide a good predictive model.
 
-% TODO Complement above by looking at:
-% Summary statistics for tournament, relate to cooperation rates, Markov
-% transition rates etc... Particular look at predictive strategies.
-% Match this to the discussion in Axelrod's original work about what a strong
-% performing strategy is.
+The overall cooperation rate of the tournament
+is \input{assets/original_tournament_overall_cooperation_rate.tex}.
+Figure~\ref{fig:original_tournament_cooperation_rate_versus_rank} shows the
+cooperation rate versus the rank of the strategy.
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/original_tournament_cooperation_rate_versus_rank.pdf}
+    \caption{Cooperation rate versus rank}
+    \label{fig:original_tournament_cooperation_rate_versus_rank}
+\end{figure}
+
+
+Figure~\ref{fig:original_tournament_cooperation_rates} shows the pair wise
+cooperation rates. There is one strategy `k42r' that defects against itself but
+cooperates against most other strategies. Also, it is clear that the low
+performing strategies are defecting against each other.
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/original_tournament_cooperation_rates}
+    \caption{Cooperation rates between each pair of players (ordered by rank)}
+    \label{fig:original_tournament_cooperation_rates}
+\end{figure}
+
 
 \section{Revisiting the tournament}\label{sec:revisiting}
 
