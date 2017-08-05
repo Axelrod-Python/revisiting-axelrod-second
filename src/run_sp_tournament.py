@@ -43,7 +43,7 @@ if __name__ == "__main__":
                   repetitions=repetitions,
                   seed=seed,
                   outdir="./data/sp_tournament",
-                  prefix="pd_{}_turns_{}_repetitions".format(
+                  prefix="sp_{}_turns_{}_repetitions".format(
                       turn,
                       repetitions),
                   turns=turn,
