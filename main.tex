@@ -241,7 +241,47 @@ performing strategies are defecting against each other.
 
 \subsubsection{Running with extortion}\label{sec:run_with_stewart_plotkin}
 
-% TODO Re run with the set of strategies from Stewart and Plotkin
+Since the work of~\cite{Press2012} a lot of interest has been shown to Zero
+Determinant strategies. In~\cite{Stewart2012} a small tournament is presented
+pitting these against each other. Table~\ref{tbl:sp_tournament_rankings}
+shows the rankings of the top 15 strategies when including all the Zero
+Determinant strategies from~\cite{Stewart2012}.
+
+\begin{table}[!hbtp]
+        \centering
+        \input{./assets/sp_tournament_rankings.tex}
+        \caption{Top 15 strategies in the tournament composed of the original
+                 strategies and the Zero Determinant strategies
+                 from~\cite{Stewart2012}}
+        \label{tbl:sp_tournament_rankings}
+\end{table}
+
+The overall cooperation rate of this tournament is
+\input{assets/sp_tournament_overall_cooperation_rate.tex}and the various
+cooperation rates are shown in
+Figure~\ref{fig:sp_tournament_cooperation_rate_versus_rank} shows the
+cooperation rates of each strategy (ordered by rank).
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/sp_tournament_cooperation_rate_versus_rank.pdf}
+    \caption{Cooperation rate versus rank for the Stewart and Poltkin tournament}
+    \label{fig:sp_tournament_cooperation_rate_versus_rank}
+\end{figure}
+
+
+Figure~\ref{fig:sp_tournament_cooperation_rates} shows the pair wise
+cooperation rates.
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/sp_tournament_cooperation_rates}
+    \caption{Cooperation rates between each pair of players (ordered by rank)
+    for the Stewart and Plotkin tournament}
+    \label{fig:sp_tournament_cooperation_rates}
+\end{figure}
+
+
 
 \subsubsection{Running a large tournament}\label{sec:run_with_everyone}
 
