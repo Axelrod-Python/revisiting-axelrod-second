@@ -1,16 +1,27 @@
+import csv
+
 import axelrod as axl
 import axelrod_fortran as axlf
 
 assert axl.__version__ == "3.3.0"
 assert axlf.__version__ == "0.3.1"
 
+with open("../std_summary_v_3.3.0.csv", "r") as f:
+    reader = csv.reader(f)
+    next(reader)  # Skip the header
+    ranked_names = [row[1] for row in reader]
+
 repetitions = 250
 
 implemented_strategies = [axlf.characteristics[name]['axelrod-python_class']
                           for name in axlf.second_tournament_strategies]
 
+ordered_strategies = sorted(axl.strategies,
+                            key=lambda s: ranked_names.index(str(s())))
+
 pbs_files = []
-for strategy_index, strategy in enumerate(axl.strategies):
+for strategy in ordered_strategies:
+    strategy_index = axl.strategies.index(strategy)
 
     if strategy not in implemented_strategies:
 
