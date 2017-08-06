@@ -4,7 +4,7 @@ import axelrod_fortran as axlf
 assert axl.__version__ == "3.3.0"
 assert axlf.__version__ == "0.3.1"
 
-repetitions = 500
+repetitions = 250
 
 implemented_strategies = [axlf.characteristics[name]['axelrod-python_class']
                           for name in axlf.second_tournament_strategies]
@@ -33,7 +33,7 @@ export LD_LIBRARY_PATH=$$LD_LIBRARY_PATH:/home/smavak/TourExec/bin
 cd /scratch/smavak/revisiting-axelrod-second/src
         """.format(index=strategy_index)
 
-        for seed in range(5):
+        for seed in range(10):
             pbs_file += """
 /home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament_with_extra_strategy.py {seed} {repetitions} {strategy_index}
         """.format(seed=seed,
