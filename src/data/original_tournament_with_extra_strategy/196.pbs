@@ -13,14 +13,14 @@ export MPLBACKEND="agg"
 export LD_LIBRARY_PATH=$$LD_LIBRARY_PATH:/home/smavak/TourExec/bin
 # Run std
 cd /scratch/smavak/revisiting-axelrod-second/src
-    
+        
 /home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament_with_extra_strategy.py 0 500 196
-    
+        
 /home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament_with_extra_strategy.py 1 500 196
-    
+        
 /home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament_with_extra_strategy.py 2 500 196
-    
+        
 /home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament_with_extra_strategy.py 3 500 196
-    
+        
 /home/smavak/anaconda3/envs/rrr-axl/bin/python run_original_tournament_with_extra_strategy.py 4 500 196
-    
+        
