@@ -211,16 +211,24 @@ cooperation rate versus the rank of the strategy.
 \end{figure}
 
 
-Figure~\ref{fig:original_tournament_cooperation_rates} shows the pair wise
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/original_tournament_cooperation_rates.pdf}
+    \caption{Distribution of cooperation rates}
+    \label{fig:original_tournament_cooperation_rates}
+\end{figure}
+
+Figure~\ref{fig:original_tournament_pairwise_cooperation_rates} shows the pair wise
 cooperation rates. There is one strategy `k42r' that defects against itself but
 cooperates against most other strategies. Also, it is clear that the low
 performing strategies are defecting against each other.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.8\textwidth]{assets/original_tournament_cooperation_rates}
+    \includegraphics[width=.8\textwidth]{assets/original_tournament_pairwise_cooperation_rates.pdf}
     \caption{Cooperation rates between each pair of players (ordered by rank)}
-    \label{fig:original_tournament_cooperation_rates}
+    \label{fig:original_tournament_pairwise_cooperation_rates}
 \end{figure}
 
 
@@ -229,7 +237,33 @@ performing strategies are defecting against each other.
 \subsection{Running with an extra invitation}\label{sec:extra_strategy}
 
 \subsubsection{Known strategies}
-% TODO Re run above with an extra strategy from the Axelrod library
+
+The tournament is run with every strategy of the Axelrod library.
+% TODO Cite properly
+% TODO Point at appendix
+Every tournament (corresponding to each strategy) was run
+for \input{assets/number_of_extra_strategy_repetitions.tex}repetitions.
+Table~\ref{tbl:original_tournament_with_extra_strategy_summary} shows the top
+ranking strategies.
+
+\begin{table}[!hbtp]
+        \footnotesize
+        \centering
+        \input{assets/original_tournament_with_extra_strategy_summary.tex}
+        \caption{Performance of extra strategy in Axelrod's original tournament}
+        \label{tbl:original_tournament_with_extra_strategy_summary}
+\end{table}
+
+Figure~\ref{fig:original_tournament_with_extra_strategy_ranks_vs_library_ranks}
+shows the rank of the extra strategy against it's rank in the library
+tournament.
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/original_tournament_with_extra_strategy_ranks_vs_library_ranks.pdf}
+    \caption{Ranks of extra strategy}
+    \label{fig:original_tournament_with_extra_strategy_ranks_vs_library_ranks}
+\end{figure}
 
 \subsubsection{Trained strategies}
 % TODO Possibly look at training strategies: relate this to the predictive sets
@@ -271,15 +305,23 @@ cooperation rates of each strategy (ordered by rank).
 \end{figure}
 
 
-Figure~\ref{fig:sp_tournament_cooperation_rates} shows the pair wise
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/sp_tournament_cooperation_rates.pdf}
+    \caption{Distribution of cooperation rates for the Stewart and Plotkin
+    tournament}
+    \label{fig:sp_tournament_cooperation_rates}
+\end{figure}
+
+Figure~\ref{fig:sp_tournament_pairwise_cooperation_rates} shows the pair wise
 cooperation rates.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.8\textwidth]{assets/sp_tournament_cooperation_rates}
+    \includegraphics[width=.8\textwidth]{assets/sp_tournament_pairwise_cooperation_rates}
     \caption{Cooperation rates between each pair of players (ordered by rank)
     for the Stewart and Plotkin tournament}
-    \label{fig:sp_tournament_cooperation_rates}
+    \label{fig:sp_tournament_pairwise_cooperation_rates}
 \end{figure}
 
 \subsubsection{Running a large tournament}\label{sec:run_with_everyone}
@@ -314,16 +356,22 @@ cooperation rates of each strategy (ordered by rank).
     \label{fig:full_tournament_cooperation_rate_versus_rank}
 \end{figure}
 
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/full_tournament_cooperation_rates.pdf}
+    \caption{Distribution of cooperation rates for the full tournament.}
+    \label{fig:full_tournament_cooperation_rates}
+\end{figure}
 
-Figure~\ref{fig:full_tournament_cooperation_rates} shows the pair wise
+Figure~\ref{fig:full_tournament_pairwise_cooperation_rates} shows the pair wise
 cooperation rates.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.8\textwidth]{assets/full_tournament_cooperation_rates}
+    \includegraphics[width=.8\textwidth]{assets/full_tournament_pairwise_cooperation_rates}
     \caption{Cooperation rates between each pair of players (ordered by rank)
     for tournament with all available strategies}
-    \label{fig:full_tournament_cooperation_rates}
+    \label{fig:full_tournament_pairwise_cooperation_rates}
 \end{figure}
 
 \section{Conclusion}\label{sec:conclusion}
