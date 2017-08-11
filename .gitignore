@@ -232,4 +232,7 @@ src/data/full_tournament/*gz
 src/data/sp_tournament/*csv
 src/data/sp_tournament/*gz
 
+src/data/training_strategies/training_data*.csv
+
+
 src/.ipynb_checkpoints/

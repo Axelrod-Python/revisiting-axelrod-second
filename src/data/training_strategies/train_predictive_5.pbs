@@ -1,0 +1,17 @@
+
+#!/bin/bash
+#PBS -q workq
+#PBS -N trainp5
+#PBS -P PR350
+#PBS -o trainp5-out.txt
+#PBS -e trainp5-err.txt
+#PBS -l select=1:ncpus=16:mpiprocs=16
+#PBS -l place=scatter:excl
+#PBS -l walltime=70:00:00
+
+export MPLBACKEND="agg"
+export LD_LIBRARY_PATH=$$LD_LIBRARY_PATH:/home/smavak/TourExec/bin
+# Run std
+cd /scratch/smavak/revisiting-axelrod-second/src/data/training_strategies
+
+/home/smavak/anaconda3/envs/rrr-axl/bin/python main.py original_tournament_predictive_5_strategies.csv

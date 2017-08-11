@@ -83,6 +83,7 @@ dependencies:
 - zlib=1.2.8=3
 - pip:
   - axelrod==3.3.0
+  - axelrod-dojo==0.0.4
   - axelrod-fortran==0.3.1
   - hypothesis==3.14.0
   - ipython-genutils==0.2.0
@@ -90,6 +91,7 @@ dependencies:
   - jupyter-console==5.1.0
   - jupyter-core==4.3.0
   - prompt-toolkit==1.0.15
+  - pyswarm==0.6
   - tqdm==4.15.0
 prefix: /home/vince/anaconda3/envs/rrr-axl
 
