@@ -266,8 +266,31 @@ tournament.
 \end{figure}
 
 \subsubsection{Trained strategies}
-% TODO Possibly look at training strategies: relate this to the predictive sets
-% of strategies identified using the regression models.
+
+Using the various strategy sets and weights from the previous regression
+analysis
+% TODO Improve how this points and refers to training
+it is possible to train strategies to compete in the tournament.
+% TODO Add details about training (software + algorithm): also include a diagram
+% about process
+Figure~\ref{fig:training_data_max_score} show the mean utility of the strategies
+trained for this work. The strategies trained are 10 state Finite State
+machines.
+% TODO Include references.
+% TODO Draw final fsm ones.
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/training_data_max_score.pdf}
+    \caption{The maximum score per generation over the training periods}
+    \label{fig:training_data_max_score}
+\end{figure}
+
+The relative score is not necessarily interpretable (the weights of the
+particular regression model skew this).
+% TODO Add more details
+
+% TODO Show results of trained strategies in tournaments.
 
 \subsection{Further tournaments}
 
