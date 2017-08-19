@@ -233,6 +233,8 @@ src/data/sp_tournament/*csv
 src/data/sp_tournament/*gz
 
 src/data/training_strategies/training_data*.csv
+src/data/training_strategies/*.gz
+src/data/training_strategies/*summary.csv
 
 
 src/.ipynb_checkpoints/
