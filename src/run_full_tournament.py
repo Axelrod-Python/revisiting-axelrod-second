@@ -12,7 +12,7 @@ implemented_strategies = [axlf.characteristics[name]['axelrod-python_class']
                           for name in axlf.second_tournament_strategies]
 players += [s() for s in axl.strategies
             if s not in implemented_strategies and
-            s not in [axl.Alexei, axl.ContriteTitForTat]]
+            s not in [axl.Alexei, axl.ContriteTitForTat]]  # Correspond to TfT
 
 assert len(players) == 257
 
