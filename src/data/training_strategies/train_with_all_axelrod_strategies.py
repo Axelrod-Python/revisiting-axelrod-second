@@ -5,13 +5,7 @@ import csv
 import multiprocessing
 import sys
 
-import axelrod_dojo as dojo
-import axelrod_fortran as axlf
-
 from main import train
-
-assert axlf.__version__ == "0.3.1"
-
 
 if __name__ == "__main__":
     cpu_count = multiprocessing.cpu_count()

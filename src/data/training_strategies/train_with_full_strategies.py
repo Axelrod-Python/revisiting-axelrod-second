@@ -6,14 +6,10 @@ import multiprocessing
 import sys
 import imp
 
-import axelrod_dojo as dojo
-
 from main import train
 
 run_full_tournament = imp.load_source('full_tournament',
                                       '../../run_full_tournament.py')
-assert dojo.__version__ == "0.0.4"
-
 from full_tournament import players as full_players
 
 if __name__ == "__main__":
