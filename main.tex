@@ -16,13 +16,77 @@
 
 \section{Introduction}\label{sec:introduction}
 
-% TODO Describe the original work
-% TODO Describe the Axelrod library
+The Prisoner's Dilemma has been the centre of the study of
+cooperative behaviour since Robert Axelrod's seminal work in the
+1980s~\cite{Axelrod1980a, Axelrod1980b, Axelrodbook}. In this work, Robert
+Axelrod invited fellow academics to write computer code to play the Iterated
+Prisoner's Dilemma. This initial research has subsequently lead to a huge area
+of research aiming to understand the emergence of cooperative behaviour. A good
+overview of the variety of research areas is given in~\cite{Nowak2006}.
 
-% TODO Emphasise that this work has not re written each strategy which would be
-% subject to interpretation but is rerunning the actual strategies that to the
-% best of the worlds' knowledge correspond to the same ones run for the
-% tournament.
+In the Prisoner's Dilemma, each player chooses
+simultaneously and independently
+between cooperation (C) or defection (D). The payoffs of
+the game are defined by the matrix
+\(
+\begin{pmatrix}
+    R & S \\ 
+    T & P
+\end{pmatrix}
+\),
+where $T > R > P > S$ and $2R > T + S$. The PD is a one
+round game, but is commonly studied in a manner where the prior outcomes
+matter. This repeated form is called the Iterated Prisoner's
+Dilemma (IPD).
+
+
+In Robert Axelrod's tournaments the particular values of \(R=3, P=1, S=0, T=5\)
+were used.  Strategies were submitted written in either Fortran or Basic
+% TODO Add a citation for bother languages
+(in which case they were translated to Fortran). The very first
+tournament~\cite{Axelrod1980a} involved 14 submissions  (complemented by a
+fifteenth random strategy). Famously, the winner of this tournament was
+Tit For Tat: a strategy that mimics the opponent's previous action. The only
+sources for this work are the paper itself, all of the source code is apparently
+lost. In the second tournament~\cite{Axelrod1980b} 64 strategies were submitted
+and again: Tit For Tat was declared the winner. From a computation archaeological
+point of view this tournament was far superior as all of the source code was
+kept and made available for use, it can be found at
+\url{http://www-personal.umich.edu/~axe/research/Software/CC/CC2/TourExec1.1.f.html}.
+
+This work describes the process of reviving and using these strategies in a
+modern software framework (\cite{AxelrodProject}): a Python library with over
+200 strategies and a large number of analytical procedures which has been used
+in ongoing research~\cite{Harper2017, Knight2017}.
+
+Importantly, reviving the strategies is not done
+through a manual exercise of reverse engineering the Fortran code which would be
+prone to mistakes. This is done by calling the original functions ensuring the
+\textbf{best possible reproduction and analysis of Robert Axelrod's original
+work}. This will be described in more detail in Section~\ref{sec:reviving}.
+
+Results and further analyses pertaining to reproducing the tournament will be
+given in Section~\ref{sec:reproducing}. Finally, Section~\ref{sec:revisiting}
+will extend the analysis to include contemporary research topics:
+
+\begin{itemize}
+    \item Experimenting with adding one of over 196 other strategies
+        from~\cite{AxelrodProject} to see how the results change.
+    \item Training strategies to perform at a high level using Genetic Algorithms.
+    \item Investigating the overall performance of Zero determinant
+        strategies~\cite{Press2012}.
+    \item Running a tournament with all considered strategies (more than 250).
+\end{itemize}
+
+This work contributes to the game theoretic literature by providing the first
+exercise in reproducing reported results that have been at the core of the study
+of cooperation. Furthermore it also provides a contemporary lense which, amongst
+other things concludes with one of the largest Iterated Prisoner's Dilemma
+tournaments.
+Finally, by reviving the original code and making it available to use
+in~\cite{AxelrodProject} it is now possible to use the original strategies of
+Robert Axelrod's second tournament in a modern framework which for example
+allows for the study of topological and evolutionary variants.
 
 \section{Reviving the tournament}\label{sec:reviving}
 
@@ -54,6 +118,10 @@ the strategies of~\cite{Axelrod1980b}.
 This is made possible thanks to the translation of the compiled Fortran in to C
 and then magic happens and you type and it works.
 % TODO Add description about what it is that we do here.
+% TODO Describe some fundamental assumptions: every strategy needs an initial
+% move of the opponent etc...
+% TODO Draw a diagram
+% TODO Discuss one strategy with a bug.
 
 \section{Reproducing the tournament}\label{sec:reproducing}
 
