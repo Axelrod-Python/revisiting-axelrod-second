@@ -2,11 +2,20 @@
 
 \usepackage[margin=1.5cm, includefoot, footskip=30pt]{geometry}
 
+%\usepackage{minted}  % would prefer to use minted but arxiv cannot shell-escape
+\usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{listings}
+\usepackage{lmodern}
 \usepackage{multicol}
+\usepackage{standalone}
+\usepackage{xcolor}
+
+\usepackage{tikz}
+\usetikzlibrary{calc, shapes, patterns}
 
 \title{Reviving, reproducing and revisiting Axelrod's second tournamentt}
 
@@ -90,14 +99,15 @@ allows for the study of topological and evolutionary variants.
 
 \section{Reviving the tournament}\label{sec:reviving}
 
-The original source code for Axelrod's second tournament was written in Fortan
-(some contributors submitted code in Basic), this was subsequently published
-at~\cite{Axelrod1980bCode}. This website maintained by the University of Michigan
-Center for the Study of Complex Systems was last updated (at the time of
-writing) in 1996. The source code available consists of a single file
-\texttt{TourExec1.1.f}.
+As described in Section~\ref{sec:introduction}, the original source code for
+Axelrod's second tournament was written in Fortan (some contributors submitted
+code in Basic), this was subsequently published at~\cite{Axelrod1980bCode}. This
+website maintained by the University of Michigan Center for the Study of Complex
+Systems was last updated (at the time of writing) in 1996. The source code
+available consists of a single file \texttt{TourExec1.1.f}.
 
-For the purposes of that work this Fortran code was minimally modified so that
+
+For the purposes of this work this Fortran code was minimally modified so that
 it would run on a modern Fortran compiler.
 % TODO Add some minor details
 Furthermore, each strategy was extracted in to a single modular file which
@@ -105,23 +115,118 @@ follows modern best practice and makes analysis more readable. This can be found
 at \url{https://github.com/Axelrod-Python/TourExec} and has been archived
 at~\cite{TourExec}.
 
-Further to this, a Python library has been written that enables an interface to
+A Python library has been written that enables an interface to
 the Axelrod library described in the previous section. This library is referred
 to as the \texttt{Axelrod\_fortran} library and is available
 at \url{https://github.com/Axelrod-Python/axelrod-fortran} and the specific
 version used for this work is~\cite{Axelrod_fortran}.
-% TODO Find archived reference
 This library has the fortran code of the original tournament as a dependency but
 otherwise offers a straightforward to install (using standard scientific python
 packages) and use option for the study of
 the strategies of~\cite{Axelrod1980b}.
 This is made possible thanks to the translation of the compiled Fortran in to C
-and then magic happens and you type and it works.
-% TODO Add description about what it is that we do here.
-% TODO Describe some fundamental assumptions: every strategy needs an initial
-% move of the opponent etc...
-% TODO Draw a diagram
-% TODO Discuss one strategy with a bug.
+which can be used directly by the Python software.
+For this to work there are a variety of minor translations that need to take
+place. As documented at
+\url{http://www-personal.umich.edu/~axe/research/Software/CC/CC2/TourExec1.1.f.html}
+the Fortran code implies that each strategy is a Fortran function which takes
+the following inputs.
+
+\begin{itemize}
+    \item  \texttt{J}: The opponent's previous move: 0 corresponds to a
+        defection and 1 to a cooperation.
+    \item \texttt{M}: The current turn number (starting at 1).
+    \item \texttt{K}: The player's current cumulative score.
+    \item \texttt{L}: The opponent's current cumulative score.
+    \item \texttt{R}: A random number between 0 and 1: used by stochastic
+        strategies.
+    \item \texttt{JA}: The player's previous move.
+\end{itemize}
+
+For example, Figure~\ref{fig:tft_fortran} shows the source code for
+\texttt{k92r.f} also known as Tit For Tat.
+
+\begin{figure}[!hbtp]
+    \begin{center}
+        \begin{lstlisting}[language=Fortran,
+                           basicstyle=\ttfamily,
+                           frame=single,
+                           keywordstyle=\color{red},
+                           commentstyle=\color{green}]
+          FUNCTION K92R(J,M,K,L,R, JA)
+    C BY ANATOL RAPOPORT
+    C TYPED BY AX 3/27/79 (SAME AS ROUND ONE TIT FOR TAT)
+    c replaced by actual code, Ax 7/27/93
+    c  T=0
+    c   K92R=ITFTR(J,M,K,L,T,R)
+          k92r=0
+          k92r = j
+    c test 7/30
+    c   write(6,77) j, k92r
+    c77   format(' test k92r. j,k92r: ', 2i3)
+          RETURN
+          END
+        \end{lstlisting}
+        \caption{Fortran Source code for original Tit For Tat strategy submitted
+        to Axelrod's second tournament.}
+        \label{fig:tft_fortran}
+    \end{center}
+\end{figure}
+
+
+The \texttt{Axelrod} library takes advantage of the modern Object Oriented
+framework in Python. Each strategy is a class with agent based behaviour. The
+input to each player is simply the opponent with both holding their respective
+history of plays. In the newly written \texttt{Axelrod\_fortran} library a
+class inherited from the base \texttt{Axelrod} class is written that interfaces
+with the Fortran strategies and the Python requirements. This includes, for
+example passing an initial move required by the Fortran player: using the
+original Fortran code as reference (see Figure~\ref{fig:tournament_code}) it
+is assumed that the assumed prior move is
+a cooperation (which is in line with Figure~\ref{fig:tft_fortran}).
+
+\begin{figure}[!hbtp]
+    \begin{center}
+        \begin{lstlisting}[language=Fortran,
+                           basicstyle=\ttfamily,
+                           frame=single,
+                           keywordstyle=\color{red},
+                           numbers=left,
+                           firstnumber=67,
+                           commentstyle=\color{green}]
+      Do 20 Game = 1,5
+            RowGameSc = 0
+            ColGameSc = 0
+            JA = 0          ! Row's previous move, reported to column
+            JB = 0          ! Col's previous move, reported to row
+        \end{lstlisting}
+        \caption{A portion of the original tournament code
+            \url{https://github.com/Axelrod-Python/TourExec/blob/master/src/tournament/AxTest.f}
+            setting the default
+        previous move to a cooperation and score to 0.}
+        \label{fig:tournament_code}
+    \end{center}
+\end{figure}
+
+Figure~\ref{fig:strategy_diagram} shows a diagrammatic representation of the
+interface between the Python strategy and the Fortran function.
+
+\begin{figure}[!hbtp]
+    \begin{center}
+        \scalebox{.8}{
+            \includestandalone{assets/strategy_diagram}
+                     }
+        \caption{The interface between the Python axelrod library and the
+        Fortran code}
+        \label{fig:strategy_diagram}
+    \end{center}
+\end{figure}
+
+The major advantage of this approach is that at no point has any subjectivity
+been added to the process of replicating Axelrod's second tournament. Indeed for
+some strategies the only description available is the Fortran code itself, thus
+they are being run and used as available. To the author's knowledge this is the
+best possible way to replicate Axelrod's work.
 
 \section{Reproducing the tournament}\label{sec:reproducing}
 
@@ -340,7 +445,7 @@ analysis
 % TODO Improve how this points and refers to training
 it is possible to train strategies to compete in the tournament.
 % TODO Add details about training (software + algorithm): also include a diagram
-% about process
+% about process (mutation and crossover)
 Figure~\ref{fig:training_data_max_score} show the mean utility of the strategies
 trained for this work. The strategies trained are 10 state Finite State
 machines.
