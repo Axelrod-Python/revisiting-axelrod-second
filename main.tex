@@ -13,6 +13,7 @@
 \usepackage{multicol}
 \usepackage{standalone}
 \usepackage{xcolor}
+\usepackage{subcaption}
 
 \usepackage{tikz}
 \usetikzlibrary{calc, shapes, patterns}
@@ -109,7 +110,6 @@ available consists of a single file \texttt{TourExec1.1.f}.
 
 For the purposes of this work this Fortran code was minimally modified so that
 it would run on a modern Fortran compiler.
-% TODO Add some minor details
 Furthermore, each strategy was extracted in to a single modular file which
 follows modern best practice and makes analysis more readable. This can be found
 at \url{https://github.com/Axelrod-Python/TourExec} and has been archived
@@ -225,12 +225,14 @@ interface between the Python strategy and the Fortran function.
 The major advantage of this approach is that at no point has any subjectivity
 been added to the process of replicating Axelrod's second tournament. Indeed for
 some strategies the only description available is the Fortran code itself, thus
-they are being run and used as available. To the author's knowledge this is the
-best possible way to replicate Axelrod's work.
+they are being run and used as available. To the authors' knowledge this is the
+best possible way to replicate Axelrod's work which is the subject of the next
+section.
 
 \section{Reproducing the tournament}\label{sec:reproducing}
 
-The original tournaments from~\cite{Axelrod1980b} have been recreated:
+From~\cite{Axelrod1980b}, the following characteristics of the original
+tournament have been identified:
 
 \begin{itemize}
     \item Matches have length from \(\{63, 77, 151, 308, 157\}\);
@@ -239,35 +241,47 @@ The original tournaments from~\cite{Axelrod1980b} have been recreated:
         across the various match lengths have been carried out.
 \end{itemize}
 
-The scores across all repetitions are shown in
-Figure~\ref{fig:original_tournament_scores}.
+Note that there is some lack of clarity in~\cite{Axelrod1980b} as to the length
+of the matches:
+
+\begin{quote}
+    \textit{``As announced in the rules, the length of the games was determined
+        probabilistically with a .00346 chance of ending with each given move.
+        This parameter was chosen so that the expected median length of a game
+        would be 200 moves. In practice, each pair of players was matched five
+        times, and the lengths of these five games were determined once and for
+        all by drawing a random sample. The resulting random sample from the
+        implied distribution specified that the five games for each pair of
+        players would be of lengths 63, 77, 151, and 308 moves. Thus the average
+    length of a game turned out to be somewhat shorter than expected at 151
+moves.''}
+\end{quote}
+
+As only four match length samples were specified but the average was given, a
+fifth match length of 157 is assumed.  It seems that the only stochastic
+smoothing used was these five repetitions, without a known seed it is not
+possible to replicate, thus the original tournament is repeated a total of
+\input{assets/number_of_original_repetitions.tex}for each match length.
+
+The replicated scores and corresponding rankings of each strategy across all
+repetitions are shown in
+Figure~\ref{fig:replicated_tournament}.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.8\textwidth]{assets/original_scores_boxplots.pdf}
-    \caption{The scores per turn of each strategy.}
-    \label{fig:original_tournament_scores}
-\end{figure}
-
-Whilst the results mainly agree with the original reported results, some
-strategies show distinct outliers:
-
-\begin{itemize}
-    \item k61r
-    \item k90r
-    \item k82r
-\end{itemize}
-% TODO Investigate
-
-Note that there are various approaches to calculating the ranks/results,
-Figure~\ref{fig:original_tournament_rankings} shows the rankings calculated in
-various ways as well as the mean absolute error (MAE).
-
-\begin{figure}[!hbtp]
-    \centering
-    \includegraphics[width=.8\textwidth]{assets/original_tournament_rankings.pdf}
-    \caption{The rankings of each strategy.}
-    \label{fig:original_tournament_rankings}
+    \begin{subfigure}[t]{.5\textwidth}
+        \includegraphics[width=.95\textwidth]{assets/original_tournament_scores.pdf}
+        \caption{Average score per turn of each strategy.}
+        \label{fig:original_tournament_scores}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.5\textwidth}
+        \includegraphics[width=.95\textwidth]{assets/original_tournament_rankings.pdf}
+        \caption{Ranking of each strategy.}
+        \label{fig:original_tournament_ranks}
+    \end{subfigure}
+    \caption{Replicated tournament with strategies ordered by original rank}
+    \label{fig:replicated_tournament}
 \end{figure}
 
 The top 15 strategies in the reproduced tournament are shown in
@@ -279,6 +293,22 @@ Table~\ref{tbl:original_tournament_rankings}.
         \caption{Top 15 strategies in the reproduced tournament}
         \label{tbl:original_tournament_rankings}
 \end{table}
+
+Whilst the results mainly agree with the original reported results, some
+strategies are distinct outliers \texttt{k61r} and \texttt{k90r}:
+
+\begin{itemize}
+    \item \texttt{k61r}: Is referred to as Champion: cooperates for the first 10
+        moves, plays tit for tat for the next fifteen and then will cooperate
+        unless: the other player defected on the previous move, the
+        other player cooperated less than 60\% and a random number between
+        0 and 1 is greater that the other player's cooperation rate.
+        When run on a modern Fortran compiler this strategy does not behave as
+        expected.
+    \item \texttt{k90r}: Is described as the well known Tit For Two Tats,
+        however as written the Fortran code includes an error that implies that
+        it is essentially a strategy that always cooperates.
+\end{itemize}
 
 In~\cite{Axelrod1980b}, a linear regression model is used to identify 5
 strategies, the scores against which are good predictors of the overall
@@ -360,7 +390,7 @@ Figure~\ref{fig:original_tournament_predictive_score_models}.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.8\textwidth]{assets/original_tournament_predictive_score_models.pdf}
+    \includegraphics[width=.9\textwidth]{assets/original_tournament_predictive_score_models.pdf}
     \caption{Predicting the performance of strategies using the 4 models
              discussed}
     \label{fig:original_tournament_predictive_score_models}
