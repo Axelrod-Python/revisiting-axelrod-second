@@ -294,25 +294,64 @@ Table~\ref{tbl:original_tournament_rankings}.
         \label{tbl:original_tournament_rankings}
 \end{table}
 
-Whilst the results mainly agree with the original reported results, some
-strategies are distinct outliers \texttt{k61r} and \texttt{k90r}:
+Whilst the results show an overall agreement with the original reported results,
+a distinct outlier is \texttt{k61r}.
+\texttt{k61r}: Is referred to as Champion: cooperates for the first 10
+moves, plays tit for tat for the next fifteen and then will cooperate
+unless: the other player defected on the previous move, the
+other player cooperated less than 60\% and a random number between
+0 and 1 is greater that the other player's cooperation rate. There is no
+immediate explanation as to why this strategy does not perform as reported
+in~\cite{Axelrod1980b}. Potential explanations include:
 
 \begin{itemize}
-    \item \texttt{k61r}: Is referred to as Champion: cooperates for the first 10
-        moves, plays tit for tat for the next fifteen and then will cooperate
-        unless: the other player defected on the previous move, the
-        other player cooperated less than 60\% and a random number between
-        0 and 1 is greater that the other player's cooperation rate.
-        When run on a modern Fortran compiler this strategy does not behave as
-        expected.
-    \item \texttt{k90r}: Is described as the well known Tit For Two Tats,
-        however as written the Fortran code includes an error that implies that
-        it is essentially a strategy that always cooperates.
+    \item Stochastic variation not being sufficiently taken in to account
+        in~\cite{Axelrod1980b}.
+    \item A difference with how an older Fortran compiler would interpret the
+        commands: this is not obvious though, the implemented version seems to
+        interact as expected.
+    \item An error in the reporting of~\cite{Axelrod1980b} which could include
+        a modification of the source code.
 \end{itemize}
 
-In~\cite{Axelrod1980b}, a linear regression model is used to identify 5
-strategies, the scores against which are good predictors of the overall
-performance. The reported \(R^2\) value is \(0.979\) (indicating 97\% of
+A part from this one outlier, the agreement between the original and the
+reproduced tournament is significant. The main conclusions included for example
+that Tit For Tat (\texttt{k92r}) once again wins the tournament. Furthermore,
+the fact that high performing strategies are ``nice'' is also evident.
+The overall cooperation rate of the tournament
+is \input{assets/original_tournament_overall_cooperation_rate.tex}.
+Figure~\ref{fig:replicated_cooperation_rates} shows the
+cooperation rates of the tournament. It is clear that the high performing
+strategies cooperate overall more often
+(Figure~\ref{fig:original_tournament_cooperation_rates}). Also, looking at the
+pairwise cooperation rates in
+Figure~\ref{fig:original_tournament_pairwise_cooperation_rates} the high
+performing strategies generally seems to cooperate with high performing
+strategies. This underpins one of the main conclusions of~\cite{Axelrod1980b}
+explaining the emergence of cooperation in competitive environments.
+
+\begin{figure}[!hbtp]
+    \begin{subfigure}{.6\textwidth}
+        \centering
+        \includegraphics[width=.9\textwidth]{assets/original_tournament_cooperation_rate_versus_rank.pdf}
+        \caption{Mean cooperation rates}
+        \label{fig:original_tournament_cooperation_rate_versus_rank}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}{.4\textwidth}
+        \centering
+        \includegraphics[width=.9\textwidth]{assets/original_tournament_pairwise_cooperation_rates.pdf}
+        \caption{Cooperation rates between each pair of players}
+        \label{fig:original_tournament_pairwise_cooperation_rates}
+    \end{subfigure}
+    \caption{Replicated tournament cooperation rates with strategies 
+             ordered by original rank}
+    \label{fig:replicated_cooperation_rates}
+\end{figure}
+
+For completeness in~\cite{Axelrod1980b}, a linear regression model is used to
+identify 5 strategies, the scores against which are good predictors of the
+overall performance. The reported \(R^2\) value is \(0.979\) (indicating 97\% of
 variance accounted for by the model). The coefficients of this model are shown
 in Table~\ref{tbl:original_tournament_representative_model}.
 
@@ -325,7 +364,7 @@ in Table~\ref{tbl:original_tournament_representative_model}.
 \end{table}
 
 Given the discrepancy in results shown in
-Figure~\ref{fig:original_tournament_rankings} and
+Figure~\ref{fig:replicated_tournament} and
 Table~\ref{tbl:original_tournament_rankings} it is not surprising to see that
 this model no longer performs as well with
 \(R^2=\input{assets/original_tournament_representative_r_squared.tex}\).
@@ -364,7 +403,7 @@ linear models fitted to 5 and 12 strategies with
 \(R^2=\input{assets/original_tournament_predictive_5_r_squared.tex}\) and
 \(R^2=\input{assets/original_tournament_predictive_12_r_squared.tex}\)
 respectively (12 strategies is the smallest number of strategies for which
-\(R^2>95\).
+\(R^2>95\)).
 
 
 \begin{table}[!hbtp]
@@ -399,43 +438,18 @@ Figure~\ref{fig:original_tournament_predictive_score_models}.
 It is clear that the effectiveness of the predictive models with 5 strategies is
 low for the cluster of highly performing strategies (with a score great than
 2.5). To be able to obtain a good model even for high performing strategies 12
-seem to provide a good predictive model.
-
-The overall cooperation rate of the tournament
-is \input{assets/original_tournament_overall_cooperation_rate.tex}.
-Figure~\ref{fig:original_tournament_cooperation_rate_versus_rank} shows the
-cooperation rate versus the rank of the strategy.
-
-\begin{figure}[!hbtp]
-    \centering
-    \includegraphics[width=.8\textwidth]{assets/original_tournament_cooperation_rate_versus_rank.pdf}
-    \caption{Cooperation rate versus rank}
-    \label{fig:original_tournament_cooperation_rate_versus_rank}
-\end{figure}
-
-
-
-\begin{figure}[!hbtp]
-    \centering
-    \includegraphics[width=.8\textwidth]{assets/original_tournament_cooperation_rates.pdf}
-    \caption{Distribution of cooperation rates}
-    \label{fig:original_tournament_cooperation_rates}
-\end{figure}
-
-Figure~\ref{fig:original_tournament_pairwise_cooperation_rates} shows the pair wise
-cooperation rates. There is one strategy `k42r' that defects against itself but
-cooperates against most other strategies. Also, it is clear that the low
-performing strategies are defecting against each other.
-
-\begin{figure}[!hbtp]
-    \centering
-    \includegraphics[width=.8\textwidth]{assets/original_tournament_pairwise_cooperation_rates.pdf}
-    \caption{Cooperation rates between each pair of players (ordered by rank)}
-    \label{fig:original_tournament_pairwise_cooperation_rates}
-\end{figure}
-
+seem to provide a good predictive model. These predictive models will be
+revisited in Section~\ref{sec:trained_strategies}.
 
 \section{Revisiting the tournament}\label{sec:revisiting}
+
+In this section, the tournament of~\cite{Axelrod1980b} will be revisited.
+Indeed, a large amount of research has gone on since Axelrod's original work
+which include for example training of strategies using reinforcement
+learning~\cite{Harper2017}
+but also the discovery of Zero Determinant strategies~\cite{Press2012}. This
+section aims to measure how well these strategies would have faired and
+\textbf{if} any of the original insights and conclusions would differ.
 
 \subsection{Running with an extra invitation}\label{sec:extra_strategy}
 
@@ -468,7 +482,7 @@ tournament.
     \label{fig:original_tournament_with_extra_strategy_ranks_vs_library_ranks}
 \end{figure}
 
-\subsubsection{Trained strategies}
+\subsubsection{Trained strategies}\label{sec:trained_strategies}
 
 Using the various strategy sets and weights from the previous regression
 analysis
