@@ -31,7 +31,7 @@ def train(opponents, weights, filename, processes,
         for params in initial_params:
             params.mutation_rate = 0.1
 
-    except AttributeError:
+    except FileNotFoundError:
         initial_population = None
 
     objective = dojo.prepare_objective(name=name,
