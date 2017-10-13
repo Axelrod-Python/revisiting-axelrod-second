@@ -5,7 +5,7 @@ import axelrod_fortran as axlf
 
 import main
 assert axl.__version__ == "3.8.1"
-assert axlf.__version__ == "0.3.1"
+assert axlf.__version__ == "0.3.2"
 
 fortran_players = [axlf.Player(name)
                    for name in axlf.second_tournament_strategies]

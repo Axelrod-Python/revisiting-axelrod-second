@@ -9,7 +9,7 @@ import axelrod_dojo as dojo
 import main
 assert pd.__version__ == '0.20.3'
 assert dojo.__version__ == "0.0.4"
-assert axlf.__version__ == "0.3.1"
+assert axlf.__version__ == "0.3.2"
 
 fortran_players = [axlf.Player(name)
                    for name in axlf.second_tournament_strategies]
