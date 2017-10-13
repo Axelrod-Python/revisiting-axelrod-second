@@ -30,7 +30,7 @@ The Prisoner's Dilemma has been the centre of the study of
 cooperative behaviour since Robert Axelrod's seminal work in the
 1980s~\cite{Axelrod1980a, Axelrod1980b, Axelrodbook}. In this work, Robert
 Axelrod invited fellow academics to write computer code to play the Iterated
-Prisoner's Dilemma. This initial research has subsequently lead to a huge area
+Prisoner's Dilemma. This initial research has subsequently led to a huge area
 of research aiming to understand the emergence of cooperative behaviour. A good
 overview of the variety of research areas is given in~\cite{Nowak2006}.
 
@@ -60,8 +60,8 @@ Tit For Tat: a strategy that mimics the opponent's previous action. The only
 sources for this work are the paper itself, all of the source code is apparently
 lost. In the second tournament~\cite{Axelrod1980b} 64 strategies were submitted
 and again: Tit For Tat was declared the winner. From a computation archaeological
-point of view this tournament was far superior as all of the source code was
-kept and made available for use, it can be found at
+point of view this tournament was far superior as the source code for all the strategies was
+kept and made available for use. It can be found at
 \url{http://www-personal.umich.edu/~axe/research/Software/CC/CC2/TourExec1.1.f.html}.
 
 This work describes the process of reviving and using these strategies in a
@@ -90,7 +90,7 @@ will extend the analysis to include contemporary research topics:
 
 This work contributes to the game theoretic literature by providing the first
 exercise in reproducing reported results that have been at the core of the study
-of cooperation. Furthermore it also provides a contemporary lense which, amongst
+of cooperation. Furthermore it also provides a contemporary lens which, amongst
 other things concludes with one of the largest Iterated Prisoner's Dilemma
 tournaments.
 Finally, by reviving the original code and making it available to use
@@ -104,14 +104,21 @@ As described in Section~\ref{sec:introduction}, the original source code for
 Axelrod's second tournament was written in Fortan (some contributors submitted
 code in Basic), this was subsequently published at~\cite{Axelrod1980bCode}. This
 website maintained by the University of Michigan Center for the Study of Complex
-Systems was last updated (at the time of writing) in 1996. The source code
-available consists of a single file \texttt{TourExec1.1.f}.
+Systems was last updated (at the time of writing) in 1996. The source code was
+originally a single file (TourExec1.1.f) and is published on the site in HTML format.
 
+For the purposes of this work, the html formatting was removed to produce the original
+fortran file which was then minimally modified so that it would compile on a modern
+compiler.  
 
-For the purposes of this work this Fortran code was minimally modified so that
-it would run on a modern Fortran compiler.
 Furthermore, each strategy was extracted in to a single modular file which
-follows modern best practice and makes analysis more readable. This can be found
+follows modern best practice and makes analysis more readable.
+
+Finally, a Makefile was created to control the compilation of the fortran
+strategy files into a single binary shared object file (named libstrategies.so)
+which is then installed into a standard location on a Posix compliant operating system.
+
+This work can be found
 at \url{https://github.com/Axelrod-Python/TourExec} and has been archived
 at~\cite{TourExec}.
 
@@ -120,12 +127,12 @@ the Axelrod library described in the previous section. This library is referred
 to as the \texttt{Axelrod\_fortran} library and is available
 at \url{https://github.com/Axelrod-Python/axelrod-fortran} and the specific
 version used for this work is~\cite{Axelrod_fortran}.
-This library has the fortran code of the original tournament as a dependency but
+
+This library has the binary file libstrategies.so described above as a dependency but
 otherwise offers a straightforward to install (using standard scientific python
 packages) and use option for the study of
 the strategies of~\cite{Axelrod1980b}.
-This is made possible thanks to the translation of the compiled Fortran in to C
-which can be used directly by the Python software.
+
 For this to work there are a variety of minor translations that need to take
 place. As documented at
 \url{http://www-personal.umich.edu/~axe/research/Software/CC/CC2/TourExec1.1.f.html}
@@ -314,7 +321,7 @@ in~\cite{Axelrod1980b}. Potential explanations include:
         a modification of the source code.
 \end{itemize}
 
-A part from this one outlier, the agreement between the original and the
+Apart from this one outlier, the agreement between the original and the
 reproduced tournament is significant. The main conclusions included for example
 that Tit For Tat (\texttt{k92r}) once again wins the tournament. Furthermore,
 the fact that high performing strategies are ``nice'' is also evident.
