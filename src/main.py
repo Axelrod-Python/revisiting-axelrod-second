@@ -2,7 +2,7 @@ import axelrod as axl
 import numpy as np
 
 assert axl.__version__ == "3.8.1"
-assert np.__version__ == "1.13.1"
+assert np.__version__ == "1.13.3"
 
 def main(players,
          repetitions=1000,
