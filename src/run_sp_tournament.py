@@ -28,7 +28,7 @@ stewart_and_plotkin_players = [p for p in stewart_and_plotkin_players if
                                type(p) not in implemented_strategies]
 players += stewart_and_plotkin_players
 
-assert len(players) == 73)
+assert len(players) == 73
 
 turns = [63, 77, 151, 308, 157]
 match_attributes={"length": float('inf')}
