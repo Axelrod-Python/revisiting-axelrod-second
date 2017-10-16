@@ -3,10 +3,10 @@ import csv
 import axelrod as axl
 import axelrod_fortran as axlf
 
-assert axl.__version__ == "3.3.0"
-assert axlf.__version__ == "0.3.1"
+assert axl.__version__ == "3.8.1"
+assert axlf.__version__ == "0.3.2"
 
-with open("../std_summary_v_3.3.0.csv", "r") as f:
+with open("../std_summary_v_3.8.1.csv", "r") as f:
     reader = csv.reader(f)
     next(reader)  # Skip the header
     ranked_names = [row[1] for row in reader]
