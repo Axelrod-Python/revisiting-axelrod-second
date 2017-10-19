@@ -207,7 +207,7 @@ a cooperation (which is in line with Figure~\ref{fig:tft_fortran}).
             JA = 0          ! Row's previous move, reported to column
             JB = 0          ! Col's previous move, reported to row
         \end{lstlisting}
-        \caption{A portion of the original tournament code
+        \caption{A portion of the code
             \url{https://github.com/Axelrod-Python/TourExec/blob/master/src/tournament/AxTest.f}
             setting the default
         previous move to a cooperation and score to 0.}
@@ -307,8 +307,52 @@ a distinct outlier is \texttt{k61r}.
 moves, plays tit for tat for the next fifteen and then will cooperate
 unless: the other player defected on the previous move, the
 other player cooperated less than 60\% and a random number between
-0 and 1 is greater that the other player's cooperation rate. There is no
-immediate explanation as to why this strategy does not perform as reported
+0 and 1 is greater that the other player's cooperation rate. 
+Upon closer investigation a bug was noted in the original code for
+\texttt{k61r}. One initial value was not being initialised, the modified version
+of this strategy is shown in Figure~\ref{fig:k61r}
+
+\begin{figure}[!hbtp]
+    \begin{center}
+        \begin{lstlisting}[language=Fortran,
+                           basicstyle=\ttfamily,
+                           frame=single,
+                           keywordstyle=\color{red},
+                           numbers=left,
+                           commentstyle=\color{green}]
+      FUNCTION K61R(ISPICK,ITURN,K,L,R, JA)
+C BY DANNY C. CHAMPION
+C TYPED BY JM 3/27/79
+      k61r=ja    ! Added 7/27/93 to report own old value
+      IF (ITURN .EQ. 1) ICOOP = 0  ! Added 10/8/2017 to fix bug for multiple runs
+      IF (ITURN .EQ. 1) K61R = 0
+      IF (ISPICK .EQ. 0) ICOOP = ICOOP + 1
+      IF (ITURN .LE. 10) RETURN
+      K61R = ISPICK
+      IF (ITURN .LE. 25) RETURN
+      K61R = 0
+      COPRAT = FLOAT(ICOOP) / FLOAT(ITURN)
+      IF (ISPICK .EQ. 1 .AND. COPRAT .LT. .6 .AND. R .GT. COPRAT)
+     +K61R = 1
+      RETURN
+      END 
+        \end{lstlisting}
+        \caption{Original code for \texttt{k61r} with fixed bug on line 5.}
+        \label{fig:k61r}
+    \end{center}
+\end{figure}
+
+It is not clear if this bug affected the tournament results reported in 1980.
+There is no source of the specific code used to run the tournaments and the
+the bug only effects \texttt{k61r} on a second use of the function (the very
+first time: \texttt{ICOOP} is assumed to be 0). Thus, it is possible that every
+single run of the tournament was run in isolation.
+
+% TODO Include text and references about best practices in software.
+
+Despite fixing this bug and verifying all other strategies for potentially
+similar bugs there is still a discrepancy in the results.
+There is no immediate explanation for this
 in~\cite{Axelrod1980b}. Potential explanations include:
 
 \begin{itemize}
@@ -322,9 +366,11 @@ in~\cite{Axelrod1980b}. Potential explanations include:
 \end{itemize}
 
 Apart from this one outlier, the agreement between the original and the
-reproduced tournament is significant. The main conclusions included for example
+reproduced tournament is very strong. The main conclusions included for example
 that Tit For Tat (\texttt{k92r}) once again wins the tournament. Furthermore,
-the fact that high performing strategies are ``nice'' is also evident.
+the fact that high performing strategies are ``nice'' is also evident although
+perhaps interestingly \texttt{k42r} which takes the second rank of \texttt{61r} 
+is a strategy that cooperates with most strategies apart from itself.
 The overall cooperation rate of the tournament
 is \input{assets/original_tournament_overall_cooperation_rate.tex}.
 Figure~\ref{fig:replicated_cooperation_rates} shows the
@@ -332,7 +378,8 @@ cooperation rates of the tournament. It is clear that the high performing
 strategies cooperate overall more often
 (Figure~\ref{fig:original_tournament_cooperation_rates}). Also, looking at the
 pairwise cooperation rates in
-Figure~\ref{fig:original_tournament_pairwise_cooperation_rates} the high
+Figure~\ref{fig:original_tournament_pairwise_cooperation_rates} shows that the 
+high
 performing strategies generally seems to cooperate with high performing
 strategies. This underpins one of the main conclusions of~\cite{Axelrod1980b}
 explaining the emergence of cooperation in competitive environments.
@@ -408,9 +455,9 @@ Tables~\ref{tbl:original_tournament_predictive_5_model}
 and~\ref{tbl:original_tournament_predictive_12_model} show the coefficients for
 linear models fitted to 5 and 12 strategies with
 \(R^2=\input{assets/original_tournament_predictive_5_r_squared.tex}\) and
-\(R^2=\input{assets/original_tournament_predictive_12_r_squared.tex}\)
-respectively (12 strategies is the smallest number of strategies for which
-\(R^2>95\)).
+\(R^2=\input{assets/original_tournament_predictive_17_r_squared.tex}\)
+respectively (17 strategies is the smallest number of strategies for which
+\(R^2>99\)).
 
 
 \begin{table}[!hbtp]
@@ -424,11 +471,11 @@ respectively (12 strategies is the smallest number of strategies for which
 
 \begin{table}[!hbtp]
         \centering
-        \input{./assets/original_tournament_predictive_12_model.tex}
-        \caption{Linear model best fitted to 12 strategies in the reproduced tournament
+        \input{./assets/original_tournament_predictive_17_model.tex}
+        \caption{Linear model best fitted to 17 strategies in the reproduced tournament
                  with
-             \(R^2=\protect\input{assets/original_tournament_predictive_12_r_squared.tex}\)}
-        \label{tbl:original_tournament_predictive_12_model}
+             \(R^2=\protect\input{assets/original_tournament_predictive_17_r_squared.tex}\)}
+        \label{tbl:original_tournament_predictive_17_model}
 \end{table}
 
 The predictions of these models are shown in
