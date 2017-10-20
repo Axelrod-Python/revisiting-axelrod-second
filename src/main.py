@@ -41,7 +41,7 @@ def main(players,
     fortran_players = [player for player in players
                        if type(player) is axlf.Player]
     player_copies = []
-    for player in players:
+    for player in fortran_players:
         original_name = player.original_name
         player_copies.append(axlf.Player(
             original_name,
