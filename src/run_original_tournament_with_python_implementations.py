@@ -8,13 +8,16 @@ assert axl.__version__ == "3.8.1"
 assert axlf.__version__ == "0.4.0"
 
 players = []
+python_players = []
 for name in axlf.second_tournament_strategies:
     characteristics = axlf.characteristics[name]
     axelrod_class = characteristics["axelrod-python_class"]
     if axelrod_class is not None:
-        players.append(axelrod_class())
+        python_players.append(axelrod_class())
     else:
         players.append(axlf.Player(name))
+
+players = players + python_players
 
 assert len(players) == 63
 
