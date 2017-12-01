@@ -4,8 +4,6 @@ import axelrod as axl
 import axelrod_fortran as axlf
 
 import main
-assert axl.__version__ == "3.8.1"
-assert axlf.__version__ == "0.4.0"
 
 players = [axlf.Player(name) for name in axlf.second_tournament_strategies]
 implemented_strategies = [axlf.characteristics[name]['axelrod-python_class']
@@ -30,7 +28,7 @@ players += stewart_and_plotkin_players
 
 assert len(players) == 73
 
-turns = [63, 77, 151, 308, 157]
+turns = [63, 77, 151, 308, 156]
 match_attributes={"length": float('inf')}
 
 if __name__ == "__main__":

@@ -4,8 +4,6 @@ import axelrod as axl
 import axelrod_fortran as axlf
 
 import main
-assert axl.__version__ == "3.8.1"
-assert axlf.__version__ == "0.3.2"
 
 strategies = axlf.second_tournament_strategies
 strategies[strategies.index("k74r")] = "k74rxx"
@@ -13,7 +11,7 @@ strategies[strategies.index("k74r")] = "k74rxx"
 players = [axlf.Player(name) for name in strategies]
 assert len(players) == 63
 
-turns = [63, 77, 151, 308, 157]
+turns = [63, 77, 151, 308, 156]
 match_attributes={"length": float('inf')}
 
 if __name__ == "__main__":

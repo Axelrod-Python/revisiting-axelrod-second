@@ -30,7 +30,9 @@ The Prisoner's Dilemma has been the centre of the study of
 cooperative behaviour since Robert Axelrod's seminal work in the
 1980s~\cite{Axelrod1980a, Axelrod1980b, Axelrodbook}. In this work, Robert
 Axelrod invited fellow academics to write computer code to play the Iterated
-Prisoner's Dilemma. This initial research has subsequently led to a huge area
+Prisoner's Dilemma.
+% TODO Add description of magazine etc...
+This initial research has subsequently led to a huge area
 of research aiming to understand the emergence of cooperative behaviour. A good
 overview of the variety of research areas is given in~\cite{Nowak2006}.
 
@@ -52,7 +54,7 @@ Dilemma (IPD).
 
 In Robert Axelrod's tournaments the particular values of \(R=3, P=1, S=0, T=5\)
 were used.  Strategies were submitted written in either Fortran or Basic
-% TODO Add a citation for bother languages
+% TODO Add a citation for other languages
 (in which case they were translated to Fortran). The very first
 tournament~\cite{Axelrod1980a} involved 14 submissions  (complemented by a
 fifteenth random strategy). Famously, the winner of this tournament was
@@ -109,7 +111,7 @@ originally a single file (TourExec1.1.f) and is published on the site in HTML fo
 
 For the purposes of this work, the html formatting was removed to produce the original
 fortran file which was then minimally modified so that it would compile on a modern
-compiler.  
+compiler.
 
 Furthermore, each strategy was extracted in to a single modular file which
 follows modern best practice and makes analysis more readable.
@@ -242,7 +244,7 @@ From~\cite{Axelrod1980b}, the following characteristics of the original
 tournament have been identified:
 
 \begin{itemize}
-    \item Matches have length from \(\{63, 77, 151, 308, 157\}\);
+    \item Matches have length from \(\{63, 77, 151, 308, 156\}\);
     \item Players do not know the number of rounds in a given match;
     \item A total of \input{assets/number_of_original_repetitions.tex}repetitions
         across the various match lengths have been carried out.
@@ -265,9 +267,10 @@ moves.''}
 \end{quote}
 
 As only four match length samples were specified but the average was given, a
-fifth match length of 157 is assumed.  It seems that the only stochastic
-smoothing used was these five repetitions, without a known seed it is not
-possible to replicate, thus the original tournament is repeated a total of
+fifth match length of 156 is assumed (giving the correct average of 151).  It
+seems that the only stochastic smoothing used was these five repetitions,
+without a known seed it is not possible to replicate, thus the original
+tournament is repeated a total of
 \input{assets/number_of_original_repetitions.tex}for each match length.
 
 The replicated scores and corresponding rankings of each strategy across all
