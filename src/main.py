@@ -2,7 +2,7 @@ import axelrod as axl
 import axelrod_fortran as axlf
 import numpy as np
 
-assert axl.__version__ == "4.1.0"
+assert axl.__version__ == "4.2.0"
 assert axlf.__version__ == "0.4.4"
 
 copy_of_shared_library = "libstrategies_copy.so"
