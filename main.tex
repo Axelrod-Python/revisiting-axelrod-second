@@ -84,7 +84,6 @@ will extend the analysis to include contemporary research topics:
 \begin{itemize}
     \item Experimenting with adding one of over 196 other strategies
         from~\cite{AxelrodProject} to see how the results change.
-    \item Training strategies to perform at a high level using Genetic Algorithms.
     \item Investigating the overall performance of Zero determinant
         strategies~\cite{Press2012}.
     \item Running a tournament with all considered strategies (more than 250).
@@ -495,8 +494,8 @@ Figure~\ref{fig:original_tournament_predictive_score_models}.
 It is clear that the effectiveness of the predictive models with 5 strategies is
 low for the cluster of highly performing strategies (with a score great than
 2.5). To be able to obtain a good model even for high performing strategies 12
-seem to provide a good predictive model. These predictive models will be
-revisited in Section~\ref{sec:trained_strategies}.
+seem to provide a good predictive model. 
+% TODO Correct this paragraph
 
 \section{Revisiting the tournament}\label{sec:revisiting}
 
@@ -539,46 +538,10 @@ tournament.
     \label{fig:original_tournament_with_extra_strategy_ranks_vs_library_ranks}
 \end{figure}
 
-\subsubsection{Trained strategies}\label{sec:trained_strategies}
-
-Using the various strategy sets and weights from the previous regression
-analysis
-% TODO Improve how this points and refers to training
-it is possible to train strategies to compete in the tournament.
-% TODO Add details about training (software + algorithm): also include a diagram
-% about process (mutation and crossover)
-Figure~\ref{fig:training_data_max_score} show the mean utility of the strategies
-trained for this work. The strategies trained are 10 state Finite State
-machines.
-% TODO Include references.
-% TODO Draw final fsm ones.
-
-\begin{figure}[!hbtp]
-    \centering
-    \includegraphics[width=.8\textwidth]{assets/training_data_max_score.pdf}
-    \caption{The maximum score per generation over the training periods}
-    \label{fig:training_data_max_score}
-\end{figure}
-
-The relative score is not necessarily interpretable (the weights of the
-particular regression model skew this).
-% TODO Add more details
-
-Table~\ref{tbl:original_tournament_with_trained_strategy} shows the results of
-the trained strategy in the tournament.
-
-\begin{table}[!hbtp]
-        \centering
-        \tiny
-        \input{./assets/original_tournament_with_trained_strategy.tex}
-        \caption{Results of trained strategy based on environment.}
-         \label{tbl:original_tournament_with_trained_strategy}
-\end{table}
-
 
 \subsection{Further tournaments}
 
-% TODO As a brief conclusion show results for these two larger tournaments.
+% TODO Discuss these further tournaments
 
 \subsubsection{Running with extortion}\label{sec:run_with_stewart_plotkin}
 
