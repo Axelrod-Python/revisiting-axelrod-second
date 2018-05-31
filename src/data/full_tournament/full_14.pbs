@@ -14,4 +14,4 @@ export LD_LIBRARY_PATH=$$LD_LIBRARY_PATH:/home/smavak/TourExec/bin
 # Run std
 cd /scratch/smavak/revisiting-axelrod-second/src
     
-/home/smavak/anaconda3/envs/rrr-axl/bin/python run_full_tournament.py 14 50
+/home/smavak/anaconda3/envs/rrr-axl/bin/python run_full_tournament.py 14 40

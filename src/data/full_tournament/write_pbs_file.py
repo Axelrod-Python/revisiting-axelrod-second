@@ -1,9 +1,10 @@
 # Low reps because this tournament is huge
-repetitions = 50
+repetitions = 40
 
 pbs_files = []
 
-for seed in range(80):  # Total of 4000 repetitions
+number_of_seeds = int(4000 / repetitions)  # Total of 4000 repetitions
+for seed in range(number_of_seeds):
     pbs_files.append("full_{seed:02d}.pbs".format(seed=seed))
 
     pbs_file ="""

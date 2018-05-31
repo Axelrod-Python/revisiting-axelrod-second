@@ -12,7 +12,7 @@ players += [s() for s in axl.strategies
             if s not in implemented_strategies and
             s not in [axl.Alexei, axl.ContriteTitForTat]]  # Correspond to TfT
 
-assert len(players) == 257
+assert len(players) == 262, len(players)
 
 turns = [63, 77, 151, 308, 156]
 match_attributes={"length": float('inf')}
