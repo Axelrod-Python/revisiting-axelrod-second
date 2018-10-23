@@ -2,7 +2,6 @@
 
 \usepackage[margin=1.5cm, includefoot, footskip=30pt]{geometry}
 
-%\usepackage{minted}  % would prefer to use minted but arxiv cannot shell-escape
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{booktabs}
@@ -19,6 +18,7 @@
 \usetikzlibrary{calc, shapes, patterns}
 
 \title{Reviving, reproducing and revisiting Axelrod's second tournamentt}
+\author{Vincent Knight \and Owen Campbell \and Marc Harper \and T. J. Gaffney}
 
 \begin{document}
 
@@ -26,12 +26,13 @@
 
 \section{Introduction}\label{sec:introduction}
 
-The Prisoner's Dilemma has been the centre of the study of
-cooperative behaviour since Robert Axelrod's seminal work in the
-1980s~\cite{Axelrod1980a, Axelrod1980b, Axelrodbook}. In this work, Robert
-Axelrod invited fellow academics to write computer code to play the Iterated
-Prisoner's Dilemma.
-% TODO Add description of magazine etc...
+The Prisoner's Dilemma has been the centre of the study of cooperative behaviour
+since Robert Axelrod's seminal work in the 1980s~\cite{Axelrod1980a,
+Axelrod1980b, Axelrodbook}. In this work, Robert Axelrod invited fellow
+academics and the wider public, through computer hobbyist magazines (one
+contribution was from an eleven year old), to write computer code to play the
+Iterated Prisoner's Dilemma.
+
 This initial research has subsequently led to a huge area
 of research aiming to understand the emergence of cooperative behaviour. A good
 overview of the variety of research areas is given in~\cite{Nowak2006}.
@@ -52,22 +53,22 @@ matter. This repeated form is called the Iterated Prisoner's
 Dilemma (IPD).
 
 
-In Robert Axelrod's tournaments the particular values of \(R=3, P=1, S=0, T=5\)
-were used.  Strategies were submitted written in either Fortran or Basic
-% TODO Add a citation for other languages
-(in which case they were translated to Fortran). The very first
+In Robert Axelrod's tournaments the particular values \(R=3, P=1, S=0, T=5\)
+were used.  Strategies were submitted written in either
+Fortran~\cite{smith1994programming} or Basic~\cite{Bishop2004}
+languages (in which case they were translated to Fortran). The very first
 tournament~\cite{Axelrod1980a} involved 14 submissions  (complemented by a
-fifteenth random strategy). Famously, the winner of this tournament was
-Tit For Tat: a strategy that mimics the opponent's previous action. The only
-sources for this work are the paper itself, all of the source code is apparently
-lost. In the second tournament~\cite{Axelrod1980b} 64 strategies were submitted
-and again: Tit For Tat was declared the winner. From a computation archaeological
-point of view this tournament was far superior as the source code for all the strategies was
-kept and made available for use. It can be found at
+fifteenth random strategy). Famously, the winner of this tournament was Tit For
+Tat: a strategy that mimics the opponent's previous action. The only sources
+for this work are the paper itself, all of the source code is apparently lost.
+In the second tournament~\cite{Axelrod1980b} 64 strategies were submitted and
+again: Tit For Tat was declared the winner. From a computation archaeological
+point of view this tournament was far superior as the source code for all the
+strategies was kept and made available for use. It can be found at
 \url{http://www-personal.umich.edu/~axe/research/Software/CC/CC2/TourExec1.1.f.html}.
 
-This work describes the process of reviving and using these strategies in a
-modern software framework (\cite{AxelrodProject}): a Python library with over
+This manuscript describes the process of reviving and using these strategies in
+a modern software framework (\cite{AxelrodProject}): a Python library with over
 200 strategies and a large number of analytical procedures which has been used
 in ongoing research~\cite{Harper2017, Knight2017}.
 
@@ -79,7 +80,7 @@ work}. This will be described in more detail in Section~\ref{sec:reviving}.
 
 Results and further analyses pertaining to reproducing the tournament will be
 given in Section~\ref{sec:reproducing}. Finally, Section~\ref{sec:revisiting}
-will extend the analysis to include contemporary research topics:
+will extend the analysis to include contemporary research:
 
 \begin{itemize}
     \item Experimenting with adding one of over 196 other strategies
@@ -116,8 +117,9 @@ Furthermore, each strategy was extracted in to a single modular file which
 follows modern best practice and makes analysis more readable.
 
 Finally, a Makefile was created to control the compilation of the fortran
-strategy files into a single binary shared object file (named libstrategies.so)
-which is then installed into a standard location on a Posix compliant operating system.
+strategy files into a single binary shared object file (named
+\texttt{libstrategies.so}) which is then installed into a standard location on
+a Posix compliant operating system.
 
 This work can be found
 at \url{https://github.com/Axelrod-Python/TourExec} and has been archived
@@ -129,10 +131,10 @@ to as the \texttt{Axelrod\_fortran} library and is available
 at \url{https://github.com/Axelrod-Python/axelrod-fortran} and the specific
 version used for this work is~\cite{Axelrod_fortran}.
 
-This library has the binary file libstrategies.so described above as a dependency but
-otherwise offers a straightforward to install (using standard scientific python
-packages) and use option for the study of
-the strategies of~\cite{Axelrod1980b}.
+This library has the binary file \texttt{libstrategies.so} described above as
+a dependency but otherwise offers a straightforward to install and use option
+for the study of the strategies of~\cite{Axelrod1980b} (using standard
+scientific Python packages).
 
 For this to work there are a variety of minor translations that need to take
 place. As documented at
@@ -225,7 +227,7 @@ interface between the Python strategy and the Fortran function.
             \includestandalone{assets/strategy_diagram}
                      }
         \caption{The interface between the Python axelrod library and the
-        Fortran code}
+				 Fortran code}
         \label{fig:strategy_diagram}
     \end{center}
 \end{figure}
@@ -309,7 +311,7 @@ a distinct outlier is \texttt{k61r}.
 moves, plays tit for tat for the next fifteen and then will cooperate
 unless: the other player defected on the previous move, the
 other player cooperated less than 60\% and a random number between
-0 and 1 is greater that the other player's cooperation rate. 
+0 and 1 is greater that the other player's cooperation rate.
 Upon closer investigation a bug was noted in the original code for
 \texttt{k61r}. One initial value was not being initialised, the modified version
 of this strategy is shown in Figure~\ref{fig:k61r}
@@ -337,7 +339,7 @@ C TYPED BY JM 3/27/79
       IF (ISPICK .EQ. 1 .AND. COPRAT .LT. .6 .AND. R .GT. COPRAT)
      +K61R = 1
       RETURN
-      END 
+      END
         \end{lstlisting}
         \caption{Original code for \texttt{k61r} with fixed bug on line 5.}
         \label{fig:k61r}
@@ -345,12 +347,10 @@ C TYPED BY JM 3/27/79
 \end{figure}
 
 It is not clear if this bug affected the tournament results reported in 1980.
-There is no source of the specific code used to run the tournaments and 
+There is no source of the specific code used to run the tournaments and
 the bug only effects \texttt{k61r} on a second use of the function (the very
 first time: \texttt{ICOOP} is assumed to be 0). Thus, it is possible that every
 single match of the tournament was run in isolation.
-
-% TODO Include text and references about best practices in software.
 
 Despite fixing this bug and verifying all other strategies for potentially
 similar bugs there is still a discrepancy in the results.
@@ -368,21 +368,18 @@ in~\cite{Axelrod1980b}. Potential explanations include:
 \end{itemize}
 
 Apart from this one outlier, the agreement between the original and the
-reproduced tournament is very strong. The main conclusions included for example
-that Tit For Tat (\texttt{k92r}) once again wins the tournament. Furthermore,
-the fact that high performing strategies are ``nice'' is also evident although
-perhaps interestingly \texttt{k42r} which takes the second rank of \texttt{61r} 
-is a strategy that cooperates with most strategies apart from itself.
-The overall cooperation rate of the tournament
-is \input{assets/original_tournament_overall_cooperation_rate.tex}.
-Figure~\ref{fig:replicated_cooperation_rates} shows the
-cooperation rates of the tournament. It is clear that the high performing
-strategies cooperate overall more often
-(Figure~\ref{fig:original_tournament_cooperation_rates}). Also, looking at the
-pairwise cooperation rates in
-Figure~\ref{fig:original_tournament_pairwise_cooperation_rates} shows that the 
-high
-performing strategies generally seems to cooperate with high performing
+reproduced tournament is strong. The main conclusions included for example that
+Tit For Tat (\texttt{k92r}) once again wins the tournament. Furthermore, the
+fact that high performing strategies are ``nice'' is also evident although
+perhaps interestingly \texttt{k42r} which takes the second rank of \texttt{61r}
+is a strategy that cooperates with most strategies apart from itself.  The
+overall cooperation rate of the tournament is
+\input{assets/original_tournament_overall_cooperation_rate.tex}.
+Figure~\ref{fig:replicated_cooperation_rates} shows the cooperation rates of
+the tournament. It is clear that the high performing strategies cooperate
+overall more often. Looking at the pairwise cooperation rates in
+Figure~\ref{fig:original_tournament_pairwise_cooperation_rates} shows that the
+high performing strategies generally seems to cooperate with high performing
 strategies. This underpins one of the main conclusions of~\cite{Axelrod1980b}
 explaining the emergence of cooperation in competitive environments.
 
@@ -400,16 +397,17 @@ explaining the emergence of cooperation in competitive environments.
         \caption{Cooperation rates between each pair of players}
         \label{fig:original_tournament_pairwise_cooperation_rates}
     \end{subfigure}
-    \caption{Replicated tournament cooperation rates with strategies 
+    \caption{Replicated tournament cooperation rates with strategies
              ordered by original rank}
     \label{fig:replicated_cooperation_rates}
 \end{figure}
 
-For completeness in~\cite{Axelrod1980b}, a linear regression model is used to
-identify 5 strategies, the scores against which are good predictors of the
-overall performance. The reported \(R^2\) value is \(0.979\) (indicating 97\% of
-variance accounted for by the model). The coefficients of this model are shown
-in Table~\ref{tbl:original_tournament_representative_model}.
+In~\cite{Axelrod1980b}, a linear regression model is used to identify 5
+strategies, the scores against which are good predictors of the overall
+performance. The reported \(R^2\) value is \(0.979\) (indicating 97\% of
+variance accounted for by the model). For completeness, the coefficients of
+this model (reported in~\cite{Axelrod1980b}) are shown in
+Table~\ref{tbl:original_tournament_representative_model}.
 
 \begin{table}[!hbtp]
         \centering
@@ -438,11 +436,10 @@ Table~\ref{tbl:original_tournament_predictive_with_axelrod_5_model} with
         \label{tbl:original_tournament_predictive_with_axelrod_5_model}
 \end{table}
 
-Using recursive feature elimination
-% TODO Include a text book reference
-It is possible to select the features (strategies) that give the best prediction
-for a given number of features. The \(R^2\) versus the number of features is
-shown in
+Using recursive feature elimination~\cite{guyon2002gene} it is
+possible to select the features (strategies) that give the best prediction for
+a given number of features. This \textit{best} \(R^2\) versus the number of
+features is shown in
 Figure~\ref{fig:original_tournament_r_squared_versus_number_of_features}.
 
 \begin{figure}[!hbtp]
@@ -452,10 +449,9 @@ Figure~\ref{fig:original_tournament_r_squared_versus_number_of_features}.
     \label{fig:original_tournament_r_squared_versus_number_of_features}
 \end{figure}
 
-
 Tables~\ref{tbl:original_tournament_predictive_5_model}
-and~\ref{tbl:original_tournament_predictive_12_model} show the coefficients for
-linear models fitted to 5 and 12 strategies with
+and~\ref{tbl:original_tournament_predictive_17_model} show the coefficients for
+linear models fitted to 5 and 17 strategies with
 \(R^2=\input{assets/original_tournament_predictive_5_r_squared.tex}\) and
 \(R^2=\input{assets/original_tournament_predictive_17_r_squared.tex}\)
 respectively (17 strategies is the smallest number of strategies for which
@@ -493,9 +489,13 @@ Figure~\ref{fig:original_tournament_predictive_score_models}.
 
 It is clear that the effectiveness of the predictive models with 5 strategies is
 low for the cluster of highly performing strategies (with a score great than
-2.5). To be able to obtain a good model even for high performing strategies 12
-seem to provide a good predictive model. 
-% TODO Correct this paragraph
+2.5). To be able to obtain a good model even for high performing strategies 17
+seem to provide a good predictive model.
+
+This is the first known re run of the work of~\cite{Axelrod1980b} (which lead to
+\cite{Axelrodbook} which has over 33000 citations). Despite some misalignment
+with the results the overall principles are well aligned: Tit For Tat wins,
+offering scope for the effectiveness of cooperation.
 
 \section{Revisiting the tournament}\label{sec:revisiting}
 
@@ -534,14 +534,17 @@ tournament.
 \begin{figure}[!hbtp]
     \centering
     \includegraphics[width=.8\textwidth]{assets/original_tournament_with_extra_strategy_ranks_vs_library_ranks.pdf}
-    \caption{Ranks of extra strategy}
+    \caption{Ranks of extra strategy. The horizontal line is at rank 2.}
     \label{fig:original_tournament_with_extra_strategy_ranks_vs_library_ranks}
 \end{figure}
+
+% TODO Add a conclusion: adding one extra strategy would not change the winner
+% and probably not change the conclusion.
 
 
 \subsection{Further tournaments}
 
-% TODO Discuss these further tournaments
+% TODO Add an introduction.
 
 \subsubsection{Running with extortion}\label{sec:run_with_stewart_plotkin}
 
@@ -646,9 +649,18 @@ cooperation rates.
 
 \section{Conclusion}\label{sec:conclusion}
 
+% TODO
+% Describe what has been done:
+% - Building axelrod_fortran, include references to best practice.
+% - Highlight main conclusions: adding a single strategy would not change
+%   outcomes but that in a more complex environment the conclusions no longer
+%   apply
+% - Discuss possibility of future work including reinforcement learning
+%   techniques and more in depth evolutionary considerations.
+
 \section*{Acknowledgements}
 
-% TODO Write appendices for the Axelrod strategies
+% TODO Write acknowledgements of software packages.
 
 \bibliographystyle{plain}
 \bibliography{bibliography.bib}
@@ -663,6 +675,5 @@ cooperation rates.
             \input{assets/list_of_original_tournament_players.tex}
     \end{enumerate}
 \end{multicols}
-
 
 \end{document}
