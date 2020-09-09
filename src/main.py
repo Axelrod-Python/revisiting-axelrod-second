@@ -36,27 +36,8 @@ def main(players,
             - match_attributes
 
     """
-    fortran_players = [player for player in players
-                       if type(player) is axlf.Player]
-    player_copies = []
-    for player in fortran_players:
-        original_name = player.original_name
-        player_copies.append(axlf.Player(original_name))
-
-    number_of_players = len(players)
-    # Normal interactions
-    edges = [(i, j) for i in range(number_of_players)
-             for j in range(number_of_players) if i < j]
-    # Self interactions
-    edges += [(i, i) for i, player in enumerate(players)
-              if player not in fortran_players]
-    # Self interactions for fortran players
-    edges += [(i, i + number_of_players)
-              for i, player in enumerate(players)
-              if player in fortran_players]
-
-    tournament = axl.Tournament(players + player_copies,
-                                edges=edges, repetitions=repetitions,
+    tournament = axl.Tournament(players,
+                                repetitions=repetitions,
                                 seed=seed,
                                 **tournament_kwargs)
     interaction_filename = "{}/{}_{}_interactions.csv".format(outdir,
