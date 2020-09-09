@@ -2,10 +2,8 @@ import axelrod as axl
 import axelrod_fortran as axlf
 import numpy as np
 
-assert axl.__version__ == "4.2.0"
-assert axlf.__version__ == "0.4.4"
-
-copy_of_shared_library = "libstrategies_copy.so"
+assert axl.__version__ == "4.10.0"
+assert axlf.__version__ == "0.4.8"
 
 def main(players,
          repetitions=1000,
@@ -43,9 +41,7 @@ def main(players,
     player_copies = []
     for player in fortran_players:
         original_name = player.original_name
-        player_copies.append(axlf.Player(
-            original_name,
-            shared_library_name=copy_of_shared_library))
+        player_copies.append(axlf.Player(original_name))
 
     number_of_players = len(players)
     # Normal interactions
@@ -59,9 +55,9 @@ def main(players,
               for i, player in enumerate(players)
               if player in fortran_players]
 
-    axl.seed(seed)
     tournament = axl.Tournament(players + player_copies,
                                 edges=edges, repetitions=repetitions,
+                                seed=seed,
                                 **tournament_kwargs)
     interaction_filename = "{}/{}_{}_interactions.csv".format(outdir,
                                                               prefix,

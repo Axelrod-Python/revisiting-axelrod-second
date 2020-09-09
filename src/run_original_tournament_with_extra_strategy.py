@@ -16,7 +16,8 @@ if __name__ == "__main__":
 
     seed = int(sys.argv[1])
     repetitions = int(sys.argv[2])
-    extra_player_index = int(sys.argv[3])
+    processes = int(sys.argv[3])
+    extra_player_index = int(sys.argv[4])
 
     for turn in turns:
 
@@ -26,6 +27,7 @@ if __name__ == "__main__":
         main.main(players=players,
                   repetitions=repetitions,
                   seed=seed,
+                  processes=processes,
                   outdir="./data/original_tournament_with_extra_strategy",
                   prefix="original_{}_turns_{}_repetitions_with_axl_player_{}-{}".format(
                       turn,
