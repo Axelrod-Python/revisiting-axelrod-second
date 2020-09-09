@@ -34,6 +34,7 @@ def main(players,
             - match_attributes
 
     """
+    print(f"Running tournament with turns={turns} turns, seed={seed} and {len(players)} players")
     tournament = axl.Tournament(players,
                                 repetitions=repetitions,
                                 seed=seed,
@@ -67,3 +68,4 @@ def main(players,
     payoff_matrix = np.array(results.payoff_matrix)
     np.savetxt(fname="{}/{}_{}_seed_payoff_matrix.gz".format(outdir, prefix, seed),
                X=payoff_matrix, delimiter=",")
+    print("Tournament complete")
