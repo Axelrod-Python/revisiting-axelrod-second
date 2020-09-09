@@ -28,7 +28,6 @@ def main(players,
         outdir: where the output data will be written
         prefix: what the output data will be called
         seed: the random seed to use
-        processes: the number of cores
         tournament_kwargs, a dictionary:
             - turns
             - prob_end
@@ -43,7 +42,6 @@ def main(players,
                                                               prefix,
                                                               seed)
     results = tournament.play(filename=interaction_filename,
-                              processes=processes,
                               progress_bar=False)
 
     results.write_summary("{}/{}_{}_seed_summary.csv".format(outdir,

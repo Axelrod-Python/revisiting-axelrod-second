@@ -25,7 +25,6 @@ if __name__ == "__main__":
 
     seed = int(sys.argv[1])
     repetitions = int(sys.argv[2])
-    processes = int(sys.argv[3])
 
     for turn in turns:
         main.main(players=players,

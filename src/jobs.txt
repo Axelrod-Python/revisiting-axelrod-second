@@ -1,0 +1,267 @@
+# Run original tournament
+python run_original_tournament.py 0 1000
+python run_original_tournament.py 1 1000
+python run_original_tournament.py 2 1000
+python run_original_tournament.py 3 1000
+python run_original_tournament.py 4 1000
+# Run full tournament
+python run_full_tournament.py 0 1000
+python run_full_tournament.py 1 1000
+python run_full_tournament.py 2 1000
+python run_full_tournament.py 3 1000
+python run_full_tournament.py 4 1000
+# Run original tournament with python implementations
+python run_original_tournament_with_python_implementations.py 0 1000
+python run_original_tournament_with_python_implementations.py 1 1000
+python run_original_tournament_with_python_implementations.py 2 1000
+python run_original_tournament_with_python_implementations.py 3 1000
+python run_original_tournament_with_python_implementations.py 4 1000
+# Run original tournament with alt K74R
+python run_original_tournament_with_alt_K74R.py 0 1000
+python run_original_tournament_with_alt_K74R.py 1 1000
+python run_original_tournament_with_alt_K74R.py 2 1000
+python run_original_tournament_with_alt_K74R.py 3 1000
+python run_original_tournament_with_alt_K74R.py 4 1000
+# Run Stewart and Plotkin tournament
+python run_sp_tournament.py 0 1000
+python run_sp_tournament.py 1 1000
+python run_sp_tournament.py 2 1000
+python run_sp_tournament.py 3 1000
+python run_sp_tournament.py 4 1000
+# Run original tournament with axtra strategy
+python run_original_tournament_with_extra_strategy.py 0 2500 0
+python run_original_tournament_with_extra_strategy.py 0 2500 1
+python run_original_tournament_with_extra_strategy.py 0 2500 2
+python run_original_tournament_with_extra_strategy.py 0 2500 3
+python run_original_tournament_with_extra_strategy.py 0 2500 4
+python run_original_tournament_with_extra_strategy.py 0 2500 5
+python run_original_tournament_with_extra_strategy.py 0 2500 6
+python run_original_tournament_with_extra_strategy.py 0 2500 7
+python run_original_tournament_with_extra_strategy.py 0 2500 8
+python run_original_tournament_with_extra_strategy.py 0 2500 9
+python run_original_tournament_with_extra_strategy.py 0 2500 10
+python run_original_tournament_with_extra_strategy.py 0 2500 11
+python run_original_tournament_with_extra_strategy.py 0 2500 12
+python run_original_tournament_with_extra_strategy.py 0 2500 13
+python run_original_tournament_with_extra_strategy.py 0 2500 14
+python run_original_tournament_with_extra_strategy.py 0 2500 15
+python run_original_tournament_with_extra_strategy.py 0 2500 16
+python run_original_tournament_with_extra_strategy.py 0 2500 17
+python run_original_tournament_with_extra_strategy.py 0 2500 18
+python run_original_tournament_with_extra_strategy.py 0 2500 19
+python run_original_tournament_with_extra_strategy.py 0 2500 20
+python run_original_tournament_with_extra_strategy.py 0 2500 21
+python run_original_tournament_with_extra_strategy.py 0 2500 22
+python run_original_tournament_with_extra_strategy.py 0 2500 23
+python run_original_tournament_with_extra_strategy.py 0 2500 24
+python run_original_tournament_with_extra_strategy.py 0 2500 25
+python run_original_tournament_with_extra_strategy.py 0 2500 26
+python run_original_tournament_with_extra_strategy.py 0 2500 27
+python run_original_tournament_with_extra_strategy.py 0 2500 28
+python run_original_tournament_with_extra_strategy.py 0 2500 29
+python run_original_tournament_with_extra_strategy.py 0 2500 30
+python run_original_tournament_with_extra_strategy.py 0 2500 31
+python run_original_tournament_with_extra_strategy.py 0 2500 32
+python run_original_tournament_with_extra_strategy.py 0 2500 33
+python run_original_tournament_with_extra_strategy.py 0 2500 34
+python run_original_tournament_with_extra_strategy.py 0 2500 35
+python run_original_tournament_with_extra_strategy.py 0 2500 36
+python run_original_tournament_with_extra_strategy.py 0 2500 37
+python run_original_tournament_with_extra_strategy.py 0 2500 38
+python run_original_tournament_with_extra_strategy.py 0 2500 39
+python run_original_tournament_with_extra_strategy.py 0 2500 40
+python run_original_tournament_with_extra_strategy.py 0 2500 41
+python run_original_tournament_with_extra_strategy.py 0 2500 42
+python run_original_tournament_with_extra_strategy.py 0 2500 43
+python run_original_tournament_with_extra_strategy.py 0 2500 44
+python run_original_tournament_with_extra_strategy.py 0 2500 45
+python run_original_tournament_with_extra_strategy.py 0 2500 46
+python run_original_tournament_with_extra_strategy.py 0 2500 47
+python run_original_tournament_with_extra_strategy.py 0 2500 48
+python run_original_tournament_with_extra_strategy.py 0 2500 49
+python run_original_tournament_with_extra_strategy.py 0 2500 50
+python run_original_tournament_with_extra_strategy.py 0 2500 51
+python run_original_tournament_with_extra_strategy.py 0 2500 52
+python run_original_tournament_with_extra_strategy.py 0 2500 53
+python run_original_tournament_with_extra_strategy.py 0 2500 54
+python run_original_tournament_with_extra_strategy.py 0 2500 55
+python run_original_tournament_with_extra_strategy.py 0 2500 56
+python run_original_tournament_with_extra_strategy.py 0 2500 57
+python run_original_tournament_with_extra_strategy.py 0 2500 58
+python run_original_tournament_with_extra_strategy.py 0 2500 59
+python run_original_tournament_with_extra_strategy.py 0 2500 60
+python run_original_tournament_with_extra_strategy.py 0 2500 61
+python run_original_tournament_with_extra_strategy.py 0 2500 62
+python run_original_tournament_with_extra_strategy.py 0 2500 63
+python run_original_tournament_with_extra_strategy.py 0 2500 64
+python run_original_tournament_with_extra_strategy.py 0 2500 65
+python run_original_tournament_with_extra_strategy.py 0 2500 66
+python run_original_tournament_with_extra_strategy.py 0 2500 67
+python run_original_tournament_with_extra_strategy.py 0 2500 68
+python run_original_tournament_with_extra_strategy.py 0 2500 69
+python run_original_tournament_with_extra_strategy.py 0 2500 70
+python run_original_tournament_with_extra_strategy.py 0 2500 71
+python run_original_tournament_with_extra_strategy.py 0 2500 72
+python run_original_tournament_with_extra_strategy.py 0 2500 73
+python run_original_tournament_with_extra_strategy.py 0 2500 74
+python run_original_tournament_with_extra_strategy.py 0 2500 75
+python run_original_tournament_with_extra_strategy.py 0 2500 76
+python run_original_tournament_with_extra_strategy.py 0 2500 77
+python run_original_tournament_with_extra_strategy.py 0 2500 78
+python run_original_tournament_with_extra_strategy.py 0 2500 79
+python run_original_tournament_with_extra_strategy.py 0 2500 80
+python run_original_tournament_with_extra_strategy.py 0 2500 81
+python run_original_tournament_with_extra_strategy.py 0 2500 82
+python run_original_tournament_with_extra_strategy.py 0 2500 83
+python run_original_tournament_with_extra_strategy.py 0 2500 84
+python run_original_tournament_with_extra_strategy.py 0 2500 85
+python run_original_tournament_with_extra_strategy.py 0 2500 86
+python run_original_tournament_with_extra_strategy.py 0 2500 87
+python run_original_tournament_with_extra_strategy.py 0 2500 88
+python run_original_tournament_with_extra_strategy.py 0 2500 89
+python run_original_tournament_with_extra_strategy.py 0 2500 90
+python run_original_tournament_with_extra_strategy.py 0 2500 91
+python run_original_tournament_with_extra_strategy.py 0 2500 92
+python run_original_tournament_with_extra_strategy.py 0 2500 93
+python run_original_tournament_with_extra_strategy.py 0 2500 94
+python run_original_tournament_with_extra_strategy.py 0 2500 95
+python run_original_tournament_with_extra_strategy.py 0 2500 96
+python run_original_tournament_with_extra_strategy.py 0 2500 97
+python run_original_tournament_with_extra_strategy.py 0 2500 98
+python run_original_tournament_with_extra_strategy.py 0 2500 99
+python run_original_tournament_with_extra_strategy.py 0 2500 100
+python run_original_tournament_with_extra_strategy.py 0 2500 101
+python run_original_tournament_with_extra_strategy.py 0 2500 102
+python run_original_tournament_with_extra_strategy.py 0 2500 103
+python run_original_tournament_with_extra_strategy.py 0 2500 104
+python run_original_tournament_with_extra_strategy.py 0 2500 105
+python run_original_tournament_with_extra_strategy.py 0 2500 106
+python run_original_tournament_with_extra_strategy.py 0 2500 107
+python run_original_tournament_with_extra_strategy.py 0 2500 108
+python run_original_tournament_with_extra_strategy.py 0 2500 109
+python run_original_tournament_with_extra_strategy.py 0 2500 110
+python run_original_tournament_with_extra_strategy.py 0 2500 111
+python run_original_tournament_with_extra_strategy.py 0 2500 112
+python run_original_tournament_with_extra_strategy.py 0 2500 113
+python run_original_tournament_with_extra_strategy.py 0 2500 114
+python run_original_tournament_with_extra_strategy.py 0 2500 115
+python run_original_tournament_with_extra_strategy.py 0 2500 116
+python run_original_tournament_with_extra_strategy.py 0 2500 117
+python run_original_tournament_with_extra_strategy.py 0 2500 118
+python run_original_tournament_with_extra_strategy.py 0 2500 119
+python run_original_tournament_with_extra_strategy.py 0 2500 120
+python run_original_tournament_with_extra_strategy.py 0 2500 121
+python run_original_tournament_with_extra_strategy.py 0 2500 122
+python run_original_tournament_with_extra_strategy.py 0 2500 123
+python run_original_tournament_with_extra_strategy.py 0 2500 124
+python run_original_tournament_with_extra_strategy.py 0 2500 125
+python run_original_tournament_with_extra_strategy.py 0 2500 126
+python run_original_tournament_with_extra_strategy.py 0 2500 127
+python run_original_tournament_with_extra_strategy.py 0 2500 128
+python run_original_tournament_with_extra_strategy.py 0 2500 129
+python run_original_tournament_with_extra_strategy.py 0 2500 130
+python run_original_tournament_with_extra_strategy.py 0 2500 131
+python run_original_tournament_with_extra_strategy.py 0 2500 132
+python run_original_tournament_with_extra_strategy.py 0 2500 133
+python run_original_tournament_with_extra_strategy.py 0 2500 134
+python run_original_tournament_with_extra_strategy.py 0 2500 135
+python run_original_tournament_with_extra_strategy.py 0 2500 136
+python run_original_tournament_with_extra_strategy.py 0 2500 137
+python run_original_tournament_with_extra_strategy.py 0 2500 138
+python run_original_tournament_with_extra_strategy.py 0 2500 139
+python run_original_tournament_with_extra_strategy.py 0 2500 140
+python run_original_tournament_with_extra_strategy.py 0 2500 141
+python run_original_tournament_with_extra_strategy.py 0 2500 142
+python run_original_tournament_with_extra_strategy.py 0 2500 143
+python run_original_tournament_with_extra_strategy.py 0 2500 144
+python run_original_tournament_with_extra_strategy.py 0 2500 145
+python run_original_tournament_with_extra_strategy.py 0 2500 146
+python run_original_tournament_with_extra_strategy.py 0 2500 147
+python run_original_tournament_with_extra_strategy.py 0 2500 148
+python run_original_tournament_with_extra_strategy.py 0 2500 149
+python run_original_tournament_with_extra_strategy.py 0 2500 150
+python run_original_tournament_with_extra_strategy.py 0 2500 151
+python run_original_tournament_with_extra_strategy.py 0 2500 152
+python run_original_tournament_with_extra_strategy.py 0 2500 153
+python run_original_tournament_with_extra_strategy.py 0 2500 154
+python run_original_tournament_with_extra_strategy.py 0 2500 155
+python run_original_tournament_with_extra_strategy.py 0 2500 156
+python run_original_tournament_with_extra_strategy.py 0 2500 157
+python run_original_tournament_with_extra_strategy.py 0 2500 158
+python run_original_tournament_with_extra_strategy.py 0 2500 159
+python run_original_tournament_with_extra_strategy.py 0 2500 160
+python run_original_tournament_with_extra_strategy.py 0 2500 161
+python run_original_tournament_with_extra_strategy.py 0 2500 162
+python run_original_tournament_with_extra_strategy.py 0 2500 163
+python run_original_tournament_with_extra_strategy.py 0 2500 164
+python run_original_tournament_with_extra_strategy.py 0 2500 165
+python run_original_tournament_with_extra_strategy.py 0 2500 166
+python run_original_tournament_with_extra_strategy.py 0 2500 167
+python run_original_tournament_with_extra_strategy.py 0 2500 168
+python run_original_tournament_with_extra_strategy.py 0 2500 169
+python run_original_tournament_with_extra_strategy.py 0 2500 170
+python run_original_tournament_with_extra_strategy.py 0 2500 171
+python run_original_tournament_with_extra_strategy.py 0 2500 172
+python run_original_tournament_with_extra_strategy.py 0 2500 173
+python run_original_tournament_with_extra_strategy.py 0 2500 174
+python run_original_tournament_with_extra_strategy.py 0 2500 175
+python run_original_tournament_with_extra_strategy.py 0 2500 176
+python run_original_tournament_with_extra_strategy.py 0 2500 177
+python run_original_tournament_with_extra_strategy.py 0 2500 178
+python run_original_tournament_with_extra_strategy.py 0 2500 179
+python run_original_tournament_with_extra_strategy.py 0 2500 180
+python run_original_tournament_with_extra_strategy.py 0 2500 181
+python run_original_tournament_with_extra_strategy.py 0 2500 182
+python run_original_tournament_with_extra_strategy.py 0 2500 183
+python run_original_tournament_with_extra_strategy.py 0 2500 184
+python run_original_tournament_with_extra_strategy.py 0 2500 185
+python run_original_tournament_with_extra_strategy.py 0 2500 186
+python run_original_tournament_with_extra_strategy.py 0 2500 187
+python run_original_tournament_with_extra_strategy.py 0 2500 188
+python run_original_tournament_with_extra_strategy.py 0 2500 189
+python run_original_tournament_with_extra_strategy.py 0 2500 190
+python run_original_tournament_with_extra_strategy.py 0 2500 191
+python run_original_tournament_with_extra_strategy.py 0 2500 192
+python run_original_tournament_with_extra_strategy.py 0 2500 193
+python run_original_tournament_with_extra_strategy.py 0 2500 194
+python run_original_tournament_with_extra_strategy.py 0 2500 195
+python run_original_tournament_with_extra_strategy.py 0 2500 196
+python run_original_tournament_with_extra_strategy.py 0 2500 197
+python run_original_tournament_with_extra_strategy.py 0 2500 198
+python run_original_tournament_with_extra_strategy.py 0 2500 199
+python run_original_tournament_with_extra_strategy.py 0 2500 200
+python run_original_tournament_with_extra_strategy.py 0 2500 201
+python run_original_tournament_with_extra_strategy.py 0 2500 202
+python run_original_tournament_with_extra_strategy.py 0 2500 203
+python run_original_tournament_with_extra_strategy.py 0 2500 204
+python run_original_tournament_with_extra_strategy.py 0 2500 205
+python run_original_tournament_with_extra_strategy.py 0 2500 206
+python run_original_tournament_with_extra_strategy.py 0 2500 207
+python run_original_tournament_with_extra_strategy.py 0 2500 208
+python run_original_tournament_with_extra_strategy.py 0 2500 209
+python run_original_tournament_with_extra_strategy.py 0 2500 210
+python run_original_tournament_with_extra_strategy.py 0 2500 211
+python run_original_tournament_with_extra_strategy.py 0 2500 212
+python run_original_tournament_with_extra_strategy.py 0 2500 213
+python run_original_tournament_with_extra_strategy.py 0 2500 214
+python run_original_tournament_with_extra_strategy.py 0 2500 215
+python run_original_tournament_with_extra_strategy.py 0 2500 216
+python run_original_tournament_with_extra_strategy.py 0 2500 217
+python run_original_tournament_with_extra_strategy.py 0 2500 218
+python run_original_tournament_with_extra_strategy.py 0 2500 219
+python run_original_tournament_with_extra_strategy.py 0 2500 220
+python run_original_tournament_with_extra_strategy.py 0 2500 221
+python run_original_tournament_with_extra_strategy.py 0 2500 222
+python run_original_tournament_with_extra_strategy.py 0 2500 223
+python run_original_tournament_with_extra_strategy.py 0 2500 224
+python run_original_tournament_with_extra_strategy.py 0 2500 225
+python run_original_tournament_with_extra_strategy.py 0 2500 226
+python run_original_tournament_with_extra_strategy.py 0 2500 227
+python run_original_tournament_with_extra_strategy.py 0 2500 228
+python run_original_tournament_with_extra_strategy.py 0 2500 229
+python run_original_tournament_with_extra_strategy.py 0 2500 230
+python run_original_tournament_with_extra_strategy.py 0 2500 231
+python run_original_tournament_with_extra_strategy.py 0 2500 232
+python run_original_tournament_with_extra_strategy.py 0 2500 233
+python run_original_tournament_with_extra_strategy.py 0 2500 234
+python run_original_tournament_with_extra_strategy.py 0 2500 235

@@ -18,13 +18,11 @@ if __name__ == "__main__":
 
     seed = int(sys.argv[1])
     repetitions = int(sys.argv[2])
-    processes = int(sys.argv[3])
 
     for turn in turns:
         main.main(players=players,
                   repetitions=repetitions,
                   seed=seed,
-                  processes=processes,
                   outdir="./data/original_with_alt_k74r_tournament",
                   prefix="original_with_alt_k74r_{}_turns_{}_repetitions".format(
                       turn,
