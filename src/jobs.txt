@@ -1,5 +1,5 @@
 # Run original tournament
-python run_original_tournament.py 0 1000_> ./logs/run_original_tournament_0.log
+python run_original_tournament.py 0 1000 > ./logs/run_original_tournament_0.log
 python run_original_tournament.py 1 1000 > ./logs/run_original_tournament_1.log
 python run_original_tournament.py 2 1000 > ./logs/run_original_tournament_2.log
 python run_original_tournament.py 3 1000 > ./logs/run_original_tournament_3.log

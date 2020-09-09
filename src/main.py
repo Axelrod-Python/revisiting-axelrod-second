@@ -34,7 +34,7 @@ def main(players,
             - match_attributes
 
     """
-    print(f"Running tournament with turns={turns} turns, seed={seed} and {len(players)} players")
+    print(f"Running tournament with seed={seed} and {len(players)} players and with tournament_kwargs={tournament_kwargs}")
     tournament = axl.Tournament(players,
                                 repetitions=repetitions,
                                 seed=seed,
