@@ -10,7 +10,6 @@ def main(players,
          outdir="data/",
          prefix=None,
          seed=0,
-         processes=0,
          **tournament_kwargs):
     """
     A function to run a tournament.
