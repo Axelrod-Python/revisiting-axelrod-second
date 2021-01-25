@@ -1,6 +1,7 @@
 import axelrod as axl
 import axelrod_fortran as axlf
 import numpy as np
+import os.path
 
 assert axl.__version__ == "4.10.0"
 assert axlf.__version__ == "0.4.8"
@@ -42,30 +43,32 @@ def main(players,
     interaction_filename = "{}/{}_{}_interactions.csv".format(outdir,
                                                               prefix,
                                                               seed)
-    results = tournament.play(filename=interaction_filename,
-                              progress_bar=False)
+    summary_filename = "{}/{}_{}_seed_summary.csv".format(outdir,
+                                                         prefix,
+                                                         seed)
+    if not os.path.isfile(summary_filename):
+        results = tournament.play(filename=interaction_filename,
+                                  progress_bar=False)
 
-    results.write_summary("{}/{}_{}_seed_summary.csv".format(outdir,
-                                                             prefix,
-                                                             seed))
 
-    scores_per_tournament = np.array(results.scores).transpose()
-    np.savetxt(fname="{}/{}_{}_seed_scores.gz".format(outdir, prefix, seed),
-               X=scores_per_tournament, delimiter=",")
+        scores_per_tournament = np.array(results.scores).transpose()
+        np.savetxt(fname="{}/{}_{}_seed_scores.gz".format(outdir, prefix, seed),
+                   X=scores_per_tournament, delimiter=",")
 
-    wins_per_tournament = np.array(results.wins).transpose()
-    np.savetxt(fname="{}/{}_{}_seed_wins.gz".format(outdir, prefix, seed),
-               X=wins_per_tournament, delimiter=",")
+        wins_per_tournament = np.array(results.wins).transpose()
+        np.savetxt(fname="{}/{}_{}_seed_wins.gz".format(outdir, prefix, seed),
+                   X=wins_per_tournament, delimiter=",")
 
-    match_lengths_per_tournament = np.mean(results.match_lengths, axis=2)
-    np.savetxt(fname="{}/{}_{}_seed_match_lengths_per_tournament.gz".format(outdir, prefix, seed),
-               X=match_lengths_per_tournament, delimiter=",")
+        match_lengths_per_tournament = np.mean(results.match_lengths, axis=2)
+        np.savetxt(fname="{}/{}_{}_seed_match_lengths_per_tournament.gz".format(outdir, prefix, seed),
+                   X=match_lengths_per_tournament, delimiter=",")
 
-    cooperation_rates = np.array(results.normalised_cooperation).transpose()
-    np.savetxt(fname="{}/{}_{}_seed_cooperation_rates.gz".format(outdir, prefix, seed),
-               X=cooperation_rates, delimiter=",")
+        cooperation_rates = np.array(results.normalised_cooperation).transpose()
+        np.savetxt(fname="{}/{}_{}_seed_cooperation_rates.gz".format(outdir, prefix, seed),
+                   X=cooperation_rates, delimiter=",")
 
-    payoff_matrix = np.array(results.payoff_matrix)
-    np.savetxt(fname="{}/{}_{}_seed_payoff_matrix.gz".format(outdir, prefix, seed),
-               X=payoff_matrix, delimiter=",")
+        payoff_matrix = np.array(results.payoff_matrix)
+        np.savetxt(fname="{}/{}_{}_seed_payoff_matrix.gz".format(outdir, prefix, seed),
+                   X=payoff_matrix, delimiter=",")
+        results.write_summary(summary_filename)
     print("Tournament complete")
