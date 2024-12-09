@@ -44,8 +44,14 @@ def main(players,
 
     fortran_characteristics_dictionary_file = f"{outdir}/fortran_characteristics.json"
     print(f"Writing characteristics file to {fortran_characteristics_dictionary_file}")
+    characteristics = {}
+    for player, player_characteristics in axlf.characteristics.items():
+        axelrod_python_class = player_characteristics['axelrod-python_class']
+        if axelrod_python_class is not None:
+            player_characteristics['axelrod-python_class'] = axelrod_python_class().__repr__()
+        characteristics[player] = player_characteristics
     with open(fortran_characteristics_dictionary_file, "w") as f:
-        json.dump(axlf.characteristics, f)
+        json.dump(characteristics, f)
 
     print(f"Running tournament with seed={seed} and {len(players)} players and with tournament_kwargs={tournament_kwargs}")
     tournament = axl.Tournament(players,
