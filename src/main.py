@@ -37,7 +37,7 @@ def main(players,
     """
     player_index_file = f"{outdir}/players.index"
     print(f"Writing tournament index file to {player_index_file}")
-    with open(player_index_file) as f:
+    with open(player_index_file, w) as f:
         for i, player in enumerate(players):
             f.write(f"{i}, {player.name}\n")
 
