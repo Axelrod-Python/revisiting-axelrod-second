@@ -2,6 +2,7 @@ import axelrod as axl
 import axelrod_fortran as axlf
 import numpy as np
 import os.path
+import json
 
 assert axl.__version__ == "4.10.0"
 assert axlf.__version__ == "0.4.8"
@@ -39,7 +40,12 @@ def main(players,
     print(f"Writing tournament index file to {player_index_file}")
     with open(player_index_file, 'w') as f:
         for i, player in enumerate(players):
-            f.write(f"{i}, {player.name}\n")
+            f.write(f"{i}, {str(player)}\n")
+
+    fortran_characteristics_dictionary_file = f"{outdir}/fortran_characteristics.json"}
+    print(f"Writing characteristics file to {fortran_characteristics_dictionary_file}")
+    with open(fortran_characteristics_dictionary_file, "w") as f:
+        json.dump(axlf.characteristics, f)
 
     print(f"Running tournament with seed={seed} and {len(players)} players and with tournament_kwargs={tournament_kwargs}")
     tournament = axl.Tournament(players,
