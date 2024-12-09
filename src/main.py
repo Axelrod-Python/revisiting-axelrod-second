@@ -40,7 +40,7 @@ def main(players,
     print(f"Writing tournament index file to {player_index_file}")
     with open(player_index_file, 'w') as f:
         for i, player in enumerate(players):
-            f.write(f'"{str(player)}\n"')
+            f.write(f'"{str(player)}"\n')
 
     fortran_characteristics_dictionary_file = f"{outdir}/fortran_characteristics.json"
     print(f"Writing characteristics file to {fortran_characteristics_dictionary_file}")
