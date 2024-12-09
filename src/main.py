@@ -42,7 +42,7 @@ def main(players,
         for i, player in enumerate(players):
             f.write(f"{i}, {str(player)}\n")
 
-    fortran_characteristics_dictionary_file = f"{outdir}/fortran_characteristics.json"}
+    fortran_characteristics_dictionary_file = f"{outdir}/fortran_characteristics.json"
     print(f"Writing characteristics file to {fortran_characteristics_dictionary_file}")
     with open(fortran_characteristics_dictionary_file, "w") as f:
         json.dump(axlf.characteristics, f)
