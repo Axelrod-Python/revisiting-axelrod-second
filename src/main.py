@@ -35,6 +35,12 @@ def main(players,
             - match_attributes
 
     """
+    print(f"Writing tournament index file to {player_index_file}")
+    player_index_file = f"{outdir}/players.index"
+    with open(player_index_file) as f:
+        for i, player in enumerate(players):
+            f.write(f"{i}, {player.name}\n")
+
     print(f"Running tournament with seed={seed} and {len(players)} players and with tournament_kwargs={tournament_kwargs}")
     tournament = axl.Tournament(players,
                                 repetitions=repetitions,
