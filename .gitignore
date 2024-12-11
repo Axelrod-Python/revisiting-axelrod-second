@@ -240,5 +240,7 @@ src/data/training_strategies/training_data*.csv
 src/data/training_strategies/*.gz
 src/data/training_strategies/*summary.csv
 
+src/data/extra_player/*.csv
+
 
 src/.ipynb_checkpoints/
