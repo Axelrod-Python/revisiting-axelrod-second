@@ -218,3 +218,29 @@ TSWLatexianTemp*
 
 # expex forward references with \gathertags
 *-tags.tex
+
+# Data files
+src/__pycache__/
+src/data/original_tournament/*csv
+src/data/original_tournament/*gz
+src/data/original_tournament_with_extra_strategy/*csv
+src/data/original_tournament_with_extra_strategy/*gz
+src/data/original_tournament_with_python_champion/*csv
+src/data/original_tournament_with_python_champion/*gz
+src/data/original_tournament_with_python_implementations/*csv
+src/data/original_tournament_with_python_implementations/*gz
+src/data/original_with_alt_k74r_tournament/*csv
+src/data/original_with_alt_k74r_tournament/*gz
+src/data/full_tournament/*csv
+src/data/full_tournament/*gz
+src/data/sp_tournament/*csv
+src/data/sp_tournament/*gz
+
+src/data/training_strategies/training_data*.csv
+src/data/training_strategies/*.gz
+src/data/training_strategies/*summary.csv
+
+src/data/extra_player/*.csv
+
+
+src/.ipynb_checkpoints/

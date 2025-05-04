@@ -1,0 +1,45 @@
+# Run original tournament
+python run_original_tournament.py 0 1000 > ./logs/run_original_tournament_0.log
+python run_original_tournament.py 1 1000 > ./logs/run_original_tournament_1.log
+python run_original_tournament.py 2 1000 > ./logs/run_original_tournament_2.log
+python run_original_tournament.py 3 1000 > ./logs/run_original_tournament_3.log
+python run_original_tournament.py 4 1000 > ./logs/run_original_tournament_4.log
+# Run full tournament
+python run_full_tournament.py 0 250 > ./logs/run_full_tournament_0.log
+python run_full_tournament.py 1 250 > ./logs/run_full_tournament_1.log
+python run_full_tournament.py 2 250 > ./logs/run_full_tournament_2.log
+python run_full_tournament.py 3 250 > ./logs/run_full_tournament_3.log
+python run_full_tournament.py 4 250 > ./logs/run_full_tournament_4.log
+python run_full_tournament.py 5 250 > ./logs/run_full_tournament_5.log
+python run_full_tournament.py 6 250 > ./logs/run_full_tournament_6.log
+python run_full_tournament.py 7 250 > ./logs/run_full_tournament_7.log
+python run_full_tournament.py 8 250 > ./logs/run_full_tournament_8.log
+python run_full_tournament.py 9 250 > ./logs/run_full_tournament_9.log
+python run_full_tournament.py 10 250 > ./logs/run_full_tournament_10.log
+python run_full_tournament.py 11 250 > ./logs/run_full_tournament_11.log
+python run_full_tournament.py 12 250 > ./logs/run_full_tournament_12.log
+python run_full_tournament.py 13 250 > ./logs/run_full_tournament_13.log
+python run_full_tournament.py 14 250 > ./logs/run_full_tournament_14.log
+python run_full_tournament.py 15 250 > ./logs/run_full_tournament_15.log
+python run_full_tournament.py 16 250 > ./logs/run_full_tournament_16.log
+python run_full_tournament.py 17 250 > ./logs/run_full_tournament_17.log
+python run_full_tournament.py 18 250 > ./logs/run_full_tournament_18.log
+python run_full_tournament.py 19 250 > ./logs/run_full_tournament_19.log
+# Run original tournament with python implementations
+python run_original_tournament_with_python_implementations.py 0 1000 > ./logs/run_original_tournament_with_python_implementations_0.log
+python run_original_tournament_with_python_implementations.py 1 1000 > ./logs/run_original_tournament_with_python_implementations_1.log
+python run_original_tournament_with_python_implementations.py 2 1000 > ./logs/run_original_tournament_with_python_implementations_2.log
+python run_original_tournament_with_python_implementations.py 3 1000 > ./logs/run_original_tournament_with_python_implementations_3.log
+python run_original_tournament_with_python_implementations.py 4 1000 > ./logs/run_original_tournament_with_python_implementations_4.log
+# Run original tournament with alt K74R
+python run_original_tournament_with_alt_K74R.py 0 1000 > ./logs/run_original_tournament_with_alt_K74R_0.log
+python run_original_tournament_with_alt_K74R.py 1 1000 > ./logs/run_original_tournament_with_alt_K74R_1.log
+python run_original_tournament_with_alt_K74R.py 2 1000 > ./logs/run_original_tournament_with_alt_K74R_2.log
+python run_original_tournament_with_alt_K74R.py 3 1000 > ./logs/run_original_tournament_with_alt_K74R_3.log
+python run_original_tournament_with_alt_K74R.py 4 1000 > ./logs/run_original_tournament_with_alt_K74R_4.log
+# Run original tournament with python implementation of Champion
+python run_original_tournament_with_python_champion.py 0 1000 > ./logs/run_original_tournament_with_with_python_champion_0.log
+python run_original_tournament_with_python_champion.py 1 1000 > ./logs/run_original_tournament_with_with_python_champion_1.log
+python run_original_tournament_with_python_champion.py 2 1000 > ./logs/run_original_tournament_with_with_python_champion_2.log
+python run_original_tournament_with_python_champion.py 3 1000 > ./logs/run_original_tournament_with_with_python_champion_3.log
+python run_original_tournament_with_python_champion.py 4 1000 > ./logs/run_original_tournament_with_with_python_champion_4.log
