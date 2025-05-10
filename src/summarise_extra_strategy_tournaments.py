@@ -93,7 +93,8 @@ if __name__ == "__main__":
 
     tournament_id = 0
     fortran_player_set = set(fortran_player_index["Name"])
-    for number_of_new_strategies in [0, 1, 2, 3]:
+    #for number_of_new_strategies in [0, 1, 2, 3, 4]:
+    for number_of_new_strategies in [4]:
         for names in itertools.combinations(full_tournament_player_index["Name"], number_of_new_strategies):
             if all(name not in fortran_player_set for name in names):
                 player_names = list(fortran_player_index["Name"]) + list(names)
