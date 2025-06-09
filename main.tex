@@ -61,7 +61,8 @@ tournament~\cite{Axelrod1980a} involved 14 submissions  (complemented by a
 15th random strategy). Famously, the winner of this tournament was Tit For
 Tat: a strategy that mimics the opponent's previous action. The only sources
 for this work are the paper itself, all of the source code is apparently lost.
-In the second tournament~\cite{Axelrod1980b} 64 strategies were submitted and
+In the second tournament~\cite{Axelrod1980b} 62 strategies were submitted as
+well as a further random strategy and
 again: Tit For Tat was declared the winner. From a computation archaeological
 point of view this tournament was far superior as the source code for all the
 strategies was kept and made available for use. It can be found at
@@ -233,10 +234,10 @@ interface between the Python strategy and the Fortran function.
 \end{figure}
 
 The major advantage of this approach is that at no point has any subjectivity
-been added to the process of replicating Axelrod's second tournament. Indeed for
+been added to the process of reproducing Axelrod's second tournament. Indeed for
 some strategies the only description available is the Fortran code itself, thus
 they are being run and used as available. To the authors' knowledge this is the
-best possible way to replicate Axelrod's work which is the subject of the next
+best possible way to reproducing Axelrod's work which is the subject of the next
 section.
 
 \section{Reproducing the tournament}\label{sec:reproducing}
@@ -291,7 +292,7 @@ Figure~\ref{fig:replicated_tournament}.
         \caption{Ranking of each strategy.}
         \label{fig:original_tournament_ranks}
     \end{subfigure}
-    \caption{Replicated tournament with strategies ordered by original rank}
+    \caption{Reproduced tournament with strategies ordered by original rank}
     \label{fig:replicated_tournament}
 \end{figure}
 
@@ -546,7 +547,7 @@ but also the discovery of Zero Determinant strategies~\cite{Press2012}. This
 section aims to measure how well these strategies would have faired and
 \textbf{if} any of the original insights and conclusions would differ.
 
-\subsection{Running a large tournament}\label{sec:run_with_everyone}
+\subsection{A large tournament}\label{sec:run_with_everyone}
 
 The Axelrod Python library has access to more than 200 strategies and regularly
 runs the largest iterated prisoners Dilemma tournament ever run (everytime a new
@@ -559,25 +560,38 @@ this large tournament are another contribution of this paper.
 
 Table~\ref{tbl:full_tournament_rankings}
 shows the rankings of the top 20 strategies when including all strategies over
-\input{assets/number_of_full_repetitions.tex}repetitions.
+\input{assets/number_of_full_repetitions.tex}repetitions. The rank change across
+tournaments is shown in Figure~\ref{fig:rank_change_in_full_tournament}. It is
+clear that a number of the mid table performing strategies move to the top
+ranking strategies in the more complex environment of the full tournament.
 The cooperation rate for the tournament that pits all the library strategies
-against each other (without the Fortran ones) is
+against each other (without the original ones) is
 \input{assets/library_tournament_cooperation_rate.tex}\unskip.
 
 \begin{table}[!hbtp]
         \centering
-        \scriptsize
+        \tiny
         \input{./assets/full_tournament_rankings.tex}
         \caption{Top 25 strategies in the tournament when using all available
-        strategies}
+        strategies. Strategies denoted by a \textdagger~have not been designed
+        but instead trained using reinforcement learning as described
+        in~\cite{Harper2017}.}
         \label{tbl:full_tournament_rankings}
 \end{table}
 
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[height=.9\textheight]{assets/rank_change_in_full_tournament.pdf}
+    \caption{The change of rank in the tournament when using all available
+    strategies.}
+    \label{fig:rank_change_in_full_tournament}
+\end{figure}
+
+
 The overall cooperation rate of this tournament is
 \input{assets/full_tournament_overall_cooperation_rate.tex}and the various
-cooperation rates are shown in
-Figure~\ref{fig:full_tournament_cooperation_rate_versus_rank} shows the
-cooperation rates of each strategy (ordered by rank).
+cooperation rates of each strategy are shown in
+Figure~\ref{fig:full_tournament_cooperation_rate_versus_rank}.
 
 \begin{figure}[!hbtp]
     \centering
@@ -594,6 +608,10 @@ cooperation rates of each strategy (ordered by rank).
     \label{fig:full_tournament_cooperation_rates}
 \end{figure}
 
+Figure~\ref{fig:full_tournament_cooperation_rate_versus_rank} shows the
+distribution of cooperation rates. The reproduced cooperation rates are higher
+than the full tournament which are more closely aligned to the library
+tournament.,
 Figure~\ref{fig:relative_cooperation_rates} shows the change of behaviour
 between tournaments. It is clear that the original fortran strategies cooperate
 less than they did in the original tournament. Furthermore, looking at Table~\ref{tbl:full_tournament_rankings}
@@ -625,10 +643,20 @@ In the next section we investigate if a small modification to Axelrod's original
 tournament would have changed the conclusions. Specifically: would a small
 set of extra submissions changed the outcome?
 
-\subsection{Running with extra invitations: Adding 1, 2 and 3 strategies}\label{sec:extra_strategy}
+\subsection{Tournaments with extra invitations: Adding 1, 2, 3 and 4 strategies}\label{sec:extra_strategy}
 
 Using the full tournament results it is possible to extract results for adding
-new strategies.
+new strategies. The full tournament
+contains\input{assets/number_of_strategies_in_full_tournament.tex} strategies of
+which 63 are in the original tournament. This leads to a total of 78,760,605 new
+tournaments:
+
+\begin{enumerate}
+    \item Adding 1 strategy gives: $\binom{209}{1}=209$ tournaments.
+    \item Adding 2 strategy gives: $\binom{209}{2}=21,736$ tournaments.
+    \item Adding 3 strategy gives: $\binom{209}{3}=1,499,748$ tournaments.
+    \item Adding 4 strategy gives: $\binom{209}{4}=77,238,876$ tournaments.
+\end{enumerate}
 
 Table~\ref{tbl:original_tournament_with_extra_strategy_summary} shows the top
 ranking strategies when adding a single strategy to the original tournament.
@@ -636,12 +664,14 @@ ranking strategies when adding a single strategy to the original tournament.
 \begin{table}[!hbtp]
         \centering
         \input{assets/original_tournament_with_extra_strategy_summary.tex}
-        \caption{Performance of extra strategy in Axelrod's original tournament}
+        \caption{Performance of extra strategy in Axelrod's original
+        tournament. Strategies denoted with a \textdagger~were trained using
+        reinforcement learning~\cite{Harper2017}.}
         \label{tbl:original_tournament_with_extra_strategy_summary}
 \end{table}
 
 Adding a single strategy from Table~\ref{tbl:original_tournament_with_extra_strategy_summary} 
-does not lead to a winner from outside of the Fortran strategies.
+does not lead to a winner from outside of the original strategies.
 Adding a
 single strategy either gives Tit For Tat, k42r (which ranked 2nd in the
 reproduced tournament and 3rd in the original tournament) or k60r (which ranked
@@ -650,7 +680,8 @@ reproduced tournament and 6th in the original tournament)as the
 winner however, adding 2 or 3 strategies does introduce new winners.
 Table~\ref{tbl:alternate_extra_strategy_tournament_winner_proportion} 
 shows the proportion of times this happens. As more strategies are added it
-looks like the proportion of wins by k42r and k60r increase.
+looks like the proportion of wins by k42r and k60r increase although this effect
+stops when adding $4$ strategies.
 Figures~\ref{fig:k42r_fortran} and~\ref{fig:k60r_fortran} give the source code
 for these two strategies.
 
@@ -754,7 +785,7 @@ C I DEFECT.
         \end{lstlisting}
         \caption{Fortran Source code for original k42r strategy submitted
         to Axelrod's second tournament.}
-        \label{fig:tft_42r}
+        \label{fig:k42r_fortran}
     \end{center}
 \end{figure}
 
@@ -794,7 +825,7 @@ C FROM CARDS BY JM 2/22/79
         \end{lstlisting}
         \caption{Fortran Source code for original k60r strategy submitted
         to Axelrod's second tournament.}
-        \label{fig:tft_60r}
+        \label{fig:k60r_fortran}
     \end{center}
 \end{figure}
 
@@ -866,25 +897,29 @@ of~\cite{glynatsi2024properties}.
 
 \begin{table}[!hbtp]
         \centering
+        \footnotesize
         \input{assets/alternate_extra_strategy_tournament_winner_proportion.tex}
-        \caption{Proportion of winners of the original tournament with 1, 2 or 3
-        new strategies}
+        \caption{Proportion of winners of the original tournament with 1, 2, 3
+        or 4 new strategies}
         \label{tbl:alternate_extra_strategy_tournament_winner_proportion}
 \end{table}
 
 Clearly the more strategies added the less likely Tit For Tat is to win.
-Although, interestingly the environment does not let the high performing
+Although, interestingly the environment does not allow the high performing
 strategies of Table~\ref{tbl:full_tournament_rankings} to thrive. In the
 next section we will investigate adding a particularly aggressive subset of
 strategies.
 
-\subsection{Running with extortion}\label{sec:run_with_stewart_plotkin}
+\subsection{Tournament with extortion}\label{sec:run_with_stewart_plotkin}
 
 Since the work of~\cite{Press2012} a lot of interest has been shown to Zero
 Determinant strategies. In~\cite{Stewart2012} a small tournament is presented
 pitting these against each other. Table~\ref{tbl:sp_tournament_rankings}
 shows the rankings of the top 15 strategies when including all the Zero
-Determinant strategies from~\cite{Stewart2012}.
+Determinant strategies from~\cite{Stewart2012}. The change of rank across the
+tournaments is shown in Figure~\ref{fig:rank_change_in_sp_tournament}. The tournament 
+exhibits limited relative change in performance, with the zero-determinant strategies 
+appearing evenly distributed throughout the rankings.
 
 \begin{table}[!hbtp]
         \centering
@@ -895,6 +930,14 @@ Determinant strategies from~\cite{Stewart2012}.
                  from~\cite{Stewart2012}}
         \label{tbl:sp_tournament_rankings}
 \end{table}
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[height=.9\textheight]{assets/rank_change_in_sp_tournament.pdf}
+    \caption{The change of rank in the tournament composed of the original
+    strategies and the Zero Determinant strategies from~\cite{Stewart2012}}
+    \label{fig:rank_change_in_sp_tournament}
+\end{figure}
 
 The overall cooperation rate of this tournament is
 \input{assets/sp_tournament_overall_cooperation_rate.tex}and the various
@@ -921,7 +964,7 @@ The distribution is shown in Figure~\ref{fig:sp_tournament_cooperation_rates}.
 Figure~\ref{fig:sp_relative_cooperation_rates} shows the relative
 cooperation rates and here it identifies that the Zero Determinant strategies in
 fact adapt their cooperation rate to the original tournament. They cooperate
-more than.
+more than they do in their original tournament.
 
 \begin{figure}[!hbtp]
     \centering
@@ -930,19 +973,156 @@ more than.
     \label{fig:sp_relative_cooperation_rates}
 \end{figure}
 
-These results seem to highlight that adaptability is an important guideline for
-cooperation...
+The final consideration is an external modification to the environment: what
+happens when there is noise: a non zero probability of the chosen action by a
+strategy to be changed.
+
+\subsection{Tournaments with noise}\label{sec:run_with_noise}
+
+Tables~\ref{tbl:noisy_tournament_rankings_in_1_percent_noise}, ~\ref{tbl:noisy_tournament_rankings_in_5_percent_noise}
+and
+Figures~\ref{fig:rank_change_in_1_percent_noisy_tournament}to~\ref{fig:relative_cooperation_rates_in_5_percent_noise} 
+show the same set of results for two new runs of the full tournament but with
+either 1\% or 5\% chance of a change of chosen action. We once again see a
+number of the original mid performing strategies perform highly in noisy
+environments.
+
+
+
+\begin{table}[!hbtp]
+        \centering
+        \scriptsize
+        \input{./assets/noisy_tournament_rankings_in_1_percent_noise.tex}
+        \caption{Top 15 strategies in the full tournament with 1\% noise.
+        Strategies denoted with a \textdagger~were trained using
+        reinforcement learning~\cite{Harper2017}.}
+        \label{tbl:noisy_tournament_rankings_in_1_percent_noise}
+\end{table}
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[height=.9\textheight]{assets/rank_change_in_1_percent_noisy_tournament.pdf}
+    \caption{The change of rank in the full tournament with 1\% noise.}
+    \label{fig:rank_change_in_1_percent_noisy_tournament}
+\end{figure}
+
+
+\begin{table}[!hbtp]
+        \centering
+        \scriptsize
+        \input{./assets/noisy_tournament_rankings_in_5_percent_noise.tex}
+        \caption{Top 15 strategies in the full tournament with 5\% noise. Strategies denoted with a \textdagger~were trained using
+        reinforcement learning~\cite{Harper2017}.}
+        \label{tbl:noisy_tournament_rankings_in_5_percent_noise}
+\end{table}
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[height=.9\textheight]{assets/rank_change_in_5_percent_noisy_tournament.pdf}
+    \caption{The change of rank in the full tournament with 5\% noise.}
+    \label{fig:rank_change_in_5_percent_noisy_tournament}
+\end{figure}
+
+The overall cooperation rates in this tournament go down, for 1\% it is \input{assets/noisy_tournament_overall_cooperation_rate_in_1_percent_noise.tex}
+and for 5\% it is
+\input{assets/noisy_tournament_overall_cooperation_rate_in_5_percent_noise.tex}.
+This general trend is highlighted in the Figures where we see that the
+strategies that had a high cooperation rate were more likely to cooperate less.
+In this setting Tit For Tat does not rank in the top 15 strategies whereas
+trained strategies or indeed a sophisticated strategy specifically designed to
+take advantage of noise (the DBS strategy) win.
+
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/noisy_tournament_cooperation_rate_versus_rank_in_1_percent_noise.pdf}
+    \caption{Cooperation rate versus rank for 1\% noise}
+    \label{fig:noisy_tournament_cooperation_rate_versus_rank_in_1_percent_noise}
+\end{figure}
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/noisy_tournament_cooperation_rate_versus_rank_in_5_percent_noise.pdf}
+    \caption{Cooperation rate versus rank for 5\% noise}
+\end{figure}
+
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/noisy_tournament_cooperation_rates_in_1_percent_noise.pdf}
+    \caption{Distribution of cooperation rates for 1\% noise}
+\end{figure}
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/noisy_tournament_cooperation_rates_in_5_percent_noise.pdf}
+    \caption{Distribution of cooperation rates for 5\% noise}
+\end{figure}
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/relative_cooperation_rates_in_1_percent_noise.pdf}
+    \caption{The relationship between cooperation rates in each tournament for
+    1\% noise}
+\end{figure}
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.8\textwidth]{assets/relative_cooperation_rates_in_5_percent_noise.pdf}
+    \caption{The relationship between cooperation rates in each tournament for
+    5\% noise}
+    \label{fig:relative_cooperation_rates_in_5_percent_noise}
+\end{figure}
 
 \section{Conclusion}\label{sec:conclusion}
 
-% TODO
-% Describe what has been done:
-% - Building axelrod_fortran, include references to best practice.
-% - Highlight main conclusions: adding a single strategy would not change
-%   outcomes but that in a more complex environment the conclusions no longer
-%   apply
-% - Discuss possibility of future work including reinforcement learning
-%   techniques and more in depth evolutionary considerations.
+The work in this paper is the first of its kind: we have packaged according to
+best practices code that was written in the 1980s. The archive of this work
+available at ...% TODO Add zenodo link
+has been written to high standards of best practice~\cite{wilson2014} and now benefits
+from a fully automated test suite. All modification to the original code files
+has been done in a systematic and reviewable approach which can be found
+at~\url{https://github.com/Axelrod-Python/axelrod-fortran}.
+
+Using this, we have been able to run the original, or as close to original
+versions of Axelrod's seminal tournament in the field of emergence of
+cooperation. The results match well except for a single strategy by Champion.
+Because of the approach taken we are confident in the results presented here as
+this particular strategy has also been translated to the modern Axelrod Python
+library.
+
+Axelrod’s work—highly cited and often treated as foundational—originates from
+just two specific tournaments. The widely accepted guidelines for effective
+cooperation stem directly from these early experiments. However, recent studies
+such as~\cite{glynatsi2024properties} have demonstrated that these rules are
+highly context-dependent and do not generalize well to broader settings.
+
+The work presented in this paper further supports this view, showing that even
+small modifications to Axelrod’s original tournament setup could have
+significantly altered the conclusions drawn. By examining the impact of
+introducing just one or two additional strategies, we find that the overall
+interpretation of the results shifts: while a Tit For Tat–like strategy may
+still have emerged as the winner, it would have done so via a considerably more
+complex dynamic.
+
+Moreover, when we attempt to approximate the full strategy space using the
+largest available collection of strategies, the original submissions perform
+poorly. They are consistently outperformed by more sophisticated strategies—many
+of which arise through evolutionary processes rather than deliberate design.
+
+This leads to potential to build on this work, specifically there is potential
+to train a single strategy to attempt to perform well in the original
+tournament. Using modern reinforcement learning techniques this strategy could
+also be constrained to either adopt or not the original guidelines proposed by
+Robert Axelrod.
+
+Finally, the Axelrod Python maintainers
+have translated \input{assets/number_of_translated_strategies.tex}of the
+original Fortran strategies to the Python
+programming language which is a somewhat archaeological exercise and benefits
+understand and reproducibility of the work. Expanding this process in the open
+and reproducible framework offered by open source research software is an
+important exercise for future work. 
 
 \section*{Acknowledgements}
 
