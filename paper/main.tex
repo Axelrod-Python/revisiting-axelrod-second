@@ -14,7 +14,7 @@
 \usepackage{xcolor}
 \usepackage{subcaption}
 \usepackage{makecell}
-\usepackage{authblk}          % \author[..], \affil[..]
+\usepackage{authblk}
 \usepackage[symbol]{footmisc}
 \usepackage[sort&compress,comma,numbers]{natbib}
 
@@ -582,7 +582,7 @@ indeed highly cooperative, with the exception of those in the bottom 14\% of the
 ranking, which display cooperation rates below 0.5.
 
 In Figure~\ref{fig:original_tournament_cooperation}\textbf{b}, we show that the
-top-performing strategies cooperate almost perfectly with one another, one of
+top performing strategies cooperate almost perfectly with one another, one of
 Axelrod's key observations. He also emphasized the importance of
 \emph{provocability} (willingness to punish defection) and \emph{forgiveness}
 (ability to return to cooperation). In the case of \TFT, this means responding
@@ -592,8 +592,8 @@ the same cooperation rate as its opponent. To capture this notion, in
 Figure~\ref{fig:original_tournament_cooperation}\textbf{c} we plot the difference between
 pairwise cooperation rates and their transposes, that is, the deviation from
 symmetry. A value of 0 indicates that two strategies cooperate at exactly the
-same rate with one another. The top-performing strategies cluster near 0,
-whereas lower-performing strategies are more asymmetric, with larger positive or
+same rate with one another. The top performing strategies cluster near 0,
+whereas lower performing strategies are more asymmetric, with larger positive or
 negative deviations.
 
 These outcomes are not surprising. By the time of the second tournament,
@@ -645,7 +645,7 @@ lengths used by Axelrod and repeat the full tournament
 stochastic variation.
 
 Our analysis focuses on how the additional submissions affect the performance of
-the \emph{original} 63 strategies. We consider the top-ranked strategies from
+the \emph{original} 63 strategies. We consider the top ranked strategies from
 the reproduced tournament, including \TFT{}, and high-scoring strategies such as
 \texttt{k75r} and \texttt{k32r} and \texttt{k42r}, and report, for each focal
 strategy, the probability of winning with and without extra invitations (see
@@ -669,7 +669,7 @@ some realizations, tend to be even less effective as more entrants are introduce
         \resizebox{.9\textwidth}{!}{
         \input{../assets/extra_strategies_summary.tex}}
         \caption{\textbf{Proportion of wins for original strategies with 0-4 additional invitees.}
-        Shown are the eight top-performing strategies (based on our
+        Shown are the eight top performing strategies (based on our
         reproduction) and their probabilities of winning the tournament under
         five fixed match lengths, repeated
         25,000 times. Additional
@@ -697,7 +697,7 @@ Figure~\ref{fig:reproduced_with_noise} summarizes the results for a noise probab
 submissions: the left column orders strategies by their original rank, while
 the right column lists ranks \(1\)-\(63\), with arrows indicating each strategy's
 rank in the noisy tournament. As expected, noise leads to substantial reordering,
-with several mid-field strategies moving into top positions and some former top performers
+with several mid ranking strategies moving into top positions and some former top performers
 dropping. The mean cooperation rate declines from \(0.75\) (noiseless) to \(0.65\)
 under noise (Figure~\ref{fig:reproduced_with_noise}\textbf{c}). Correspondingly, the new
 winning strategy in this setting cooperates at \(0.61\), slightly \emph{below} the
@@ -738,7 +738,7 @@ pattern of the original tournament. Table~\ref{tbl:sp_tournament_rankings_top_fi
 lists the top-performing strategies (see the \SI{} for the full ranking). In
 this new tournament, ZD strategies are distributed across the ranking rather than
 concentrated at the top (\SI), while \TFT{}, \texttt{k42r}, and generous variants
-(e.g., GTFT and ZD-GTFT-2) perform particularly well.
+(e.g., GTFT~\cite{nowak1992tit} and ZD-GTFT-2) perform particularly well.
 
 \begin{table}[!hbtp]
         \centering
@@ -762,7 +762,7 @@ already implemented in Python). This produces a tournament with
 Table~\ref{tbl:full_tournament_rankings} shows the top 16 strategies of the tournament.
 Rank changes relative to the reproduced tournament are shown in
 Figure~\ref{fig:rank_change_in_axelrod_python_tournament}\textbf{a}.
-Several mid-performing strategies from the original tournament rise into top
+Several mid performing strategies from the original tournament rise into top
 positions in this more complex environment. Notably, \texttt{k42r} performs
 best among the original strategies, ranking 16th overall. The cooperation rate
 of the library-only tournament (excluding the original Fortran strategies) is
@@ -828,93 +828,91 @@ mechanisms to maintain competitive payoffs and robust rankings.
 
 Our study revisits one of the most influential computational experiments in the
 social sciences: Axelrod's second Iterated Prisoner's Dilemma (\IPD) tournament.
-By recovering and ensuring that the original Fortran implementations of
-submitted strategies still compile, we provide the first systematic reproduction
-of Axelrod's results. Despite minor discrepancies, most notably the bug we
-identified in \emph{Champion} (\texttt{k61r}), our analyses confirm the
-robustness of Tit For Tat (\TFT{}) as the leading strategy. This reinforces
-Axelrod's original conclusion that reciprocity, tempered by retaliation and
-forgiveness, is an effective principle for sustaining cooperation.
+By using the original Fortran implementations available online and ensuring
+that they still compile, we provide the first systematic reproduction of
+Axelrod's results. Despite minor discrepancies, most notably a bug we identified
+in \emph{Champion} (\texttt{k61r}), our analyses confirm the robustness of Tit
+For Tat (\TFT{}) as a leading strategy. This reinforces Axelrod's conclusion
+that reciprocity, moderated by the capacity for retaliation and forgiveness, is
+an effective principle for sustaining cooperation.
 
-In analyses where we introduced new innovations to the original
-tournament—up to four at a time—we found that the probability of \TFT{} winning
-is non-monotonic but remains high overall. This suggests that \TFT{} is a
-remarkably robust strategy, difficult to unseat when the majority of opponents
-consist of the original submissions.
+By expanding the tournament to include additional strategies from the
+literature, we reveal clearer patterns. Namely, \TFT{} is remarkably robust and
+difficult to displace when the majority of opponents are drawn from the original
+pool. In other words, Axelrod's tournament, and similar ones, such as those
+organized by Stewart and Plotkin~\cite{Stewart2012}, create highly cooperative
+environments in which top, performing strategies tend to reciprocate with one
+another, conditions that are especially favorable to \TFT.
 
-However, in other contexts, several strategies that performed only moderately
-well in Axelrod's rankings rise substantially in more complex or noisy
-environments. A striking example is \texttt{k42r}, a strategy that wins 35\% of
-the replications of the original tournament. This strategy outperforms \TFT{} in
-the presence of noise and also surpasses any of the original strategies in
-tournaments with more elaborate rule sets, such as the full Axelrod-Python
-tournament and the Stewart and Plotkin tournament.
+The picture changes in more heterogeneous or noisy contexts. Several strategies
+that ranked only moderately in Axelrod's original results rise substantially
+under increased complexity or noise. A prominent example is \texttt{k42r}, which
+wins 35\% of replications of the original tournament in our experiments. This
+strategy outperforms \TFT{} in the presence of noise and surpasses any of the
+original submissions in tournaments with more elaborate rule sets, such as the
+full \AXL{} set of 209 strategies. Other mid performing strategies from the
+original tournament likewise move into top positions in these settings,
+particularly when noise is introduced. These findings suggest that some
+sophisticated designs may have been ``over-engineered'' for the cooperative,
+relatively stable conditions of the original experiment, yet prove better
+adapted to noisy or diverse environments.
 
-Other mid-performing strategies from the original tournament also climb into top
-positions in these more complex settings, particularly in environments with
-noise. These cases suggest that some of the more sophisticated strategies may
-have been “over-engineered” for the cooperative and relatively stable conditions
-of the original experiment, but prove better adapted to noisy or diverse
-contexts.
+This observation aligns with a broader literature showing that \TFT{} is not
+universally optimal. Variants such as
+Win--Stay--Lose--Shift~\cite{nowak1993strategy}, Generous
+\TFT{}~\cite{nowak1992tit}, and ``All-or-nothing''~\cite{hilbe2017memory}
+strategies, as well as ``friendly rivals''~\cite{murase2020five} and strategies
+discovered via reinforcement learning~\cite{Knight2017}, can outperform \TFT{}.
+Our contribution is to show that, even within Axelrod's original submission set,
+strategies that received little attention due to modest performance in the
+original tournament can excel when the environment is more diverse, or noisier.
+These results also help revise the common impression, shaped by the original
+tournament, that \TFT{} is universally the best performing strategy.
 
-This is not new: recent research has shown that \TFT{} is not the most effective
-strategy in many settings. Win-Stay-Lose-Shift (WSLS), Generous \TFT{}, All-or-Nothing
-strategies, as well as “friendly rivals” and strategies trained with
-reinforcement learning, have all been shown to outperform \TFT{} in certain
-environments. What is important here, however, is that among the original
-submissions, strategies that were largely overlooked due to poor performance in
-the original tournament can perform well under different conditions.
 
-Noise plays a particularly important role in reshaping outcomes. Average
-cooperation falls from around 0.75 in the noiseless reproduction to 0.65 with
-just $1\%$ error, and the new winners tend to cooperate just below the
-tournament mean. This balance appears to be a reliable predictor of success
-under uncertainty: in the noisy setting, the eventual winners typically
-cooperate at 0.61~\cite{glynatsi2024properties}, while \TFT{}—though
-robust—cooperates at 0.70, leaving it more vulnerable.
-
-This paper is, to our knowledge, the first attempt to package and reproduce,
-according to current best practices, code originally written in the 1980s. The
-archive of this work, available at \url{...} % TODO: add Zenodo link
-has been curated to high standards of reproducible research~\cite{wilson2014}
-and is accompanied by a fully automated test suite. All modifications to the
-original code were performed systematically and transparently, with complete
-records available at \url{https://github.com/Axelrod-Python/axelrod-fortran}.
-This approach has enabled us to re-run Axelrod's original second tournament as
-faithfully as possible, re-examine its outcomes, investigate several variations,
-and make the original strategies accessible for future research.
-
-This work also serves as a case study in computational reproducibility.
-Axelrod's tournaments, highly cited and foundational, were built on fragile
-digital artifacts, of which only fragments survive. Without systematic
-preservation, much of this intellectual history might have been lost. By
-updating, documenting, and integrating the surviving code into an open-source,
-test-driven framework, we ensure that these strategies remain accessible for
-future research.
+A second contribution of this work is methodological. To our knowledge, this is
+the first effort to package and reproduce, according to contemporary best
+practices, code originally written in the 1980s. The archived materials (at
+\url{https://zenodo.org/record/}) % TODO: add Zenodo link
+are curated to high standards of reproducible research~\cite{wilson2014} and
+accompanied by a fully automated test suite. All changes to the original code
+were made systematically and transparently, with complete records available at
+(\url{https://github.com/Axelrod-Python/axelrod-fortran}).
+More broadly, it serves as a case study in computational reproducibility: Axelrod's highly cited,
+foundational tournaments were built on fragile digital artifacts, of which only
+fragments survive. Without systematic preservation, much of this
+historical work might have been lost. By updating, documenting, and integrating the
+surviving code into an open-source, test-driven framework, we help ensure
+continued access for the research community.
 
 In conclusion, Axelrod's tournaments remain landmark contributions to the study
-of cooperation, but their lessons are more contingent than their historical
-reception might suggest. While \TFT{} remains a remarkably robust strategy,
-strategies like \texttt{k42r} demonstrate the overlooked potential of more
-complex designs, particularly in noisy or heterogeneous environments.
-
+of cooperation, but their lessons are more context dependent than is often assumed.
+While \TFT{} is strikingly robust in cooperative
+environments resembling the original tournament, more complex strategies can
+outperform it in heterogeneous or noisy settings. We hope that the field will
+continue to develop preservation pipelines that bring historical computational
+experiments into alignment with modern standards of reproducibility, and to
+advance reproducible software and science.
 
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.90\textwidth]{../assets/reproduced_with_noise.pdf}
+    \includegraphics[width=.88\textwidth]{../assets/reproduced_with_noise.pdf}
     \caption{\textbf{Axelrod's second tournament with 1\% noise.}
-    \textbf{a,} Comparison of the original rankings with those obtained in our
-    replication under noise. In the left column, strategies are ordered by their 
-    reproduced ranks, and arrows indicate their ranks in the noisy tournament 
-    (right column). 
-    \textbf{b,} Cooperation rates of strategies ordered by rank in the reproduced 
-    tournament with noise. The top-performing strategies show cooperation rates 
-    ranging from 0.6 to 0.8. 
-    \textbf{c,} Tournament ranks across all repetitions with noise compared to the 
-    reproduced tournament without noise. We also plot the average cooperation rate. 
-    \textbf{d,} Pairwise cooperation rates between strategies in the reproduced 
-    tournament without noise and with 1\% noise. 
+    \textbf{a,} Comparison of the original rankings and the rankings of the second
+    tournament with noise. In the left column, strategies are ordered by their
+    original ranks, and arrows indicate their ranks in the noisy tournament (right
+    column). The arrow widths are proportional to the change in rank. Blue arrows
+    indicate a positive change in rank, red arrows indicate a negative change in
+    rank, and grey arrows indicate no change in rank.
+    \textbf{b,} Cooperation rates of strategies ordered by rank in this tournament.
+    \textbf{c,} Tournament cooperation rates across all repetitions for
+    this tournament (green) and the reproduced tournament without noise (blue).
+    We also plot the average cooperation rate (green or blue line) and report its value.
+    \textbf{d,} Pairwise cooperation rates between strategies. For each
+    pair we calculate the cooperation rate of the row strategy towards the column
+    strategy and vice versa. The strategies are ordered by the ranks in this
+    tournament. For a full list of strategies see the \SI.
     \textbf{e,} Differences in cooperation rates for each pair of strategies, again 
     ordered by their rank in the reproduced tournament with noise.}
     \label{fig:reproduced_with_noise}
@@ -926,17 +924,8 @@ complex designs, particularly in noisy or heterogeneous environments.
     \includegraphics[width=.90\textwidth]{../assets/stewart_and_plotkin_tournament.pdf}
     \caption{\textbf{Reproduction of Axelrod's second tournament with the addition
     of the strategies from Stewart's and Plotkin's tournament~\cite{Stewart2012}.}
-    Similar to Figure~\ref{fig:reproduced_with_noise}. Here we only show the
-    new ranking of the original strategies.
-    \textbf{a,} Comparison of the original rankings with those obtained in our
-    replication with the addition of the strategies from~\cite{Stewart2012}.
-    \textbf{b,} Cooperation rates of strategies ordered by rank in the reproduced
-    tournament with the additional strategies.
-    \textbf{c,} Tournament ranks across all repetitions compared to the
-    reproduced tournament without the additional strategies. We also plot the
-    average cooperation rate.
-    \textbf{d,} Pairwise cooperation rates between strategies.
-    \textbf{e,} Differences in cooperation rates for each pair of strategies.}
+    Similar to Figure~\ref{fig:reproduced_with_noise}. The right column shows the
+    rankings on the original strategies in this new tournament.}
   \label{fig:rank_change_in_sp_tournament}
 \end{figure}
 
@@ -946,7 +935,7 @@ complex designs, particularly in noisy or heterogeneous environments.
     \includegraphics[width=.90\textwidth]{../assets/axelrod_python_tournament.pdf}
     \caption{\textbf{Reproduction of Axelrod's second tournament with the addition
     of the strategies from the \AXL.}
-    Similar to Figure~\ref{fig:reproduced_with_noise},}
+    Similar to Figure~\ref{fig:rank_change_in_sp_tournament}.}
   \label{fig:rank_change_in_axelrod_python_tournament}
 \end{figure}
 
@@ -955,7 +944,7 @@ complex designs, particularly in noisy or heterogeneous environments.
     \includegraphics[width=.90\textwidth]{../assets/axelrod_python_tournament_noise_1.pdf}
     \caption{\textbf{Reproduction of Axelrod's second tournament with the addition
     of the strategies from the \AXL and with noise 1\%.}
-    Similar to Figure~\ref{fig:reproduced_with_noise},}
+    Similar to Figure~\ref{fig:rank_change_in_sp_tournament}.}
   \label{fig:rank_change_in_axelrod_python_tournament_noise_1}
 \end{figure}
 
@@ -965,207 +954,12 @@ complex designs, particularly in noisy or heterogeneous environments.
     \includegraphics[width=.90\textwidth]{../assets/axelrod_python_tournament_noise_5.pdf}
     \caption{\textbf{Reproduction of Axelrod's second tournament with the addition
     of the strategies from the \AXL and with noise 5\%.}
-    Similar to Figure~\ref{fig:reproduced_with_noise},}
+    Similar to Figure~\ref{fig:rank_change_in_sp_tournament}.}
   \label{fig:rank_change_in_axelrod_python_tournament_noise_5}
 \end{figure}
 
 
-
 \bibliographystyle{naturemag}
 \bibliography{../bibliography.bib}
-
-% \section{Supplementary Information}\label{sec:si}
-
-% \subsection{List of Axelrod's second strategies}\label{app:list_of_original_players}
-
-% \begin{multicols}{2}
-%     \begin{enumerate}
-%             \input{../assets/list_of_original_tournament_players.tex}
-%     \end{enumerate}
-% \end{multicols}
-
-% \subsection{Top performing strategies in reproduced tournaments}\label{app:top15}
-
-% \begin{table}[!hbtp]
-%         \centering
-%         \input{../assets/original_tournament_rankings.tex}
-%         \caption{Top 15 strategies in the reproduced tournament}
-%         \label{tbl:original_tournament_rankings}
-% \end{table}
-
-% \subsection{Linear regression analysis}\label{app:linear_model}
-
-% Using recursive feature elimination~\cite{guyon2002gene} it is
-% possible to select the features (strategies) that give the best prediction for
-% a given number of features. This \textit{best} \(R^2\) versus the number of
-% features is shown in
-% Figure~\ref{fig:original_tournament_r_squared_versus_number_of_features}.
-
-% \begin{figure}[!hbtp]
-%     \centering
-%     \includegraphics[width=.8\textwidth]{../assets/original_tournament_r_squared_versus_number_of_features.pdf}
-%     \caption{\(R^2\) for models obtained using recursive feature elimination.}
-%     \label{fig:original_tournament_r_squared_versus_number_of_features}
-% \end{figure}
-
-% \begin{figure}[!hbtp]
-%     \centering
-%     \includegraphics[width=.9\textwidth]{../assets/original_tournament_predictive_score_models.pdf}
-%     \caption{Predicting the performance of strategies using the 4 models
-%              discussed}
-%     \label{fig:original_tournament_predictive_score_models}
-% \end{figure}
-
-% It is clear that the effectiveness of the predictive models with 5 strategies is
-% low for the cluster of highly performing strategies (with a score greater than
-% 2.5). To be able to obtain a good model even for high performing strategies 8
-% seem to provide a good predictive model.
-
-
-% \subsection{Fortran source code for k42r}\label{app:k42r_fortran}
-
-% From inspection of the 
-% source code, the behaviour of the strategy can be described as follows 
-% (these descriptions are taken from the re-implementation in Python 
-% from~\cite{AxelrodProject}, which has been verified to reproduce the original 
-% Fortran behaviour accurately):
-
-% This player keeps track of the opponent's responses to its own actions:
-
-% \begin{itemize}
-%     \item \texttt{cd\_count}: Counts the number of times the opponent cooperates in response to the player defecting.
-%     \item \texttt{cc\_count}: Counts the number of times the opponent cooperates in response to the player cooperating.
-% \end{itemize}
-
-% The player has two modes: \emph{defect mode} and \emph{normal mode}.  
-% In defect mode, the player always defects.  
-% In normal mode, the player follows the ranked rules below:
-
-% \begin{enumerate}
-%     \item If in the last three turns both players defected, then cooperate for one turn.
-%     \item If in the last three turns the players alternated (acted differently each turn), then change the next defect to cooperation. (This does not block Rule 3.)
-%     \item Otherwise, play tit-for-tat.
-% \end{enumerate}
-
-% The player starts in normal mode. Every 25 turns, beginning with the 27th turn, 
-% the mode is re-evaluated. The player enters defect mode if either of the 
-% following conditions holds:
-
-% \begin{itemize}
-%     \item \textbf{Detected random:} The opponent cooperated 7–18 times since the last mode evaluation (or since the start), \emph{and} fewer than 70\% of those cooperations were in response to the player's cooperation, i.e.
-%     \[
-%         \frac{\texttt{cc\_count}}{\texttt{cc\_count} + \texttt{cd\_count}} < 0.7.
-%     \]
-%     \item \textbf{Detected defective:} The opponent cooperated fewer than 3 times since the last mode evaluation.
-% \end{itemize}
-
-% When switching to defect mode, defect immediately.  
-% The first two rules of normal mode require that the last three turns occurred 
-% in normal mode. When returning to normal mode from defect mode, defect on the 
-% first move.
-
-% \begin{figure}[!hbtp]
-%     \begin{center}
-%         \scriptsize
-%         \begin{lstlisting}[language=Fortran,
-%                            basicstyle=\ttfamily\scriptsize,
-%                            frame=single,
-%                            keywordstyle=\color{red}\bfseries,
-%                            commentstyle=\color{teal}\itshape]
-%        FUNCTION K42R(JPICK,MOVEN,ISCORE,JSCORE,RANDOM, JA)
-% C BY OTTO BORUFSEN
-% C TYPED FROM FORTRAN BY AX, 1/25/79
-%       DIMENSION MHIST(2,2)
-%       k42r=ja    ! Added 7/27/93 to report own old value
-% C INITIALIZE FIRST MOVE
-%       IF(MOVEN.NE.1)GOTO 20
-%          L3MOV=0
-%          L3ECH=0
-%          IDEF=0
-%          ICOOP=0
-%          IPICK=0
-%          DO 10 I=1,2
-%          DO 10 J=1,2
-% 10       MHIST(I,J)=0
-%          GO TO 500
-% 20    IF(MOVEN.EQ.2)GOTO 25
-% C UPDATE MOVE HISTORY
-%       MHIST(I2PCK+1,JPICK+1)=MHIST(I2PCK+1,JPICK+1)+1
-% 25    IF(IDEF.EQ.0)GOTO 30
-% C OPPONENT HAS BEEN PROVED "RANDOM" OR
-% C "DEFECTIVE",I DEFECT FOR 25 MOVES
-%       K42R=1
-%       GO TO 100
-% 30    IF(IPICK.EQ.0.OR.JPICK.EQ.0)GOTO 40
-% C MUTUAL DEFECTIONS ON LAST MOVE.
-%       L3MOV=L3MOV+1
-%       IF(L3MOV.LT.3)GOTO 50
-% C MUTUAL DEFECTION ON
-% C LAST THREE MOVES.
-% C I COOPERATE ONCE ON NEXT MOVE.
-%       K42R=0
-%       L3MOV=0
-%       L3ECH=0
-%       GOTO 100
-% C ONE (OR BOTH) COOPERATED ON LAST MOVE.
-% 40    L3MOV=0
-%       IF(IPICK.EQ.JPICK)GOTO 45
-%       IF(JPICK.NE.I2PCK.OR.IPICK.NE.J2PCK)GOTO 45
-% C ECHO-EFFECT ON LAST MOVE.
-%       L3ECH=L3ECH+1
-%       IF(L3ECH.LT.3)GOTO 50
-% C ECHO-EFFECT ON LAST THREE MOVES.
-% C MY NEXT DEFECTION WILL BE SUBSTITUTED
-% C BY A COOPERATION.
-%       L3ECH=0
-%       L3MOV=0
-%       ICOOP=1
-%       GOTO 50
-% 45    L3ECH=0
-% C PLAY 'TIT FOR TAT' AS MAIN RULE.
-% 50    K42R=JPICK
-% 100   IF(MOD(MOVEN-2,25).NE.0.OR.MOVEN.EQ.2)GOTO 650
-% C ON EVERY 25 MOVES:
-% C CHECK IF OPPONENT SEEMS TO BE
-% C 'RANDOM' OR 'DEFECTIVE'.
-%       IDEF=0
-%       JNCOP=MHIST(1,1)+MHIST(2,1)
-% C IS OPPONENT 'RANDOM'?
-%       IF(JNCOP.GT.17)GOTO 155
-%       IF(JNCOP.LT.8)GOTO 130
-%       IF(100*MHIST(1,1)/JNCOP.LT.70)IDEF=1
-%       GOTO 155
-% C IS OPPONENT 'DEFECTIVE'?
-% 130   IF(JNCOP.LT.3)IDEF=1
-% 155   DO 160 I=1,2
-%       DO 160 J=1,2
-% 160   MHIST(I,J)=0
-%       IF(IDEF.EQ.0)GOTO 650
-% C OPPONENT SEEMS TO BE
-% C 'RANDOM' OR 'DEFECTIVE'.
-% C I DEFECT FOR NEXT 25 MOVES.
-%       ICOOP=0
-%       L3MOV=0
-%       L3ECH=0
-%       GOTO 600
-% C I COOPERATE.
-% 500   K42R=0
-%       GOTO 650
-% C I DEFECT.
-% 600   K42R=1
-% 650   IF(ICOOP.EQ.0.OR.K42R.EQ.0)GOTO 660
-%          ICOOP=0
-%          K42R=0
-% 660   I2PCK=IPICK
-%       J2PCK=JPICK
-%       IPICK=K42R
-%       RETURN
-%       END
-%         \end{lstlisting}
-%         \caption{Fortran Source code for original k42r strategy submitted
-%         to Axelrod's second tournament.}
-%         \label{fig:k42r_fortran}
-%     \end{center}
-% \end{figure}
 
 \end{document}
