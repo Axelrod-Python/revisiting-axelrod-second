@@ -321,7 +321,7 @@ now have access to the function names of the Fortran implementations. In what
 follows, we refer to strategies by their function names, supplemented by
 Axelrod's names when available. A complete list of the strategies, their
 authors, their original rankings, the names provided by Axelrod (where
-available), and their function names is given in the \SI.
+available), and their function names is given in the \SI~(S1).
 
 Axelrod use the same payoff matrix as in the first tournament, with
 \(T=5\), \(R=3\), \(P=1\), and \(S=0\).
@@ -427,7 +427,7 @@ dice, \texttt{k42r} (Otto Borufsen) might well have been crowned the winner.
 
 
 The source code for \texttt{k42r}, together with a description of the strategy's
-behaviour, is provided in the \SI. In summary, the strategy has two states:
+behaviour, is provided in the \SI~(S6). In summary, the strategy has two states:
 \emph{normal} and \emph{defecting}. In its normal state, it behaves much like
 \TFT{}, but it includes mechanisms to recover from mutual defection and to
 escape alternating defections. Every 25 turns, it evaluates the opponent's
@@ -548,7 +548,7 @@ are included, after which improvements are small. This suggests that
 Axelrod's choice of five representative strategies was reasonable. Whether this
 selection was the outcome of a systematic feature selection procedure or a
 judgment call remains unclear; in either case, it appears well chosen. The
-results of this elimination analysis are reported in the \SI.
+results of this elimination analysis are reported in the \SI~(S5).
 
 
 \begin{table}[!hbtp]
@@ -645,12 +645,12 @@ lengths used by Axelrod and repeat the full tournament
 stochastic variation.
 
 Our analysis focuses on how the additional submissions affect the performance of
-the \emph{original} 63 strategies. We consider the top ranked strategies from
-the reproduced tournament, including \TFT{}, and high-scoring strategies such as
-\texttt{k75r} and \texttt{k32r} and \texttt{k42r}, and report, for each focal
-strategy, the probability of winning with and without extra invitations (see
-Table~\ref{tbl:alternate_extra_strategy_tournament_winner_proportion}; the full
-results are provided in the \SI).
+the \emph{original} 63 strategies. For each of the original strategies, that
+have won at least once in the reproduced tournament, we show the probability of
+winning the tournament when 1, 2, 3, or 4 additional strategies are included
+(Table~\ref{tbl:alternate_extra_strategy_tournament_winner_proportion}). These
+include \TFT{}, and high-scoring strategies such as \texttt{k75r},
+\texttt{k32r}, and \texttt{k42r}.
 
 A striking pattern is that the effect of extra invitations on \TFT{} is
 \emph{non-monotonic}. Adding a single additional invitee substantially
@@ -735,9 +735,9 @@ strategies are modest (Figure~\ref{fig:rank_change_in_sp_tournament}). The overa
 level of cooperation remains high (mean \(\approx 0.73\)), and the leading
 strategies are highly cooperative with one another, mirroring the qualitative
 pattern of the original tournament. Table~\ref{tbl:sp_tournament_rankings_top_fifteen}
-lists the top-performing strategies (see the \SI{} for the full ranking). In
+lists the top-performing strategies (see the \SI~(S3) for the full ranking). In
 this new tournament, ZD strategies are distributed across the ranking rather than
-concentrated at the top (\SI), while \TFT{}, \texttt{k42r}, and generous variants
+concentrated at the top (\SI~(S3)), while \TFT{}, \texttt{k42r}, and generous variants
 (e.g., GTFT~\cite{nowak1992tit} and ZD-GTFT-2) perform particularly well.
 
 \begin{table}[!hbtp]
