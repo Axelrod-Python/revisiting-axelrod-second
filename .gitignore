@@ -247,4 +247,4 @@ src/data/extra_player/*.csv
 
 src/.ipynb_checkpoints/
 
-
+.DS_Store
