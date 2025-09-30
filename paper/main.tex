@@ -274,10 +274,10 @@ a Python package, \AXLFortran~\cite{Axelrod_fortran}. The \AXLFortran{} adapter
 class inherits from the base \AXL{} strategy class and translates between the two
 languages: it constructs the required inputs, calls the Fortran function, and
 returns the chosen move to the Python environment
-(Figure~\ref{fig:strategy_diagram}). The adapter also handles the initial move
-required by the Fortran players, which is fixed to cooperation in the original
-code. (\textbf{ToDo: check with VK which initial move does this sentence
-refer to? The player's? The co-player's? Both?})
+(Figure~\ref{fig:strategy_diagram}). The adapter also handles the initial moves
+of both players
+required by the Fortran strategies, which is fixed to cooperation in the original
+code. 
 
 \begin{figure}[!hbtp]
     \begin{center}
