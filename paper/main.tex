@@ -524,7 +524,7 @@ Axelrod conducted an analysis to identify what he termed ``representative
 strategies''~\cite{Axelrod1980b}. These were strategies that, according to a
 linear regression model, served as strong predictors of overall performance
 (average score). The representative strategies identified in the original
-tournament were S$_6$, Revered State Transition, Ruler, Tester, and Tranquilizer.
+tournament were S$_6$, Reversed State Transition, Ruler, Tester, and Tranquilizer.
 Using the scores against these five strategies as predictors, Axelrod reported
 an \(R^2\) value of 0.979,
 indicating that 97\% of the variance in overall
@@ -752,7 +752,7 @@ concentrated at the top (\SI~(S3)), while \TFT{}, \texttt{k42r}, and generous va
 
 The \AXL{} library contains more than 200 strategies and regularly hosts
 the largest \IPD{} tournaments to date (each time a new strategy is contributed,
-the results are automatically updated). We expand this tournament further by
+the results are updated). We expand this tournament further by
 including all of the original Fortran strategies (omitting duplicates of those
 already implemented in Python). This produces a tournament with
 \input{../assets/number_of_strategies_in_full_tournament.tex} strategies.
@@ -819,7 +819,7 @@ sophisticated strategies submitted to Axelrod's original study were perhaps too
 complex for the highly cooperative, relatively stable conditions where
 ``cooperate, retaliate after defection, forgive after cooperation, and avoid
 exploiting others'' was optimal. In the presence of errors, and against
-more complex competitors, these strategies make sure of their additional
+more complex competitors, these strategies make use of their additional
 mechanisms to maintain competitive payoffs and robust rankings.
 
 \section{Discussion}\label{sec:discussion}
@@ -839,7 +839,7 @@ literature, we reveal clearer patterns. Namely, \TFT{} is remarkably robust and
 difficult to displace when the majority of opponents are drawn from the original
 pool. In other words, Axelrod's tournament, and similar ones, such as those
 organized by Stewart and Plotkin~\cite{Stewart2012}, create highly cooperative
-environments in which top, performing strategies tend to reciprocate with one
+environments in which top performing strategies tend to reciprocate with one
 another, conditions that are especially favorable to \TFT.
 
 The picture changes in more heterogeneous or noisy contexts. Several strategies
