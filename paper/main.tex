@@ -357,7 +357,8 @@ For each run of the tournament, we use the same five match lengths
 In Figure~\ref{fig:replicated_tournament}\textbf{a}, we compare the original rankings with
 those obtained in our replication, with strategies sorted according to their
 original ranks. As we can see, the winner of the tournament remains \TFT, while the strategy
-\texttt{k36r}, authored by Roger Hotz, again ranks last. The overall outcomes of
+\texttt{k36r}, authored by Roger Hotz, again ranks last.
+The overall outcomes of
 most strategies are reproduced, though some do not retain their exact rankings.
 Notably, the bottom ranking strategies are replicated quite well, consistently
 performing poorly in both tournaments. Figure~\ref{fig:replicated_tournament}\textbf{b}
@@ -411,15 +412,28 @@ is not as strong as originally reported.
 An interesting observation is that strategies such as \texttt{k32r} and
 \texttt{k75r} occasionally achieve the maximum possible score of 2.9. Across all
 repetitions, these strategies won 0.8\% and 2.3\% of the tournaments,
-respectively (Table~\ref{tbl:alternate_extra_strategy_tournament_winner_proportion}).
+respectively (Table~\ref{tbl:original_tournament_win_proportion}).
 They received little attention in the original tournament, likely because their
 high variance obscured their potential relative to consistently strong
 performers such as \TFT{}. Another strong and comparatively stable strategy is
 \texttt{k42r}, which won 31.5\% of our replicated tournaments; for comparison,
-\TFT{} won 63.3\% (Table~\ref{tbl:alternate_extra_strategy_tournament_winner_proportion}).
+\TFT{} won 63.3\% (Table~\ref{tbl:original_tournament_win_proportion}).
 Because the original tournament is a single realization, a different random seed
 could plausibly have produced a different winner: namely, on another roll of the
 dice, \texttt{k42r} (Otto Borufsen) might well have been crowned the winner.
+
+\begin{table}[!hbtp]
+        \centering
+        \input{../assets/original_tournament_win_proportion.tex}
+        \caption{\textbf{The proportion of reproduced tournaments won by each
+        strategy.}
+        The table shows all strategies who won one of the 
+        repetitions of the
+        original tournament. \TFT{} wins 63.3\% of them indicating that 36.7\% of
+        used random seeds lead to a different winner.}
+        \label{tbl:original_tournament_win_proportion}
+\end{table}
+
 
 
 The source code for \texttt{k42r}, together with a description of the strategy's
@@ -622,7 +636,7 @@ submissions. The \AXL{} library includes
 effect of including new strategies. We do this by first simulating a tournament
 with all 
 \input{../assets/number_of_strategies_in_full_tournament.tex} strategies
-repeating each match length 250 times. This reduced number of repetitions was
+repeating each match-length 250 times. This reduced number of repetitions was
 due to the combinatorial difficulty of running such a large tournament. This
 full tournament will be discussed subsequently.
 We use the interactions
@@ -640,7 +654,8 @@ and quadruples drawn from the remaining pool. This yields a total of
 \end{enumerate}
 
 Our analysis focuses on how the additional submissions affect the performance of
-the \emph{original} 63 strategies. For the top 8 of the original strategies,
+the \emph{original} 63 strategies. For the original strategies that win at least
+one of these new tournaments,
 we show the probability of
 winning the tournament when 1, 2, 3, or 4 additional strategies are included
 (Table~\ref{tbl:alternate_extra_strategy_tournament_winner_proportion}). These
@@ -663,16 +678,18 @@ some realizations, tend to be even less effective as more entrants are introduce
         \centering
         \resizebox{.9\textwidth}{!}{
         \input{../assets/extra_strategies_summary.tex}}
-        \caption{\textbf{Proportion of wins for original strategies with 0-4 additional invitees.}
-        Shown are the eight top performing strategies (based on our
-        reproduction) and their probabilities of winning the tournament under
+        \caption{\textbf{Proportion of wins for original strategies with 1-4 additional invitees.}
+        Shown are the strategies with non zero probabilities of winning at least
+        one of the
+        modified tournaments under
         five fixed match lengths, repeated
-        25,000 times. Additional
+        250 times. Additional
         invitees are strategies drawn from the open-source \AXL{} library; a
         full list is provided in the \SI{}, and source code/documentation are
         referenced therein. We consider four cases: adding 1, 2, 3, or 4 extra
         strategies to the original field. The last row reports the sum across
-        these eight strategies (noting that some wins accrue to other strategies).}
+        these strategies (noting that some wins accrue to strategies not
+        submitted to the original tournament).}
         \label{tbl:alternate_extra_strategy_tournament_winner_proportion}
 \end{table}
 
