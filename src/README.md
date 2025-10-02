@@ -29,3 +29,13 @@ results of the tournaments with extra invitations.
 Usage:
 
     python summarise_extra_strategy_tournaments.py
+
+## `*.ipynb`
+
+The three jupyter notebooks include the analysis code for the
+creation of the figures and supplementary information.
+
+## `environment.yml`
+
+This contains the conda environment information specifying the
+versions of the software used for all data generation and analysis.
