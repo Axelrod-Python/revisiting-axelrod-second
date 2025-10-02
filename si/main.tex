@@ -85,6 +85,10 @@ it is organized as follows.
 
     \item \textbf{Section~\ref{app:k42r_fortran}} shows the original Fortran
     source code of \texttt{k42r} and summarizes its behavior.
+
+    \item \textbf{Section~\ref{app:list_of_all_players}} lists all 270 original
+        submissions and \AXL{} library strategies, including their rank in each
+        of the new tournaments.
 \end{itemize}
 
 \section{List of strategies from Axelrod's second tournament}\label{app:list_of_original_players}
@@ -321,6 +325,19 @@ C I DEFECT.
         \label{fig:k42r_fortran}
     \end{center}
 \end{figure}
+
+\section{List of all strategies}\label{app:list_of_all_players}
+
+Here we list all the strategies including both the original and the ones from
+the \AXL{} library. Their ranks are shown as: Rank in full tournament / Rank in
+full tournament with 1\% noise / Rank in full tournament with 5\% noise / Rank
+in original tournament (if an original strategy).
+
+\begin{multicols}{2}
+    \begin{enumerate}
+            \input{../assets/list_of_all_players.tex}
+    \end{enumerate}
+\end{multicols}
 
 \bibliographystyle{naturemag}
 \bibliography{../bibliography.bib}
