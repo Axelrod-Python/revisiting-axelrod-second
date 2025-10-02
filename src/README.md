@@ -1,6 +1,10 @@
 This directory contains a number of different scripts to run experiments and
 write the data to the `./data/` directory.
 
+## `run_*.py`
+
+These scripts run the various tournaments described in the manuscript.
+
 They take 2 command line arguments. For example:
 
     python run_original_tournament.py 0 1000
@@ -16,3 +20,12 @@ to parallelise the running of the jobs:
     parallel --jobs 10 < jobs.txt
 
 Would run 10 jobs at a time.
+
+## `summarise_extra_strategy_tournaments.py`
+
+This uses the original tournament and the full tournament data to find the
+results of the tournaments with extra invitations.
+
+Usage:
+
+    python summarise_extra_strategy_tournaments.py
