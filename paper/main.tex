@@ -53,34 +53,27 @@
 \begin{abstract}
 
 Direct reciprocity, typically studied using the Iterated Prisoner's Dilemma
-(\IPD), is central to understanding how cooperation evolves. In the 1980s, Robert
-Axelrod organized two influential \IPD{} computer tournaments, where Tit for Tat
-(\TFT) emerged as the winner. Yet the archival record is incomplete: for the
-first tournament only a report survives, and for the second the submitted
-Fortran strategies remain but not the final tournament code. This gap raises
-questions about the reproducibility of these historically influential results.
+(\IPD), is central to explaining cooperation. In the 1980s Robert Axelrod ran
+two computer tournaments in which Tit-for-Tat (\TFT) emerged as the winner.
+Yet the archival record is incomplete: for the first tournament only a report survives,
+and for the second the submitted Fortran strategies remain but not the final tournament code.
 We recreate the second tournament by restoring the surviving Fortran
-implementations to compile with modern compilers and by building a Python
-interface that calls the original strategy functions without modification. Using
-the open-source \AXL{} library to run tournaments, we reproduce Axelrod's main
+implementations to compile with modern compilers and by building an
+interface that calls the original strategy functions without modification.
+We reproduce Axelrod's main
 findings: \TFT{} prevails, and successful play tends to be cooperative, responsive
 to defection, and willing to forgive. Strategy rankings remain mostly unchanged.
-We then assess the robustness of the originally submitted strategies by
-incorporating additional strategies, and we run one of the largest \IPD{} tournaments 
-to date. We find that the original tournament was especially
-favorable to \TFT{} and that it is difficult to dethrone \TFT{} when the original
-submissions make up the majority of the field. We also observe that several
-lesser-known submissions perform strongly in more diverse settings and
+We then enlarge the field with additional strategies and one of the largest \IPD{} tournaments to date,
+showing the original setting favored \TFT{} and that several lesser-known submissions perform strongly in more diverse settings and
 under noise.
-Our contributions are: (i) the first systematic reproduction of Axelrod's second
-tournament; (ii) a contemporary reassessment of the original results in light of
-new strategies and settings; and (iii) a preserved, easy-to-use implementation
-of the second-tournament strategies within \AXL{} to support future research.
-
 \end{abstract}
 
+\textbf{keywords:} iterated prisoner's dilemma, cooperation evolution,
+replication study, reproducible social science.
 
-\section{Introduction}\label{sec:introduction}
+
+
+\section*{Main}\label{sec:introduction}
 
 Cooperation is fundamental to the organization of societies, yet its
 persistence remains a central puzzle in evolutionary biology and the social
@@ -142,9 +135,9 @@ These pioneering tournaments shaped decades of research on cooperation, yet the
 archival record surrounding them is incomplete. For the first tournament, only
 the published report survives; the original source code has been lost. For the
 second tournament, the Fortran implementation of the submitted strategies
-remains available online,\footnote{See
+remains available online\footnote{See
 \url{http://www-personal.umich.edu/~axe/research/Software/CC/CC2/TourExec1.1.f.html}
-accessed on 2025-09-30.}
+accessed on 2025-09-30.},
 but the final code used in Axelrod's reported tournaments has not been preserved.
 
 This highlights a broader challenge of software reproducibility in
@@ -168,15 +161,7 @@ Knight2017, glynatsi2024properties, bucciarelli2024studying, macmillan2024game}.
 One fundamental question has remained: \emph{can Axelrod's original results be
 reproduced?} Addressing this question is important not only for assessing the
 robustness of foundational research on cooperation, but also as a case study in
-the reproducibility of computational social science more broadly. In this work, we
-build on the \AXL{} project to replicate, as faithfully as possible, the
-outcomes of Axelrod's \emph{second tournament}. Rather than manually
-re-implementing the strategies from partial descriptions, which would risk
-introducing errors, we update the surviving Fortran implementations so that they
-compile with modern compilers, construct an interface that allows them to
-interact with Python, and integrate them directly with the \AXL{} library. This
-design allows us to call the original functions without modification.
-
+the reproducibility of computational social science more broadly.
 Although Axelrod's reported results are impossible to replicate, we are able
 to recover the main conclusions of Axelrod's study. At the same time, we extend
 the analysis by incorporating additional strategies from the \AXL{} library and
@@ -189,123 +174,59 @@ perspective on Axelrod's experiments. Finally, by reviving Axelrod's
 original code and making it accessible through the \AXL{} library, we preserve
 for future use the strategies of his second tournament.
 
-\section{Reviving the tournament}\label{sec:reviving}
 
-As noted above, Axelrod's original tournaments cannot be fully replicated. For
-the first tournament, the only surviving record is the published report, while
-the source code has been lost. For the second tournament, however,
-implementations of the 63 submitted strategies remain available. In this work,
-we aim to revive the second tournament using these historical
-implementations, rather than re-implementing them ourselves. The surviving code
-was written in Fortran and is hosted online by the University of Michigan Center
-for the Study of Complex Systems~\cite{Axelrod1980bCode}, where it was last
-updated in 1996. The source code for all strategies is contained in a single file,
-\texttt{TourExec1.1.f}, embedded in an HTML page.
+\section*{Results}\label{sec:reviving}
 
-Our first step was to ensure that this code could be executed with modern
-software. We stripped the HTML formatting to recover the raw Fortran source and
-applied only minimal modifications to enable compilation with contemporary
-Fortran compilers. Each strategy was then extracted into its own modular file.
-To streamline the build process, we created a dedicated \texttt{Makefile} that
-compiles all strategy files into a single shared library
-(\texttt{libstrategies.so}). Once installed in a standard location on a
-POSIX-compliant operating system (e.g., \texttt{/usr/local/lib/}), this library
-is automatically located at runtime. The modified source code is openly
-available at \url{https://github.com/Axelrod-Python/TourExec} and has been
-archived at~\cite{TourExec}, ensuring long-term accessibility.
+% \section{Reviving the tournament}\label{sec:reviving}
 
-Each Fortran strategy was implemented as a function with a fixed set of input
-arguments that encode the state of the match:
-
-\begin{itemize}
-    \item \texttt{J}: Opponent's previous move (0 = cooperate, 1 = defect),
-    \item \texttt{M}: Current turn number (starting at 1),
-    \item \texttt{K}: Player's cumulative score,
-    \item \texttt{L}: Opponent's cumulative score,
-    \item \texttt{R}: Random number between 0 and 1 (for stochastic strategies),
-    \item \texttt{JA}: Player's previous move.
-\end{itemize}
-
-Given these inputs, the function outputs either 0 (cooperate) or 1 (defect). An
-illustrative example is provided by the original implementation of \TFT{}
-(\texttt{k92r.f}), shown in Figure~\ref{fig:tft_fortran}.
-
-\begin{figure}[!hbtp]
-    \begin{center}
-        \begin{lstlisting}[language=Fortran,
-                           basicstyle=\ttfamily\scriptsize,
-                           frame=single,
-                           keywordstyle=\color{red}\bfseries,
-                           commentstyle=\color{teal}\itshape]
-          FUNCTION K92R(J,M,K,L,R,JA)
-    C BY ANATOL RAPOPORT
-    C TYPED BY AX 3/27/79 (SAME AS ROUND ONE TIT FOR TAT)
-    c replaced by actual code, Ax 7/27/93
-    c  T=0
-    c   K92R=ITFTR(J,M,K,L,T,R)
-          k92r=0
-          k92r=j
-    c test 7/30
-    c   write(6,77) j, k92r
-    c77   format(' test k92r. j,k92r: ', 2i3)
-          RETURN
-          END
-        \end{lstlisting}
-    \caption{\textbf{Fortran source code for the Tit For Tat strategy
-    (\texttt{k92r.f}).} Each strategy takes as input the state of the match
-    (\texttt{J}, \texttt{M}, \texttt{K}, \texttt{L}, \texttt{R}, \texttt{JA})
-    and outputs either 0 (cooperate) or 1 (defect). This code corresponds to
-    the \TFT{} strategy submitted to Axelrod's second tournament.}
-    \label{fig:tft_fortran}
-    \end{center}
-\end{figure}
-
-With the strategies executable again, the next challenge was to run the
-tournament. For this we rely on the open-source \AXL{} library, which provides a
-modern implementation of \IPD{} tournaments. In this framework, a
-\emph{tournament} is a collection of matches, and each \emph{match} is a
-repeated game between two strategies. A tournament class manages the overall
-structure (pairing strategies, scheduling matches, aggregating results), while
-strategy classes determine actions turn by turn based on the recorded history of
-play.
-
-To integrate the original Fortran strategies into this environment, we developed
-a Python package, \AXLFortran~\cite{Axelrod_fortran}. The \AXLFortran{} adapter
-class inherits from the base \AXL{} strategy class and translates between the two
-languages: it constructs the required inputs, calls the Fortran function, and
-returns the chosen move to the Python environment
-(Figure~\ref{fig:strategy_diagram}). The adapter also handles the initial moves
-of both players
-required by the Fortran strategies, which is fixed to cooperation in the original
-code. 
-
-\begin{figure}[!hbtp]
-    \begin{center}
-        \includegraphics[width=.7\textwidth]{../assets/Figure1.pdf}
-\caption{\textbf{Diagrammatic representation of the interaction between \AXL{},
-\AXLFortran{}, and the original Fortran code.} \textbf{a,} Overview of how the
-three codebases interact. \AXLFortran{} creates strategy instances for each
-player. Tournaments and matches are managed by \AXL{}, which at each turn calls
-the corresponding \AXLFortran{} instance; this in turn invokes the original
-Fortran code to produce a decision from the match history. \textbf{b,} Turn-by-turn execution.
-On the first turn, \AXLFortran{}
-initialises the parameters required by the Fortran implementation, queries it
-for the first decision, and returns this to \AXL{}, which plays the move and
-updates the history. On each subsequent turn: (1) the previous turn is recorded
-and the history updated; (2) \AXLFortran{} access the updated history and (3) 
-formats its into the inputs required by the Fortran code; (4) the Fortran code is called and returns
-a decision; (5) \AXL{} plays the decision. The process repeats until the match
-ends.}\label{fig:strategy_diagram}
-    \end{center}
-\end{figure}
+\textbf{Reviving the tournament.}
+Axelrod's original tournaments cannot be fully replicated. For the first
+tournament, the only surviving record is the published report; the source code
+has been lost. For the second tournament, however, the implementations of the 63
+submitted strategies remain available. As an example, the Fortran implementation
+of \TFT{}, named \texttt{k92r.f}, is shown in
+Fig.~\ref{fig:reviving_diagram}\textbf{a}. 
+In this work, we revive the second tournament using these original
+implementations rather than re-implementing them. To this end, we updated the
+surviving Fortran code to compile with modern compilers and connected it to the
+\AXL{} framework via a Python interface that calls the original functions. The
+workflow is: (i) build a shared library of the historical strategies; (ii) use
+the adapter to format the match state, invoke the Fortran routine, and return
+the action; (iii) let \AXL{} run matches and assemble tournaments
+(Fig.~\ref{fig:reviving_diagram}\textbf{b},\textbf{c}). For details on
+recovering, packaging, and releasing the original source code, see
+\textbf{Methods}.
 
 The major advantage of this approach is that no subjective reinterpretation was
-introduced in reproducing Axelrod's second tournament. The only modifications
-made were minimal adjustments to ensure compatibility with modern compilers. For
-several strategies, the Fortran source code is the only surviving description;
-these strategies are therefore run and evaluated exactly as originally written.
-This constitutes the most faithful reproduction of Axelrod's
-work to date.
+introduced. The only modifications were minimal adjustments for compiler
+compatibility. For several strategies, the Fortran source code is the only
+surviving description; these strategies are therefore run and evaluated exactly
+as originally written. This constitutes the most faithful reproduction of
+Axelrod's work to date.
+
+
+\begin{figure}[!hbtp]
+    \begin{center}
+        \includegraphics[width=.85\textwidth]{../assets/Figure1.pdf}
+        \caption{\textbf{Reviving Axelrod's second tournament code.}
+        \textbf{a,} Fortran code for \TFT{} (\texttt{k92r.f}). Each strategy takes as input the match state
+        (\texttt{J}, \texttt{M}, \texttt{K}, \texttt{L}, \texttt{R}, \texttt{JA}) and returns 0 (cooperate) or 1 (defect).
+        \textbf{b,} Overview of how the three codebases interact.\AXLFortran{} creates strategy instances for each
+        player. Tournaments and matches are managed by \AXL{}, which at each turn calls
+        the corresponding \AXLFortran{} instance; this in turn invokes the original
+        Fortran code to produce a decision from the match history.
+        \textbf{c,} Turn-by-turn execution. On the first turn, \AXLFortran{} initializes
+        the parameters required by the Fortran implementation, queries it for a
+        decision, and returns the move to \AXL{}, which plays it and updates the
+        history. On each subsequent turn: (1) the previous outcome is recorded and the
+        history updated; (2) \AXLFortran{} accesses the updated history; (3) formats it
+        into the inputs expected by the Fortran code; (4) calls the Fortran function and
+        receives a decision; (5) \AXL{} plays the decision. The process repeats until
+        the match ends.}
+        \label{fig:reviving_diagram}
+    \end{center}
+\end{figure}
+
 
 \section{Reproducing Axelrod's second tournament}\label{sec:reproducing}
 
@@ -968,6 +889,59 @@ advance reproducible software and science.
     Similar to Figure~\ref{fig:rank_change_in_sp_tournament}.}
   \label{fig:rank_change_in_axelrod_python_tournament_noise_5}
 \end{figure}
+
+\section*{Methods}
+
+The surviving code of Axelrod's second tournament was written in Fortran and is
+hosted online by the University of Michigan Center for the Study of Complex
+Systems~\cite{Axelrod1980bCode}, where it was last updated in 1996. The source
+code for all strategies is contained in a single file, \texttt{TourExec1.1.f},
+embedded in an HTML page.
+
+Our first step was to ensure that this code could be executed with modern
+software. We stripped the HTML formatting to recover the raw Fortran source and
+applied only minimal modifications to enable compilation with contemporary
+Fortran compilers. Each strategy was then extracted into its own modular file.
+To streamline the build process, we created a dedicated \texttt{Makefile} that
+compiles all strategy files into a single shared library
+(\texttt{libstrategies.so}). Once installed in a standard location on a
+POSIX-compliant operating system (e.g., \texttt{/usr/local/lib/}), this library
+is automatically located at runtime. The modified source code is openly
+available at \url{https://github.com/Axelrod-Python/TourExec} and has been
+archived at~\cite{TourExec}, ensuring long-term accessibility.
+
+Each Fortran strategy was implemented as a function with a fixed set of input
+arguments that encode the state of the match:
+
+\begin{itemize}
+    \item \texttt{J}: Opponent's previous move (0 = cooperate, 1 = defect),
+    \item \texttt{M}: Current turn number (starting at 1),
+    \item \texttt{K}: Player's cumulative score,
+    \item \texttt{L}: Opponent's cumulative score,
+    \item \texttt{R}: Random number between 0 and 1 (for stochastic strategies),
+    \item \texttt{JA}: Player's previous move.
+\end{itemize}
+
+Given these inputs, the function outputs either 0 (cooperate) or 1 (defect).
+
+With the strategies executable again, the next challenge was to run the
+tournament. For this we rely on the open-source \AXL{} library, which provides a
+modern implementation of \IPD{} tournaments. In this framework, a
+\emph{tournament} is a collection of matches, and each \emph{match} is a
+repeated game between two strategies. A tournament class manages the overall
+structure (pairing strategies, scheduling matches, aggregating results), while
+strategy classes determine actions turn by turn based on the recorded history of
+play.
+
+To integrate the original Fortran strategies into this environment, we developed
+a Python package, \AXLFortran~\cite{Axelrod_fortran}. The \AXLFortran{} adapter
+class inherits from the base \AXL{} strategy class and translates between the two
+languages: it constructs the required inputs, calls the Fortran function, and
+returns the chosen move to the Python environment
+(Fig.~\ref{fig:reviving_diagram}). The adapter also handles the initial moves
+of both players
+required by the Fortran strategies, which is fixed to cooperation in the original
+code.
 
 
 \bibliographystyle{naturemag}
