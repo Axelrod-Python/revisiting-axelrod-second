@@ -39,12 +39,12 @@
 \author[4]{T. J. Gaffney}
 \author[5, 6]{Nikoleta E. Glynatsi}
 
-\affil[1]{School of Mathematics, Cardiff University}
+\affil[1]{School of Mathematics, Cardiff University, United Kingdom}
 \affil[2]{Independent Researcher, Cardiff, United Kingdom}
-\affil[3]{Google Inc.}
-\affil[4]{Independent Researcher, Nevada, USA}
-\affil[5]{Discrete Event Simulations Teams, RIKEN Center for Computational Science}
-\affil[6]{Mathematical Social Science Team, RIKEN Center for Interdisciplinary Theoretical and Mathematical Sciences}
+\affil[3]{Google Inc., California, USA}
+\affil[4]{Independent Research, Nevada, USA}
+\affil[5]{Discrete Event Simulations Teams, RIKEN Center for Computational Science, Kobe, Japan}
+\affil[6]{Mathematical Social Science Team, RIKEN Center for Interdisciplinary Theoretical and Mathematical Sciences, Wako, Japan}
 \affil[$*$]{Corresponding author: KnightVA@cardiff.ac.uk.}
 \date{}
 
@@ -70,7 +70,7 @@ showing the original setting favored \TFT{} and that several lesser-known submis
 under noise.
 \end{abstract}
 
-\textbf{keywords:} iterated prisoner's dilemma, cooperation evolution,
+\textbf{keywords:} iterated prisoner's dilemma, evolution of cooperation,
 replication study, reproducible social science.
 
 
@@ -163,7 +163,15 @@ Knight2017, glynatsi2024properties, bucciarelli2024studying, macmillan2024game}.
 One fundamental question has remained: \emph{can Axelrod's original results be
 reproduced?} Addressing this question is important not only for assessing the
 robustness of foundational research on cooperation, but also as a case study in
-the reproducibility of computational social science more broadly.
+the reproducibility of computational social science more broadly. In this work, we
+build on the \AXL{} project to replicate, as faithfully as possible, the
+outcomes of Axelrod's \emph{second tournament}. Rather than manually
+re-implementing the strategies from partial descriptions, which would risk
+introducing errors, we update the surviving Fortran implementations so that they
+compile with modern compilers, construct an interface that allows them to
+interact with Python, and integrate them directly with the \AXL{} library. This
+design allows us to call the original functions without modification.
+
 Although Axelrod's reported results are impossible to replicate, we are able
 to recover the main conclusions of Axelrod's study. At the same time, we extend
 the analysis by incorporating additional strategies from the \AXL{} library and
