@@ -151,11 +151,26 @@ replicate earlier findings, and has led many researchers to evaluate new
 strategies against small, unrepresentative sets of opponents. Such practices
 bias conclusions and weaken claims about the relative performance of new
 strategies.
+
+These challenges are not limited to the \IPD{} literature.
+Reproducibility failures have been widely documented across the social sciences
+and economics, with large-scale replication projects revealing that only around
+half of published findings hold up under independent
+scrutiny~\cite{open_science_collaboration2015, camerer2016, camerer2018}. Computational
+research adds further complexity, as analytic flexibility and non-transparent
+workflows can yield highly variable conclusions even from identical 
+data~\cite{silberzahn2018, breznau2022}. Within game theory and related modelling work,
+the challenge of reproducibility intersects with simulation code, algorithmic
+implementation, and data provenance. 
 An important step toward addressing this issue has been the
 \texttt{Axelrod-Python} project~\cite{AxelrodProject}, an open-source Python
 package that provides a comprehensive framework for implementing and testing
 \IPD{} strategies. The library includes a wide variety of strategies from the
-literature, together with detailed documentation and usage examples. By
+literature, together with detailed documentation and usage examples. 
+This project illustrates best practice by providing fully open, tested, and version-controlled
+artifacts, embodying community principles outlined in reproducibility 
+guides~\cite{wilson2014, sandve2013, wilson2017, stodden2018, turingway2022}.
+By
 providing open, executable implementations, \AXL{} makes it possible to test
 strategies under common conditions and compare their performance systematically,
 and it has therefore been used in ongoing research~\cite{Harper2017,
@@ -713,7 +728,7 @@ A second contribution of this work is methodological. To our knowledge, this is
 the first effort to package and reproduce, according to contemporary best
 practices, code originally written in the 1980s. The archived materials~\cite{knight_2025_17250038} (at
 \url{https://doi.org/10.5281/zenodo.17250038})
-are curated to high standards of reproducible research~\cite{wilson2014} and
+are curated to high standards of reproducible research~\cite{wilson2014, sandve2013, wilson2017, stodden2018, turingway2022} and
 accompanied by a fully automated test suite. All changes to the original code
 were made systematically and transparently, with complete records available at
 (\url{https://github.com/Axelrod-Python/axelrod-fortran}).
