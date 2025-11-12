@@ -56,7 +56,7 @@
 
 Direct reciprocity, typically studied using the Iterated Prisoner's Dilemma
 (\IPD), is central to explaining cooperation. In the 1980s Robert Axelrod ran
-two computer tournaments in which Tit-for-Tat (\TFT) emerged as the winner.
+two computer tournaments in which Tit for Tat (\TFT) emerged as the winner.
 Yet the archival record is incomplete: for the first tournament only a report survives,
 and for the second the submitted Fortran strategies remain but not the final tournament code.
 We recreate the second tournament by restoring the surviving Fortran
@@ -194,18 +194,41 @@ Axelrod's original tournaments cannot be fully replicated. For the first
 tournament, the only surviving record is the published report; the source code
 has been lost. For the second tournament, however, the implementations of the 63
 submitted strategies remain available. As an example, the Fortran implementation
-of \TFT{}, named \texttt{k92r.f}, is shown in
-Fig.~\ref{fig:reviving_diagram}\textbf{a}. 
-In this work, we revive the second tournament using these original
-implementations rather than re-implementing them. To this end, we updated the
-surviving Fortran code to compile with modern compilers and connected it to the
-\AXL{} framework via a Python interface that calls the original functions. The
-workflow is: (i) build a shared library of the historical strategies; (ii) use
-the adapter to format the match state, invoke the Fortran routine, and return
-the action; (iii) let \AXL{} run matches and assemble tournaments
-(Fig.~\ref{fig:reviving_diagram}\textbf{b},\textbf{c}). For details on
-recovering, packaging, and releasing the original source code, see
+of \TFT{} (the implemented function is named \texttt{k92r}) is shown in
+Fig.~\ref{fig:reviving_diagram}\textbf{a}. In this work, we revive the second
+tournament using these original implementations rather than re-implementing
+them. To this end, we updated the surviving Fortran code to compile with modern
+compilers and connected it to the \AXL{} framework via a Python interface that
+calls the original functions. The workflow is: (i) build a shared library of the
+historical strategies; (ii) use the adapter to format the match state, invoke
+the Fortran routine, and return the action; (iii) let \AXL{} run matches and
+assemble tournaments (Fig.~\ref{fig:reviving_diagram}\textbf{b},\textbf{c}). For
+details on recovering, packaging, and releasing the original source code, see
 \textbf{Methods}.
+
+
+\begin{figure}[!hbtp]
+  \begin{center}
+    \includegraphics[width=.755\textwidth]{../assets/Figure1.pdf}
+    \caption{\textbf{Reviving Axelrod's second tournament code.}
+    \textbf{a,} Fortran code for \TFT{} (\texttt{k92r.f}). Each strategy takes as input the match state
+    (\texttt{J}: opponent's previous move; \texttt{M}: current turn number; \texttt{K}: player's cumulative score; \texttt{L}: opponent's cumulative score; \texttt{R}: random number in $[0,1]$; \texttt{JA}: player's previous move) and returns 0 (cooperate) or 1 (defect).
+    \textbf{b,} Overview of how the three codebases interact. \AXLFortran{} creates strategy instances for each
+    player. Tournaments and matches are managed by \AXL{}, which, at each turn, calls
+    the corresponding \AXLFortran{} instance; this, in turn, invokes the original
+    Fortran code to produce a decision from the match history.
+    \textbf{c,} Turn-by-turn execution. On the first turn, \AXLFortran{} initializes
+    the parameters required by the Fortran implementation, queries it for a
+    decision, and returns the move to \AXL{}, which plays it and updates the
+    history. On each subsequent turn: (1) the previous outcome is recorded and the
+    history updated; (2) \AXLFortran{} accesses the updated history; (3) formats it
+    into the inputs expected by the Fortran code; (4) calls the Fortran function and
+    receives a decision; and (5) \AXL{} plays the decision. The process repeats until
+    the match ends.}
+    \label{fig:reviving_diagram}
+  \end{center}
+\end{figure}
+
 
 The major advantage of this approach is that no subjective reinterpretation was
 introduced. The only modifications were minimal adjustments for compiler
@@ -213,29 +236,6 @@ compatibility. For several strategies, the Fortran source code is the only
 surviving description; these strategies are therefore run and evaluated exactly
 as originally written. This constitutes the most faithful reproduction of
 Axelrod's work to date.
-
-
-\begin{figure}[!hbtp]
-    \begin{center}
-        \includegraphics[width=.85\textwidth]{../assets/Figure1.pdf}
-        \caption{\textbf{Reviving Axelrod's second tournament code.}
-        \textbf{a,} Fortran code for \TFT{} (\texttt{k92r.f}). Each strategy takes as input the match state
-        (\texttt{J}, \texttt{M}, \texttt{K}, \texttt{L}, \texttt{R}, \texttt{JA}) and returns 0 (cooperate) or 1 (defect).
-        \textbf{b,} Overview of how the three codebases interact.\AXLFortran{} creates strategy instances for each
-        player. Tournaments and matches are managed by \AXL{}, which at each turn calls
-        the corresponding \AXLFortran{} instance; this in turn invokes the original
-        Fortran code to produce a decision from the match history.
-        \textbf{c,} Turn-by-turn execution. On the first turn, \AXLFortran{} initializes
-        the parameters required by the Fortran implementation, queries it for a
-        decision, and returns the move to \AXL{}, which plays it and updates the
-        history. On each subsequent turn: (1) the previous outcome is recorded and the
-        history updated; (2) \AXLFortran{} accesses the updated history; (3) formats it
-        into the inputs expected by the Fortran code; (4) calls the Fortran function and
-        receives a decision; (5) \AXL{} plays the decision. The process repeats until
-        the match ends.}
-        \label{fig:reviving_diagram}
-    \end{center}
-\end{figure}
 
 \noindent
 \subsection*{Reproducing Axelrod's second tournament.}
@@ -331,7 +331,7 @@ is not as strong as originally reported.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.69\textwidth]{../assets/original_tournament_reproducing.pdf}
+    \includegraphics[width=.9\textwidth]{../assets/original_tournament_reproducing.pdf}
 \caption{\textbf{Reproducing Axelrod's second tournament.}
 \textbf{a,} Comparison of the original rankings and the replicated rankings.
 Strategies are ordered by their original ranks; \TFT{} again
@@ -355,27 +355,15 @@ largest change in ranking.}
 An interesting observation is that strategies such as \texttt{k32r} and
 \texttt{k75r} occasionally achieve the maximum possible score of 2.9. Across all
 repetitions, these strategies won 0.8\% and 2.3\% of the tournaments,
-respectively (Table~\ref{tbl:original_tournament_win_proportion}).
+respectively (\textbf{Extended Data Table 1}).
 They received little attention in the original tournament, likely because their
 high variance obscured their potential relative to consistently strong
 performers such as \TFT{}. Another strong and comparatively stable strategy is
 \texttt{k42r}, which won 31.5\% of our replicated tournaments; for comparison,
-\TFT{} won 63.3\% (Table~\ref{tbl:original_tournament_win_proportion}).
+\TFT{} won 63.3\% (\textbf{Extended Data Table 1}).
 Because the original tournament is a single realization, a different random seed
 could plausibly have produced a different winner: namely, on another roll of the
 dice, \texttt{k42r} (Otto Borufsen) might well have been crowned the winner.
-
-\begin{table}[!hbtp]
-        \centering
-        \input{../assets/original_tournament_win_proportion.tex}
-        \caption{\textbf{The proportion of reproduced tournaments won by each
-        strategy.}
-        The table shows all strategies who won one of the 
-        repetitions of the
-        original tournament. \TFT{} wins 63.3\% of them indicating that 36.7\% of
-        used random seeds lead to a different winner.}
-        \label{tbl:original_tournament_win_proportion}
-\end{table}
 
 
 The source code for \texttt{k42r}, together with a description of the strategy's
@@ -878,15 +866,18 @@ V.K., M.H., and N.E.G. discussed the results and wrote the manuscript.
 \section*{Extended Data}
 
 \begin{table}[!hbtp]
-        \centering
-        \resizebox{.9\textwidth}{!}{
-        \input{../assets/original_tournament_rankings.tex}}
-        \caption*{\textbf{Extended Data Table 1. Top 15 strategies in the reproduced tournament.}
-        The table lists the top 15 strategies from Axelrod's original tournament
-        along with their rankings in our tournament. For each strategy we also
-        report the average score and average cooperation rate in the reproduced
-        tournament.}
+  \centering
+  \resizebox{.9\textwidth}{!}{
+    \input{../assets/original_tournament_rankings.tex}}
+  \caption*{\textbf{Extended Data Table 1. Top 15 strategies in the reproduced tournament.}
+  The table lists the top 15 strategies from Axelrod's original tournament
+  along with their rankings in our reproduced tournament. For each strategy, we
+  report the average score and the average cooperation rate in the reproduced
+  tournament, as well as the proportion of wins across our repetitions of the
+  original tournament. \TFT{} wins 63.3\% of these repetitions, indicating that
+  in 36.7\% of runs a different winner emerges.}
 \end{table}
+
 
 
 \begin{figure}[!hbtp]
