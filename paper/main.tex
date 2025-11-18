@@ -30,6 +30,8 @@
 \newcommand{\AXLFortran}{\texttt{Axelrod\_fortran}}
 \newcommand{\SI}{\textbf{Supplementary Information}}
 
+\renewcommand{\figurename}{Fig.}
+
 \title{Reviving, reproducing, and revisiting Axelrod's second tournament}
 \author[1, $*$]{Vincent Knight}
 \author[2]{Owen Campbell}
@@ -37,12 +39,12 @@
 \author[4]{T. J. Gaffney}
 \author[5, 6]{Nikoleta E. Glynatsi}
 
-\affil[1]{School of Mathematics, Cardiff University}
+\affil[1]{School of Mathematics, Cardiff University, United Kingdom}
 \affil[2]{Independent Researcher, Cardiff, United Kingdom}
-\affil[3]{Google Inc.}
+\affil[3]{Google Inc., California, USA}
 \affil[4]{Independent Researcher, Nevada, USA}
-\affil[5]{Discrete Event Simulations Teams, RIKEN Center for Computational Science}
-\affil[6]{Mathematical Social Science Team, RIKEN Center for Interdisciplinary Theoretical and Mathematical Sciences}
+\affil[5]{Discrete Event Simulations Teams, RIKEN Center for Computational Science, Kobe, Japan}
+\affil[6]{Mathematical Social Science Team, RIKEN Center for Interdisciplinary Theoretical and Mathematical Sciences, Wako, Japan}
 \affil[$*$]{Corresponding author: KnightVA@cardiff.ac.uk.}
 \date{}
 
@@ -53,34 +55,28 @@
 \begin{abstract}
 
 Direct reciprocity, typically studied using the Iterated Prisoner's Dilemma
-(\IPD), is central to understanding how cooperation evolves. In the 1980s, Robert
-Axelrod organized two influential \IPD{} computer tournaments, where Tit for Tat
-(\TFT) emerged as the winner. Yet the archival record is incomplete: for the
-first tournament only a report survives, and for the second the submitted
-Fortran strategies remain but not the final tournament code. This gap raises
-questions about the reproducibility of these historically influential results.
+(\IPD), is central to explaining cooperation. In the 1980s Robert Axelrod ran
+two computer tournaments in which Tit for Tat (\TFT) emerged as the winner.
+Yet the archival record is incomplete: for the first tournament only a report survives,
+and for the second the submitted Fortran strategies remain but not the final tournament code.
+This gap raises questions about the reproducibility of these historically influential results.
 We recreate the second tournament by restoring the surviving Fortran
-implementations to compile with modern compilers and by building a Python
-interface that calls the original strategy functions without modification. Using
-the open-source \AXL{} library to run tournaments, we reproduce Axelrod's main
+implementations to compile with modern compilers and by building an
+interface that calls the original strategy functions without modification.
+We reproduce Axelrod's main
 findings: \TFT{} prevails, and successful play tends to be cooperative, responsive
 to defection, and willing to forgive. Strategy rankings remain mostly unchanged.
-We then assess the robustness of the originally submitted strategies by
-incorporating additional strategies, and we run one of the largest \IPD{} tournaments 
-to date. We find that the original tournament was especially
-favorable to \TFT{} and that it is difficult to dethrone \TFT{} when the original
-submissions make up the majority of the field. We also observe that several
-lesser-known submissions perform strongly in more diverse settings and
+We then enlarge the field with additional strategies and one of the largest \IPD{} tournaments to date,
+showing the original setting favored \TFT{} and that several lesser-known submissions perform strongly in more diverse settings and
 under noise.
-Our contributions are: (i) the first systematic reproduction of Axelrod's second
-tournament; (ii) a contemporary reassessment of the original results in light of
-new strategies and settings; and (iii) a preserved, easy-to-use implementation
-of the second-tournament strategies within \AXL{} to support future research.
-
 \end{abstract}
 
+\textbf{keywords:} iterated prisoner's dilemma, evolution of cooperation,
+replication study, reproducible social science.
 
-\section{Introduction}\label{sec:introduction}
+
+
+\section*{Main}\label{sec:introduction}
 
 Cooperation is fundamental to the organization of societies, yet its
 persistence remains a central puzzle in evolutionary biology and the social
@@ -142,9 +138,9 @@ These pioneering tournaments shaped decades of research on cooperation, yet the
 archival record surrounding them is incomplete. For the first tournament, only
 the published report survives; the original source code has been lost. For the
 second tournament, the Fortran implementation of the submitted strategies
-remains available online,\footnote{See
+remains available online\footnote{See
 \url{http://www-personal.umich.edu/~axe/research/Software/CC/CC2/TourExec1.1.f.html}
-accessed on 2025-09-30.}
+accessed on 2025-09-30.},
 but the final code used in Axelrod's reported tournaments has not been preserved.
 
 This highlights a broader challenge of software reproducibility in
@@ -155,11 +151,26 @@ replicate earlier findings, and has led many researchers to evaluate new
 strategies against small, unrepresentative sets of opponents. Such practices
 bias conclusions and weaken claims about the relative performance of new
 strategies.
+
+These challenges are not limited to the \IPD{} literature.
+Reproducibility failures have been widely documented across the social sciences
+and economics, with large-scale replication projects revealing that only around
+half of published findings hold up under independent
+scrutiny~\cite{open_science_collaboration2015, camerer2016, camerer2018}. Computational
+research adds further complexity, as analytic flexibility and non-transparent
+workflows can yield highly variable conclusions even from identical 
+data~\cite{silberzahn2018, breznau2022}. Within game theory and related modelling work,
+the challenge of reproducibility intersects with simulation code, algorithmic
+implementation, and data provenance. 
 An important step toward addressing this issue has been the
 \texttt{Axelrod-Python} project~\cite{AxelrodProject}, an open-source Python
 package that provides a comprehensive framework for implementing and testing
 \IPD{} strategies. The library includes a wide variety of strategies from the
-literature, together with detailed documentation and usage examples. By
+literature, together with detailed documentation and usage examples. 
+This project illustrates best practice by providing fully open, tested, and version-controlled
+artifacts, embodying community principles outlined in reproducibility 
+guides~\cite{wilson2014, sandve2013, wilson2017, stodden2018, turingway2022}.
+By
 providing open, executable implementations, \AXL{} makes it possible to test
 strategies under common conditions and compare their performance systematically,
 and it has therefore been used in ongoing research~\cite{Harper2017,
@@ -189,126 +200,63 @@ perspective on Axelrod's experiments. Finally, by reviving Axelrod's
 original code and making it accessible through the \AXL{} library, we preserve
 for future use the strategies of his second tournament.
 
-\section{Reviving the tournament}\label{sec:reviving}
 
-As noted above, Axelrod's original tournaments cannot be fully replicated. For
-the first tournament, the only surviving record is the published report, while
-the source code has been lost. For the second tournament, however,
-implementations of the 63 submitted strategies remain available. In this work,
-we aim to revive the second tournament using these historical
-implementations, rather than re-implementing them ourselves. The surviving code
-was written in Fortran and is hosted online by the University of Michigan Center
-for the Study of Complex Systems~\cite{Axelrod1980bCode}, where it was last
-updated in 1996. The source code for all strategies is contained in a single file,
-\texttt{TourExec1.1.f}, embedded in an HTML page.
+\section*{Results}\label{sec:reviving}
 
-Our first step was to ensure that this code could be executed with modern
-software. We stripped the HTML formatting to recover the raw Fortran source and
-applied only minimal modifications to enable compilation with contemporary
-Fortran compilers. Each strategy was then extracted into its own modular file.
-To streamline the build process, we created a dedicated \texttt{Makefile} that
-compiles all strategy files into a single shared library
-(\texttt{libstrategies.so}). Once installed in a standard location on a
-POSIX-compliant operating system (e.g., \texttt{/usr/local/lib/}), this library
-is automatically located at runtime. The modified source code is openly
-available at \url{https://github.com/Axelrod-Python/TourExec} and has been
-archived at~\cite{TourExec}, ensuring long-term accessibility.
+% \section{Reviving the tournament}\label{sec:reviving}
 
-Each Fortran strategy was implemented as a function with a fixed set of input
-arguments that encode the state of the match:
+\textbf{Reviving the tournament.}
+Axelrod's original tournaments cannot be fully replicated. For the first
+tournament, the only surviving record is the published report; the source code
+has been lost. For the second tournament, however, the implementations of the 63
+submitted strategies remain available. As an example, the Fortran implementation
+of \TFT{} (the implemented function is named \texttt{k92r}) is shown in
+Fig.~\ref{fig:reviving_diagram}\textbf{a}. In this work, we revive the second
+tournament using these original implementations rather than re-implementing
+them. To this end, we updated the surviving Fortran code to compile with modern
+compilers and connected it to the \AXL{} framework via a Python interface that
+calls the original functions. The workflow is: (i) build a shared library of the
+historical strategies; (ii) use the adapter to format the match state, invoke
+the Fortran routine, and return the action; (iii) let \AXL{} run matches and
+assemble tournaments (Fig.~\ref{fig:reviving_diagram}\textbf{b},\textbf{c}). For
+details on recovering, packaging, and releasing the original source code, see
+\textbf{Methods}.
 
-\begin{itemize}
-    \item \texttt{J}: Opponent's previous move (0 = cooperate, 1 = defect),
-    \item \texttt{M}: Current turn number (starting at 1),
-    \item \texttt{K}: Player's cumulative score,
-    \item \texttt{L}: Opponent's cumulative score,
-    \item \texttt{R}: Random number between 0 and 1 (for stochastic strategies),
-    \item \texttt{JA}: Player's previous move.
-\end{itemize}
 
-Given these inputs, the function outputs either 0 (cooperate) or 1 (defect). An
-illustrative example is provided by the original implementation of \TFT{}
-(\texttt{k92r.f}), shown in Figure~\ref{fig:tft_fortran}.
-
-\begin{figure}[!hbtp]
-    \begin{center}
-        \begin{lstlisting}[language=Fortran,
-                           basicstyle=\ttfamily\scriptsize,
-                           frame=single,
-                           keywordstyle=\color{red}\bfseries,
-                           commentstyle=\color{teal}\itshape]
-          FUNCTION K92R(J,M,K,L,R,JA)
-    C BY ANATOL RAPOPORT
-    C TYPED BY AX 3/27/79 (SAME AS ROUND ONE TIT FOR TAT)
-    c replaced by actual code, Ax 7/27/93
-    c  T=0
-    c   K92R=ITFTR(J,M,K,L,T,R)
-          k92r=0
-          k92r=j
-    c test 7/30
-    c   write(6,77) j, k92r
-    c77   format(' test k92r. j,k92r: ', 2i3)
-          RETURN
-          END
-        \end{lstlisting}
-    \caption{\textbf{Fortran source code for the Tit For Tat strategy
-    (\texttt{k92r.f}).} Each strategy takes as input the state of the match
-    (\texttt{J}, \texttt{M}, \texttt{K}, \texttt{L}, \texttt{R}, \texttt{JA})
-    and outputs either 0 (cooperate) or 1 (defect). This code corresponds to
-    the \TFT{} strategy submitted to Axelrod's second tournament.}
-    \label{fig:tft_fortran}
-    \end{center}
+\begin{figure}[t]
+  \begin{center}
+    \includegraphics[width=.755\textwidth]{../assets/Figure1.pdf}
+    \caption{\textbf{Reviving Axelrod's second tournament code.}
+    \textbf{a,} Fortran code for \TFT{} (\texttt{k92r.f}). Each strategy takes as input the match state
+    (\texttt{J}: opponent's previous move; \texttt{M}: current turn number; \texttt{K}: player's cumulative score; \texttt{L}: opponent's cumulative score; \texttt{R}: random number in $[0,1]$; \texttt{JA}: player's previous move) and returns 0 (cooperate) or 1 (defect).
+    \textbf{b,} Overview of how the three codebases interact. \AXLFortran{} creates strategy instances for each
+    player. Tournaments and matches are managed by \AXL{}, which, at each turn, calls
+    the corresponding \AXLFortran{} instance; this, in turn, invokes the original
+    Fortran code to produce a decision from the match history.
+    \textbf{c,} Turn-by-turn execution. On the first turn, \AXLFortran{} initializes
+    the parameters required by the Fortran implementation, queries it for a
+    decision, and returns the move to \AXL{}, which plays it and updates the
+    history. On each subsequent turn: (1) the previous outcome is recorded and the
+    history updated; (2) \AXLFortran{} accesses the updated history; (3) formats it
+    into the inputs expected by the Fortran code; (4) calls the Fortran function and
+    receives a decision; and (5) \AXL{} plays the decision. The process repeats until
+    the match ends.}
+    \label{fig:reviving_diagram}
+  \end{center}
 \end{figure}
 
-With the strategies executable again, the next challenge was to run the
-tournament. For this we rely on the open-source \AXL{} library, which provides a
-modern implementation of \IPD{} tournaments. In this framework, a
-\emph{tournament} is a collection of matches, and each \emph{match} is a
-repeated game between two strategies. A tournament class manages the overall
-structure (pairing strategies, scheduling matches, aggregating results), while
-strategy classes determine actions turn by turn based on the recorded history of
-play.
-
-To integrate the original Fortran strategies into this environment, we developed
-a Python package, \AXLFortran~\cite{Axelrod_fortran}. The \AXLFortran{} adapter
-class inherits from the base \AXL{} strategy class and translates between the two
-languages: it constructs the required inputs, calls the Fortran function, and
-returns the chosen move to the Python environment
-(Figure~\ref{fig:strategy_diagram}). The adapter also handles the initial moves
-of both players
-required by the Fortran strategies, which is fixed to cooperation in the original
-code. 
-
-\begin{figure}[!hbtp]
-    \begin{center}
-        \includegraphics[width=.7\textwidth]{../assets/Figure1.pdf}
-\caption{\textbf{Diagrammatic representation of the interaction between \AXL{},
-\AXLFortran{}, and the original Fortran code.} \textbf{a,} Overview of how the
-three codebases interact. \AXLFortran{} creates strategy instances for each
-player. Tournaments and matches are managed by \AXL{}, which at each turn calls
-the corresponding \AXLFortran{} instance; this in turn invokes the original
-Fortran code to produce a decision from the match history. \textbf{b,} Turn-by-turn execution.
-On the first turn, \AXLFortran{}
-initialises the parameters required by the Fortran implementation, queries it
-for the first decision, and returns this to \AXL{}, which plays the move and
-updates the history. On each subsequent turn: (1) the previous turn is recorded
-and the history updated; (2) \AXLFortran{} access the updated history and (3) 
-formats its into the inputs required by the Fortran code; (4) the Fortran code is called and returns
-a decision; (5) \AXL{} plays the decision. The process repeats until the match
-ends.}\label{fig:strategy_diagram}
-    \end{center}
-\end{figure}
 
 The major advantage of this approach is that no subjective reinterpretation was
-introduced in reproducing Axelrod's second tournament. The only modifications
-made were minimal adjustments to ensure compatibility with modern compilers. For
-several strategies, the Fortran source code is the only surviving description;
-these strategies are therefore run and evaluated exactly as originally written.
-This constitutes the most faithful reproduction of Axelrod's
-work to date.
+introduced. The only modifications were minimal adjustments for compiler
+compatibility. For several strategies, the Fortran source code is the only
+surviving description; these strategies are therefore run and evaluated exactly
+as originally written. This constitutes the most faithful reproduction of
+Axelrod's work to date.
 
-\section{Reproducing Axelrod's second tournament}\label{sec:reproducing}
+\noindent
+\subsection*{Reproducing Axelrod's second tournament.}
 
+\noindent
 \textbf{Running the tournament.}
 Axelrod's second tournament included 63 strategies. While Axelrod
 named a few explicitly, most were referred to only by their ranking in the
@@ -350,18 +298,18 @@ the random seed used by Axelrod, it is not possible to reproduce the tournament
 exactly. To obtain smoother estimates of each strategy's performance, we run
 Axelrod's second tournament a total of \input{../assets/number_of_original_repetitions.tex} times.
 For each run of the tournament, we use the same five match lengths
-(\(63, 77, 151, 156, 308\)) for every pairing of strategies.
+(\(63, 77, 151, 156, 308\)) for every pairing of strategies. \\
 
 \noindent
 \textbf{The winners, the losers, and the differences.}
-In Figure~\ref{fig:replicated_tournament}\textbf{a}, we compare the original rankings with
+In Fig.~\ref{fig:replicated_tournament}\textbf{a}, we compare the original rankings with
 those obtained in our replication, with strategies sorted according to their
 original ranks. As we can see, the winner of the tournament remains \TFT, while the strategy
 \texttt{k36r}, authored by Roger Hotz, again ranks last.
 The overall outcomes of
 most strategies are reproduced, though some do not retain their exact rankings.
 Notably, the bottom ranking strategies are replicated quite well, consistently
-performing poorly in both tournaments. Figure~\ref{fig:replicated_tournament}\textbf{b}
+performing poorly in both tournaments. Fig.~\ref{fig:replicated_tournament}\textbf{b}
 shows the difference in rank between the reproduced and original tournaments,
 ordered from the most negative to the most positive change. We find that 40 out
 of 63 strategies exhibit a shift in ranking. Most of these changes are modest,
@@ -381,133 +329,25 @@ first call \texttt{ICOOP} is effectively treated as $0$, but in later matches th
 assumption no longer holds, meaning that while in the first match \texttt{ICOOP}
 starts at $0$ and increases as expected, in subsequent matches its (undefined)
 value can persist across calls. The corrected version of this strategy is shown in
-Figure~\ref{fig:k61r}. It is unclear whether this bug affected the tournament
+\textbf{Extended Data Fig. 1}. It is unclear whether this bug affected the tournament
 results reported in 1980. One possibility is that each match was run in isolation,
 which would have prevented the error from arising. In our analysis we use the
 corrected version of the strategy.
 
-In Figure~\ref{fig:replicated_tournament}\textbf{c}, we examine the average scores of the
+In Fig.~\ref{fig:replicated_tournament}\textbf{c}, we examine the average scores of the
 strategies. Champion shows a noticeable drop relative to the now
 second and third ranked strategies. However, its mean score remains very close to that
-of the rest of the top ten (Table~\ref{tbl:original_tournament_rankings}).
-Figure~\ref{fig:replicated_tournament}\textbf{d} presents violin plots of the
+of the rest of the top ten (see \textbf{Extended Data Table 1}).
+Fig.~\ref{fig:replicated_tournament}\textbf{d} presents violin plots of the
 score distributions for these top 15 strategies across the
 \input{../assets/number_of_original_repetitions.tex} repetitions. Champion
 rarely outperforms the second or third ranked strategies, doing so in only a
 single tournament, confirming that, at least in this version, Champion
 is not as strong as originally reported.
 
-\begin{table}[!hbtp]
-        \centering
-        \resizebox{.9\textwidth}{!}{
-        \input{../assets/original_tournament_rankings.tex}}
-        \caption{\textbf{Top 15 strategies in the reproduced tournament.}
-        The table lists the top 15 strategies from Axelrod's original tournament
-        along with their rankings in our tournament. For each strategy we also
-        report the average score and average cooperation rate in the reproduced
-        tournament.}
-        \label{tbl:original_tournament_rankings}
-\end{table}
-
-An interesting observation is that strategies such as \texttt{k32r} and
-\texttt{k75r} occasionally achieve the maximum possible score of 2.9. Across all
-repetitions, these strategies won 0.8\% and 2.3\% of the tournaments,
-respectively (Table~\ref{tbl:original_tournament_win_proportion}).
-They received little attention in the original tournament, likely because their
-high variance obscured their potential relative to consistently strong
-performers such as \TFT{}. Another strong and comparatively stable strategy is
-\texttt{k42r}, which won 31.5\% of our replicated tournaments; for comparison,
-\TFT{} won 63.3\% (Table~\ref{tbl:original_tournament_win_proportion}).
-Because the original tournament is a single realization, a different random seed
-could plausibly have produced a different winner: namely, on another roll of the
-dice, \texttt{k42r} (Otto Borufsen) might well have been crowned the winner.
-
-\begin{table}[!hbtp]
-        \centering
-        \input{../assets/original_tournament_win_proportion.tex}
-        \caption{\textbf{The proportion of reproduced tournaments won by each
-        strategy.}
-        The table shows all strategies who won one of the 
-        repetitions of the
-        original tournament. \TFT{} wins 63.3\% of them indicating that 36.7\% of
-        used random seeds lead to a different winner.}
-        \label{tbl:original_tournament_win_proportion}
-\end{table}
-
-
-
-The source code for \texttt{k42r}, together with a description of the strategy's
-behaviour, is provided in the \SI~(S6). In summary, the strategy has two states:
-\emph{normal} and \emph{defecting}. In its normal state, it behaves much like
-\TFT{}, but it includes mechanisms to recover from mutual defection and to
-escape alternating defections. Every 25 turns, it evaluates the opponent's
-cooperation rate and switches to defecting mode if the opponent appears random
-or highly defective. The \texttt{k42r} strategy can thus be viewed as a more
-sophisticated and adaptive variant of \TFT{}. These mechanisms are likely
-intended to prevent endless retaliation and to guard against exploitation by
-less cooperative opponents. However, in Axelrod's original tournament,
-\texttt{k42r} ranked only 3th, suggesting that these mechanisms were not
-particularly advantageous/or used against the original pool of strategies
-and highly cooperative environment.
-
-We also explored alternative approaches in our attempt to replicate the
-original ranking (Figure~\ref{fig:replicated_tournament}\textbf{e}). These include running
-the tournament with and without self-interactions, as well as testing a Python
-implementation of Champion that we developed from the textual
-description in~\cite{Axelrod1980b}. Across all approaches, Champion
-consistently exhibits the largest change in ranking among the top strategies,
-while \TFT{} remains the overall winner.
-
-Overall, the minor discrepancies in rankings and scores can be attributed to one
-or more of the following:
-
-\begin{itemize}
-\item An unknown modification of the source code of Champion (\texttt{k61r})
-used in the final original tournament code~\cite{Axelrod1980b}.
-\item Stochastic variation not being sufficiently taken in to account in the
-original tournament~\cite{Axelrod1980b}.
-\item A difference with how an older Fortran compiler would interpret the
-commands, though the implemented version seems to
-interact as expected.
-\end{itemize}
-
-\begin{figure}[!hbtp]
-    \begin{center}
-        \begin{lstlisting}[language=Fortran,
-                           basicstyle=\ttfamily\scriptsize,
-                           frame=single,
-                           keywordstyle=\color{red}\bfseries,
-                           commentstyle=\color{teal}\itshape]
-      FUNCTION K61R(ISPICK,ITURN,K,L,R, JA)
-C BY DANNY C. CHAMPION
-C TYPED BY JM 3/27/79
-      k61r=ja    ! Added 7/27/93 to report own old value
-      IF (ITURN .EQ. 1) ICOOP = 0  ! Added 10/8/2017 to fix bug for multiple runs
-      IF (ITURN .EQ. 1) K61R = 0
-      IF (ISPICK .EQ. 0) ICOOP = ICOOP + 1
-      IF (ITURN .LE. 10) RETURN
-      K61R = ISPICK
-      IF (ITURN .LE. 25) RETURN
-      K61R = 0
-      COPRAT = FLOAT(ICOOP) / FLOAT(ITURN)
-      IF (ISPICK .EQ. 1 .AND. COPRAT .LT. .6 .AND. R .GT. COPRAT)
-     +K61R = 1
-      RETURN
-      END
-        \end{lstlisting}
-    \caption{\textbf{Fortran source code for \texttt{k61r} (Champion).}
-    The original implementation contained a bug: the variable \texttt{ICOOP} was not
-    initialized within the function. In the first match it effectively started at 0,
-    but in subsequent matches it could have kept its value from the previous match or be reset to 0,
-    depending on the compiler and runtime environment. Line~5 shows the fix, which
-    explicitly initializes \texttt{ICOOP} at the start of each match.}
-        \label{fig:k61r}
-    \end{center}
-\end{figure}
-
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.85\textwidth]{../assets/original_tournament_reproducing.pdf}
+    \includegraphics[width=.9\textwidth]{../assets/original_tournament_reproducing.pdf}
 \caption{\textbf{Reproducing Axelrod's second tournament.}
 \textbf{a,} Comparison of the original rankings and the replicated rankings.
 Strategies are ordered by their original ranks; \TFT{} again
@@ -528,6 +368,56 @@ largest change in ranking.}
   \label{fig:replicated_tournament}
 \end{figure}
 
+An interesting observation is that strategies such as \texttt{k32r} and
+\texttt{k75r} occasionally achieve the maximum possible score of 2.9. Across all
+repetitions, these strategies won 0.8\% and 2.3\% of the tournaments,
+respectively (\textbf{Extended Data Table 1}).
+They received little attention in the original tournament, likely because their
+high variance obscured their potential relative to consistently strong
+performers such as \TFT{}. Another strong and comparatively stable strategy is
+\texttt{k42r}, which won 31.5\% of our replicated tournaments; for comparison,
+\TFT{} won 63.3\% (\textbf{Extended Data Table 1}).
+Because the original tournament is a single realization, a different random seed
+could plausibly have produced a different winner: namely, on another roll of the
+dice, \texttt{k42r} (Otto Borufsen) might well have been crowned the winner.
+
+
+The source code for \texttt{k42r}, together with a description of the strategy's
+behaviour, is provided in the \SI~(S6). In summary, the strategy has two states:
+\emph{normal} and \emph{defecting}. In its normal state, it behaves much like
+\TFT{}, but it includes mechanisms to recover from mutual defection and to
+escape alternating defections. Every 25 turns, it evaluates the opponent's
+cooperation rate and switches to defecting mode if the opponent appears random
+or highly defective. The \texttt{k42r} strategy can thus be viewed as a more
+sophisticated and adaptive variant of \TFT{}. These mechanisms are likely
+intended to prevent endless retaliation and to guard against exploitation by
+less cooperative opponents. However, in Axelrod's original tournament,
+\texttt{k42r} ranked only 3th, suggesting that these mechanisms were not
+particularly advantageous/or used against the original pool of strategies
+and highly cooperative environment.
+
+We also explored alternative approaches in our attempt to replicate the
+original ranking (Fig.~\ref{fig:replicated_tournament}\textbf{e}). These include running
+the tournament with and without self-interactions, as well as testing a Python
+implementation of Champion that we developed from the textual
+description in~\cite{Axelrod1980b}. Across all approaches, Champion
+consistently exhibits the largest change in ranking among the top strategies,
+while \TFT{} remains the overall winner.
+
+Overall, the minor discrepancies in rankings and scores can be attributed to one
+or more of the following:
+
+\begin{itemize}
+\item An unknown modification of the source code of Champion (\texttt{k61r})
+used in the final original tournament code~\cite{Axelrod1980b}.
+\item Stochastic variation not being sufficiently taken in to account in the
+original tournament~\cite{Axelrod1980b}.
+\item A difference with how an older Fortran compiler would interpret the
+commands, though the implemented version seems to
+interact as expected.
+\end{itemize}
+
+
 \noindent
 \textbf{The representative strategies.}
 Axelrod conducted an analysis to identify what he termed ``representative
@@ -540,7 +430,7 @@ an \(R^2\) value of 0.979,
 indicating that 97\% of the variance in overall
 performance could be explained by the model. For completeness, the coefficients
 of this regression (as reported in~\cite{Axelrod1980b}) are listed in
-Table~\ref{tbl:original_tournament_representative_model}.
+\textbf{Extended Data Fig. 2}.
 
 We replicated Axelrod's linear regression analysis and evaluated the predictive
 power of the original model using our reproduced tournament data. We
@@ -552,44 +442,22 @@ discrepancies in individual rankings.
 To further assess the robustness of the model, we performed a backward
 elimination procedure to examine how \(R^2\) changes as the number of predictor
 strategies increases. We find that the largest gain occurs when five predictors
-are included, after which improvements are small. This suggests that
+are included, after which improvements are small (\textbf{Extended Data Fig. 2}.). This suggests that
 Axelrod's choice of five representative strategies was reasonable. Whether this
 selection was the outcome of a systematic feature selection procedure or a
-judgment call remains unclear; in either case, it appears well chosen. The
-results of this elimination analysis are reported in the \SI~(S5).
+judgment call remains unclear; in either case, it appears well chosen.\\
 
-
-\begin{table}[!hbtp]
-\centering
-\begin{tabular}{lc|cll}
-\toprule
-Strategies & \makecell{Originally Reported\\Coefficients} & \makecell{Replicated\\Coefficients} & $p$-value & $F$-value\\
-\midrule
-k60r (S$_6$) & 0.202000 & 0.232010 & 0.000000 & 298.163936 \\
-k91r (Revered State Transition) & 0.198000 & 0.187930 & 0.000000 & 56.667196 \\
-k40r (Ruler) & 0.110000 & 0.071870 & 0.000000 & 78.191831 \\
-k76r (Tester) & 0.072000 & 0.063670 & 0.025992 & 5.207451 \\
-k67r (Tranquilizer) & 0.086000 & 0.113650 & 0.000002 & 27.893148 \\
-Intercept & 0.795000 & 0.790880 & NA & NA \\
-\bottomrule
-\end{tabular}
-\caption{\textbf{The representatives and their effect on average score.} Linear
-model described in~\cite{Axelrod1980b} with \(R^2=0.979\), Fitting a new model
-to the same 5 strategies gives the coefficients gives
-\(R^2=\protect\input{../assets/original_tournament_predictive_with_axelrod_5_r_squared.tex}\).}
-\label{tbl:original_tournament_representative_model}
-\end{table}
 
 \noindent
 \textbf{Cooperation in the original tournament.}
 Here we ask: \emph{what was the original tournament like?} The answer is that it
 was, in fact, highly cooperative. The mean cooperation rate across the
 tournaments is 75\%. When we plot cooperation rates against the original
-rankings (Figure~\ref{fig:original_tournament_cooperation}\textbf{a}), most strategies are
+rankings (Fig.~\ref{fig:original_tournament_cooperation}\textbf{a}), most strategies are
 indeed highly cooperative, with the exception of those in the bottom 14\% of the
 ranking, which display cooperation rates below 0.5.
 
-In Figure~\ref{fig:original_tournament_cooperation}\textbf{b}, we show that the
+In Fig.~\ref{fig:original_tournament_cooperation}\textbf{b}, we show that the
 top performing strategies cooperate almost perfectly with one another, one of
 Axelrod's key observations. He also emphasized the importance of
 \emph{provocability} (willingness to punish defection) and \emph{forgiveness}
@@ -597,7 +465,7 @@ Axelrod's key observations. He also emphasized the importance of
 immediately to the opponent's last move: \TFT{} retaliates after defection and
 resumes cooperation after cooperation. As a result, \TFT{} achieves
 the same cooperation rate as its opponent. To capture this notion, in
-Figure~\ref{fig:original_tournament_cooperation}\textbf{c} we plot the difference between
+Fig.~\ref{fig:original_tournament_cooperation}\textbf{c} we plot the difference between
 pairwise cooperation rates and their transposes, that is, the deviation from
 symmetry. A value of 0 indicates that two strategies cooperate at exactly the
 same rate with one another. The top performing strategies cluster near 0,
@@ -609,7 +477,7 @@ Axelrod's earlier results were already known, and the strong performance of
 \TFT{} was widely recognized. As a consequence, many newly submitted strategies
 were explicitly designed to resemble \TFT{} or to cooperate effectively with
 \TFT{}-like rules, hence their high levels of cooperation and the
-symmetry in their interactions.
+symmetry in their interactions.\\
 
 
 \begin{figure}[!hbtp]
@@ -626,7 +494,7 @@ with one another at the same rate.}
   \label{fig:original_tournament_cooperation}
 \end{figure}
 
-\section{Revisiting the tournament}\label{sec:extending}
+\subsection*{Revisiting the tournament.}
 
 \noindent
 \textbf{Extra invitations.}
@@ -672,7 +540,7 @@ Axelrod's second tournament: it is difficult to unseat as the top performer.
 The next most successful strategy, \texttt{k42r}, remains competitive (e.g.,
 winning up to \(\sim\)37\% with three additional invitees), whereas strategies
 such as \texttt{k32r} and \texttt{k75r}, which can achieve high mean scores in
-some realizations, tend to be even less effective as more entrants are introduced.
+some realizations, tend to be even less effective as more entrants are introduced. \\
 
 \begin{table}[!hbtp]
         \centering
@@ -703,14 +571,14 @@ action is flipped. Noise was among the main criticisms of Axelrod's study, since
 \TFT{} is not robust to accidental defections~\cite{molander1985optimal,
 bendor1993uncertainty, wu1995cope, do2017combination}.
 
-Figure~\ref{fig:reproduced_with_noise} summarizes the results for a noise probability of
-\(0.01\). Figure~\ref{fig:reproduced_with_noise}\textbf{a} shows rank changes among the 63 original
+Fig.~\ref{fig:reproduced_with_noise} summarizes the results for a noise probability of
+\(0.01\). Fig.~\ref{fig:reproduced_with_noise}\textbf{a} shows rank changes among the 63 original
 submissions: the left column orders strategies by their original rank, while
 the right column lists ranks \(1\)-\(63\), with arrows indicating each strategy's
 rank in the noisy tournament. As expected, noise leads to substantial reordering,
 with several mid ranking strategies moving into top positions and some former top performers
 dropping. The mean cooperation rate declines from \(0.75\) (noiseless) to \(0.65\)
-under noise (Figure~\ref{fig:reproduced_with_noise}\textbf{c}). Correspondingly, the new
+under noise (Fig.~\ref{fig:reproduced_with_noise}\textbf{c}). Correspondingly, the new
 winning strategy in this setting cooperates at \(0.61\), slightly \emph{below} the
 noisy-tournament mean, whereas \TFT{} cooperates at \(0.70\), \emph{above} the mean.
 This pattern reinforces the idea that \emph{cooperating slightly less than the
@@ -724,7 +592,7 @@ outperforms \TFT{}.
 We emphasize that evaluating the original submissions under noise is not
 entirely fair: many authors would likely have incorporated explicit
 error-correction or forgiveness mechanisms had noise been part of the original
-rules.
+rules.\\
 
 
 \noindent
@@ -742,25 +610,14 @@ interest in zero-determinant (ZD) strategies. Stewart and Plotkin
 \cite{Stewart2012} presented a focused tournament pitting ZD strategies against
 a small collection of other rules. When all S \& P strategies are added to
 Axelrod's second tournament, the resulting relative rank changes for the original
-strategies are modest (Figure~\ref{fig:rank_change_in_sp_tournament}). The overall
+strategies are modest (Fig.~\ref{fig:rank_change_in_sp_tournament}). The overall
 level of cooperation remains high (mean \(\approx 0.73\)), and the leading
 strategies are highly cooperative with one another, mirroring the qualitative
-pattern of the original tournament. Table~\ref{tbl:sp_tournament_rankings_top_fifteen}
+pattern of the original tournament. \textbf{Extended Data Table 2}
 lists the top-performing strategies (see the \SI~(S3) for the full ranking). In
 this new tournament, ZD strategies are distributed across the ranking rather than
 concentrated at the top (\SI~(S3)), while \TFT{}, \texttt{k42r}, and generous variants
 (e.g., GTFT~\cite{nowak1992tit} and ZD-GTFT-2) perform particularly well.
-
-\begin{table}[!hbtp]
-        \centering
-        \resizebox{.8\textwidth}{!}{
-        \input{../assets/sp_tournament_rankings_top_fifteen.tex}}
-        \caption{\textbf{Top 15 strategies in the Stewart and Plotkin tournament.}
-        We report the mean score, rank, and mean cooperation rate. For comparison,
-        we also include the cooperation rate from our reproduced tournament,
-        alongside the cooperation rates originally reported by Stewart and Plotkin.}
-        \label{tbl:sp_tournament_rankings_top_fifteen}
-\end{table}
 
 
 The \AXL{} library contains more than 200 strategies and regularly hosts
@@ -769,10 +626,10 @@ the results are updated). We expand this tournament further by
 including all of the original Fortran strategies (omitting the Python duplicates). 
 This produces a tournament with
 \input{../assets/number_of_strategies_in_full_tournament.tex} strategies.
+\textbf{Extended Data Table 3} shows the top 16 strategies of the tournament.
 
-Table~\ref{tbl:full_tournament_rankings} shows the top 16 strategies of the tournament.
 Rank changes relative to the reproduced tournament are shown in
-Figure~\ref{fig:rank_change_in_axelrod_python_tournament}\textbf{a}.
+Fig.~\ref{fig:rank_change_in_axelrod_python_tournament}\textbf{a}.
 Several mid performing strategies from the original tournament rise into top
 positions in this more complex environment. Notably, \texttt{k42r} performs
 best among the original strategies, ranking 16th overall. The cooperation rate
@@ -780,10 +637,10 @@ of the library-only tournament (excluding the original Fortran strategies) is
 \input{../assets/library_tournament_cooperation_rate.tex}\unskip.
 By contrast, the overall cooperation rate of the expanded tournament that includes
 the Fortran strategies is \input{../assets/full_tournament_overall_cooperation_rate.tex}
-(see Figure~\ref{fig:rank_change_in_axelrod_python_tournament}\textbf{c}).
+(see Fig.~\ref{fig:rank_change_in_axelrod_python_tournament}\textbf{c}).
 
 Pairwise interactions are shown in
-Figures~\ref{fig:rank_change_in_axelrod_python_tournament}\textbf{d}--\textbf{e},
+Figs.~\ref{fig:rank_change_in_axelrod_python_tournament}\textbf{d}--\textbf{e},
 where top strategies are seen to cooperate strongly with one another, but do not
 when facing lower ranking opponents. The new winners appear to exploit weaker
 strategies, which contributes to their success.
@@ -807,23 +664,9 @@ Instead, they align more closely with the principles identified in
 \end{enumerate}
 
 
-\begin{table}[!hbtp]
-    \centering
-    \resizebox{.9\textwidth}{!}{
-    \input{../assets/axelord_python_tournament_rankings_top_sixteen.tex}}
-    \caption{\textbf{Top 16 strategies in the \AXL{} tournament.} This
-    tournament includes all strategies from the \AXL{} library alongside the
-    original Fortran strategies. In total, there are 272 strategies competing.
-    Strategies denoted by $^\dagger$ were not designed but, they were trained
-    via reinforcement learning, as described in~\cite{Harper2017}.}
-    \label{tbl:full_tournament_rankings}
-\end{table}
-
-
 Finally, we consider the \AXL{} tournament with noise, using noise probabilities
 of \(1\%\) and \(5\%\). The results are shown in
-Figures~\ref{fig:rank_change_in_axelrod_python_tournament_noise_1} and
-\ref{fig:rank_change_in_axelrod_python_tournament_noise_5}. As expected, the
+\textbf{Extended Data Figs. 3--4}. As expected, the
 overall cooperation rate is lower than in the noiseless, reproduced, and
 reproduced with noise tournaments. Notably, several of the original submissions
 perform very well: the best performer from the original set ranks 5th with
@@ -835,7 +678,7 @@ exploiting others'' was optimal. In the presence of errors, and against
 more complex competitors, these strategies make use of their additional
 mechanisms to maintain competitive payoffs and robust rankings.
 
-\section{Discussion}\label{sec:discussion}
+\section*{Conclusion}\label{sec:discussion}
 
 Our study revisits one of the most influential computational experiments in the
 social sciences: Axelrod's second Iterated Prisoner's Dilemma (\IPD) tournament.
@@ -885,7 +728,7 @@ A second contribution of this work is methodological. To our knowledge, this is
 the first effort to package and reproduce, according to contemporary best
 practices, code originally written in the 1980s. The archived materials~\cite{knight_2025_17250038} (at
 \url{https://doi.org/10.5281/zenodo.17250038})
-are curated to high standards of reproducible research~\cite{wilson2014} and
+are curated to high standards of reproducible research~\cite{wilson2014, sandve2013, wilson2017, stodden2018, turingway2022} and
 accompanied by a fully automated test suite. All changes to the original code
 were made systematically and transparently, with complete records available at
 (\url{https://github.com/Axelrod-Python/axelrod-fortran}).
@@ -905,7 +748,85 @@ continue to develop preservation pipelines that bring historical computational
 experiments into alignment with modern standards of reproducibility, and to
 advance reproducible software and science.
 
+\section*{Methods}
 
+The surviving code of Axelrod's second tournament was written in Fortran and is
+hosted online by the University of Michigan Center for the Study of Complex
+Systems~\cite{Axelrod1980bCode}, where it was last updated in 1996. The source
+code for all strategies is contained in a single file, \texttt{TourExec1.1.f},
+embedded in an HTML page.
+
+Our first step was to ensure that this code could be executed with modern
+software. We stripped the HTML formatting to recover the raw Fortran source and
+applied only minimal modifications to enable compilation with contemporary
+Fortran compilers. Each strategy was then extracted into its own modular file.
+To streamline the build process, we created a dedicated \texttt{Makefile} that
+compiles all strategy files into a single shared library
+(\texttt{libstrategies.so}). Once installed in a standard location on a
+POSIX-compliant operating system (e.g., \texttt{/usr/local/lib/}), this library
+is automatically located at runtime. The modified source code is openly
+available at \url{https://github.com/Axelrod-Python/TourExec} and has been
+archived at~\cite{TourExec}, ensuring long-term accessibility.
+
+Each Fortran strategy was implemented as a function with a fixed set of input
+arguments that encode the state of the match:
+
+\begin{itemize}
+    \item \texttt{J}: Opponent's previous move (0 = cooperate, 1 = defect),
+    \item \texttt{M}: Current turn number (starting at 1),
+    \item \texttt{K}: Player's cumulative score,
+    \item \texttt{L}: Opponent's cumulative score,
+    \item \texttt{R}: Random number between 0 and 1 (for stochastic strategies),
+    \item \texttt{JA}: Player's previous move.
+\end{itemize}
+
+Given these inputs, the function outputs either 0 (cooperate) or 1 (defect).
+
+With the strategies executable again, the next challenge was to run the
+tournament. For this we rely on the open-source \AXL{} library, which provides a
+modern implementation of \IPD{} tournaments. In this framework, a
+\emph{tournament} is a collection of matches, and each \emph{match} is a
+repeated game between two strategies. A tournament class manages the overall
+structure (pairing strategies, scheduling matches, aggregating results), while
+strategy classes determine actions turn by turn based on the recorded history of
+play.
+
+To integrate the original Fortran strategies into this environment, we developed
+a Python package, \AXLFortran~\cite{Axelrod_fortran}. The \AXLFortran{} adapter
+class inherits from the base \AXL{} strategy class and translates between the two
+languages: it constructs the required inputs, calls the Fortran function, and
+returns the chosen move to the Python environment
+(Fig.~\ref{fig:reviving_diagram}). The adapter also handles the initial moves
+of both players
+required by the Fortran strategies, which is fixed to cooperation in the original
+code.
+
+\section*{Data availability}
+The data generated and analysed in this study are available in the Zenodo repository~\cite{knight_2025_17250038} at
+\url{https://doi.org/10.5281/zenodo.17250038}.
+
+\section*{Code availability}
+The code used to generate and run the tournaments, as well as all analysis
+scripts, has been archived alongside the data at the same Zenodo repository and
+is also accessible via the project's online repository:
+\url{https://github.com/Axelrod-Python/revisiting-axelrod-second/}. Instructions for
+installation and reproduction are provided in the repository README.
+
+\section*{Acknowledgements}
+We thank all contributors to the \AXL{} library. We also acknowledge the
+open source ecosystem that enabled this work, including NumPy, pandas, and
+Matplotlib. This study would not have been possible without the broader
+open source community.
+
+
+\section*{Author contributions}
+V.K., O.C., M.H.,  and N.E.G. designed the study. 
+V.K., O.C., T.J.G., and M.H. wrote the \AXLFortran{} software. 
+V.K. and N.E.G. performed the analysis.
+V.K., M.H., and N.E.G. discussed the results and wrote the manuscript.
+
+
+%%%% FIGURES %%%%
 \begin{figure}[!hbtp]
     \centering
     \includegraphics[width=.88\textwidth]{../assets/reproduced_with_noise.pdf}
@@ -950,27 +871,122 @@ advance reproducible software and science.
   \label{fig:rank_change_in_axelrod_python_tournament}
 \end{figure}
 
+\newpage
+
+%%%% REFERENCES %%%%
+\bibliographystyle{naturemag}
+\bibliography{../bibliography.bib}
+
+
+%%%% EXTENDED DATA %%%%
+\section*{Extended Data}
+
+\begin{table}[!hbtp]
+  \centering
+  \resizebox{.9\textwidth}{!}{
+    \input{../assets/original_tournament_rankings.tex}}
+  \caption*{\textbf{Extended Data Table 1. Top 15 strategies in the reproduced tournament.}
+  The table lists the top 15 strategies from Axelrod's original tournament
+  along with their rankings in our reproduced tournament. For each strategy, we
+  report the average score and the average cooperation rate in the reproduced
+  tournament, as well as the proportion of wins across our repetitions of the
+  original tournament. \TFT{} wins 63.3\% of these repetitions, indicating that
+  in 36.7\% of runs a different winner emerges.}
+\end{table}
+
+
+
+\begin{figure}[!hbtp]
+    \begin{center}
+        \begin{lstlisting}[language=Fortran,
+                           basicstyle=\ttfamily\scriptsize,
+                           frame=single,
+                           keywordstyle=\color{red}\bfseries,
+                           commentstyle=\color{teal}\itshape]
+      FUNCTION K61R(ISPICK,ITURN,K,L,R, JA)
+C BY DANNY C. CHAMPION
+C TYPED BY JM 3/27/79
+      k61r=ja    ! Added 7/27/93 to report own old value
+      IF (ITURN .EQ. 1) ICOOP = 0  ! Added 10/8/2017 to fix bug for multiple runs
+      IF (ITURN .EQ. 1) K61R = 0
+      IF (ISPICK .EQ. 0) ICOOP = ICOOP + 1
+      IF (ITURN .LE. 10) RETURN
+      K61R = ISPICK
+      IF (ITURN .LE. 25) RETURN
+      K61R = 0
+      COPRAT = FLOAT(ICOOP) / FLOAT(ITURN)
+      IF (ISPICK .EQ. 1 .AND. COPRAT .LT. .6 .AND. R .GT. COPRAT)
+     +K61R = 1
+      RETURN
+      END
+        \end{lstlisting}
+    \caption*{\textbf{Extended Data Fig 1. Fortran source code for \texttt{k61r} (Champion).}
+    The original implementation contained a bug: the variable \texttt{ICOOP} was not
+    initialized within the function. In the first match it effectively started at 0,
+    but in subsequent matches it could have kept its value from the previous match or be reset to 0,
+    depending on the compiler and runtime environment. Line~5 shows the fix, which
+    explicitly initializes \texttt{ICOOP} at the start of each match.}
+    \end{center}
+\end{figure}
+
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=\textwidth]{../assets/Figure_linear_regression_results.pdf}
+    \caption*{\textbf{Extended Data Fig.~2. Reproduction of Axelrod's linear model.}
+    \textbf{a,} The representative strategies and their effect on average score.
+    We reproduce the linear model described in~\cite{Axelrod1980b}, which reports
+    \(R^2 = 0.979\). Fitting a new model to the same five strategies yields
+    \(R^2 = \protect\input{../assets/original_tournament_predictive_with_axelrod_5_r_squared.tex}\).
+    \textbf{b,} \(R^2\) as a function of the number of strategies included (subset size),
+    obtained using recursive feature elimination (RFE)~\cite{guyon2002gene}.
+    Starting from the full set of strategies, we iteratively remove the least
+    informative one, refit the model, and record the resulting \(R^2\).
+    For each subset size (from 1 to 25), the subset yielding the highest \(R^2\)
+    is retained. The estimated \(R^2\) rises rapidly from about 0.75 to 0.95 as
+    the number of included strategies increases from 1 to 5, after which
+    improvements are smaller.}
+\end{figure}
+
+
+\begin{table}[!hbtp]
+        \centering
+        \resizebox{.8\textwidth}{!}{
+        \input{../assets/sp_tournament_rankings_top_fifteen.tex}}
+        \caption*{\textbf{Extended Data Table 2. Top 15 strategies in the Stewart and Plotkin tournament.}
+        We report the mean score, rank, and mean cooperation rate. For comparison,
+        we also include the cooperation rate from our reproduced tournament,
+        alongside the cooperation rates originally reported by Stewart and Plotkin.}
+\end{table}
+
+
+\begin{table}[!hbtp]
+    \centering
+    \resizebox{.9\textwidth}{!}{
+    \input{../assets/axelord_python_tournament_rankings_top_sixteen.tex}}
+    \caption*{\textbf{Extended Data Table 3. Top 16 strategies in the \AXL{} tournament.} This
+    tournament includes all strategies from the \AXL{} library alongside the
+    original Fortran strategies. In total, there are 272 strategies competing.
+    Strategies denoted by $^\dagger$ were not designed but, they were trained
+    via reinforcement learning, as described in~\cite{Harper2017}.}
+\end{table}
+
+
 \begin{figure}[!hbtp]
     \centering
     \includegraphics[width=.90\textwidth]{../assets/axelrod_python_tournament_noise_1.pdf}
-    \caption{\textbf{Reproduction of Axelrod's second tournament with the addition
+    \caption*{\textbf{Extended Data Fig. 3. Reproduction of Axelrod's second tournament with the addition
     of the strategies from the \AXL and with noise 1\%.}
     Similar to Figure~\ref{fig:rank_change_in_sp_tournament}.}
-  \label{fig:rank_change_in_axelrod_python_tournament_noise_1}
 \end{figure}
 
 
 \begin{figure}[!hbtp]
     \centering
     \includegraphics[width=.90\textwidth]{../assets/axelrod_python_tournament_noise_5.pdf}
-    \caption{\textbf{Reproduction of Axelrod's second tournament with the addition
+    \caption*{\textbf{Extended Data Fig. 4. Reproduction of Axelrod's second tournament with the addition
     of the strategies from the \AXL and with noise 5\%.}
     Similar to Figure~\ref{fig:rank_change_in_sp_tournament}.}
-  \label{fig:rank_change_in_axelrod_python_tournament_noise_5}
 \end{figure}
-
-
-\bibliographystyle{naturemag}
-\bibliography{../bibliography.bib}
 
 \end{document}

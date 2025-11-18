@@ -40,12 +40,12 @@
 \author[4]{T. J. Gaffney}
 \author[5, 6]{Nikoleta E. Glynatsi}
 
-\affil[1]{School of Mathematics, Cardiff University}
-\affil[2]{Independent Researcher, Chester, United Kingdom}
-\affil[3]{Google Inc.}
-\affil[4]{TBC}
-\affil[5]{Discrete Event Simulations Teams, RIKEN Center for Computational Science}
-\affil[6]{Mathematical Social Science Team, RIKEN Center for Interdisciplinary Theoretical and Mathematical Sciences}
+\affil[1]{School of Mathematics, Cardiff University, United Kingdom}
+\affil[2]{Independent Researcher, Cardiff, United Kingdom}
+\affil[3]{Google Inc., California, USA}
+\affil[4]{Independent Research, Nevada, USA}
+\affil[5]{Discrete Event Simulations Teams, RIKEN Center for Computational Science, Kobe, Japan}
+\affil[6]{Mathematical Social Science Team, RIKEN Center for Interdisciplinary Theoretical and Mathematical Sciences, Wako, Japan}
 \affil[$*$]{Corresponding author: KnightVA@cardiff.ac.uk.}
 \date{}
 
@@ -77,11 +77,6 @@ it is organized as follows.
     \item \textbf{Section~\ref{app:axl}} points to the full list of strategies and
     ranks for the comprehensive \AXL{} tournament (including the original
     submissions), available online.
-
-    \item \textbf{Section~\ref{app:linear_model}} details the linear-model analysis
-    using recursive feature elimination to identify subsets of strategies
-    that best predict average scores. We show the resulting \(R^2\) as a function
-    of the number of strategies included (Figure~\ref{fig:original_tournament_r_squared_versus_number_of_features}).
 
     \item \textbf{Section~\ref{app:k42r_fortran}} shows the original Fortran
     source code of \texttt{k42r} and summarizes its behavior.
@@ -150,31 +145,6 @@ The full list of strategies and their ranks in the \AXL{} tournament, which now
 includes the original strategies, can be found online at. This includes tournaments
 with and without noise.
 
-
-\section{Linear regression analysis}\label{app:linear_model}
-
-Using recursive feature elimination (RFE)~\cite{guyon2002gene}, we select
-subsets of strategies to include in a simple linear model to predict average
-score. We begin with the full set of strategies. We estimate how useful each strategy is
-for predicting average scores, remove the least useful one, refit the model, and
-repeat. In this way, for any chosen number of strategies to include,
-we obtain the corresponding best subset.
-
-We run this procedure for subset sizes from 1 to 25. For each size, we keep the
-subset that gives the highest \(R^2\), as shown in
-Figure~\ref{fig:original_tournament_r_squared_versus_number_of_features}. The
-estimated \(R^2\) rises from about 0.75 to about 0.95 when moving from 1 to 5
-included strategies, after which improvements are smaller.
-
-\begin{figure}[!hbtp]
-    \centering
-    \includegraphics[width=.8\textwidth]{../assets/original_tournament_r_squared_versus_number_of_features.pdf}
-    \caption{\(R^2\) versus the \emph{number of strategies to include} (subset
-    size), obtained with recursive feature elimination using strategies. For each
-    size, the shown value corresponds to the subset with the highest \(R^2\)
-    when predicting a strategy's average score (and thus its rank).}
-    \label{fig:original_tournament_r_squared_versus_number_of_features}
-\end{figure}
 
 \section{Fortran source code for k42r}\label{app:k42r_fortran}
 
