@@ -225,7 +225,7 @@ details on recovering, packaging, and releasing the original source code, see
 
 \begin{figure}[t]
   \begin{center}
-    \includegraphics[width=.755\textwidth]{../assets/Figure1.pdf}
+    \includegraphics[width=.755\textwidth]{./assets/Figure1.pdf}
     \caption{\textbf{Reviving Axelrod's second tournament code.}
     \textbf{a,} Fortran code for \TFT{} (\texttt{k92r.f}). Each strategy takes as input the match state
     (\texttt{J}: opponent's previous move; \texttt{M}: current turn number; \texttt{K}: player's cumulative score; \texttt{L}: opponent's cumulative score; \texttt{R}: random number in $[0,1]$; \texttt{JA}: player's previous move) and returns 0 (cooperate) or 1 (defect).
@@ -296,7 +296,7 @@ It also appears that the only mechanism for averaging out stochastic variation i
 the original setup was the use of these five fixed repetitions. Without access to
 the random seed used by Axelrod, it is not possible to reproduce the tournament
 exactly. To obtain smoother estimates of each strategy's performance, we run
-Axelrod's second tournament a total of \input{../assets/number_of_original_repetitions.tex} times.
+Axelrod's second tournament a total of \input{./assets/number_of_original_repetitions.tex} times.
 For each run of the tournament, we use the same five match lengths
 (\(63, 77, 151, 156, 308\)) for every pairing of strategies. \\
 
@@ -340,14 +340,14 @@ second and third ranked strategies. However, its mean score remains very close t
 of the rest of the top ten (see \textbf{Extended Data Table 1}).
 Fig.~\ref{fig:replicated_tournament}\textbf{d} presents violin plots of the
 score distributions for these top 15 strategies across the
-\input{../assets/number_of_original_repetitions.tex} repetitions. Champion
+\input{./assets/number_of_original_repetitions.tex} repetitions. Champion
 rarely outperforms the second or third ranked strategies, doing so in only a
 single tournament, confirming that, at least in this version, Champion
 is not as strong as originally reported.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.9\textwidth]{../assets/original_tournament_reproducing.pdf}
+    \includegraphics[width=.9\textwidth]{./assets/original_tournament_reproducing.pdf}
 \caption{\textbf{Reproducing Axelrod's second tournament.}
 \textbf{a,} Comparison of the original rankings and the replicated rankings.
 Strategies are ordered by their original ranks; \TFT{} again
@@ -434,7 +434,7 @@ of this regression (as reported in~\cite{Axelrod1980b}) are listed in
 
 We replicated Axelrod's linear regression analysis and evaluated the predictive
 power of the original model using our reproduced tournament data. We
-obtained an \(R^2\) of~\input{../assets/original_tournament_predictive_with_axelrod_5_r_squared.tex}\unskip,
+obtained an \(R^2\) of~\input{./assets/original_tournament_predictive_with_axelrod_5_r_squared.tex}\unskip,
 demonstrating that
 the model continues to be a strong predictor of performance despite the small
 discrepancies in individual rankings.
@@ -482,7 +482,7 @@ symmetry in their interactions.\\
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=\textwidth]{../assets/original_tournament_cooperation.pdf}
+    \includegraphics[width=\textwidth]{./assets/original_tournament_cooperation.pdf}
 \caption{\textbf{Cooperation in Axelrod's second tournament.}
 \textbf{a,} Mean cooperation rate by original ranking. Most strategies are highly
 cooperative, with the exception of those at the bottom of the ranking, which fall
@@ -503,7 +503,7 @@ submissions. The \AXL{} library includes
 209 strategies that did not appear in the original tournament. We therefore examine the
 effect of including new strategies. We do this by first simulating a tournament
 with all 
-\input{../assets/number_of_strategies_in_full_tournament.tex} strategies
+\input{./assets/number_of_strategies_in_full_tournament.tex} strategies
 repeating each match-length 250 times. This reduced number of repetitions was
 due to the combinatorial difficulty of running such a large tournament. This
 full tournament will be discussed subsequently.
@@ -545,7 +545,7 @@ some realizations, tend to be even less effective as more entrants are introduce
 \begin{table}[!hbtp]
         \centering
         \resizebox{.9\textwidth}{!}{
-        \input{../assets/extra_strategies_summary.tex}}
+        \input{./assets/extra_strategies_summary.tex}}
         \caption{\textbf{Proportion of wins for original strategies with 1-4 additional invitees.}
         Shown are the strategies with non zero probabilities of winning at least
         one of the
@@ -553,7 +553,7 @@ some realizations, tend to be even less effective as more entrants are introduce
         five fixed match lengths, repeated
         250 times. Additional
         invitees are strategies drawn from the open-source \AXL{} library; a
-        full list is provided in the \SI{}, and source code/documentation are
+        full list is provided in \SI{} 4 and 6, and source code/documentation are
         referenced therein. We consider four cases: adding 1, 2, 3, or 4 extra
         strategies to the original field. The last row reports the sum across
         these strategies (noting that some wins accrue to strategies not
@@ -625,7 +625,7 @@ the largest \IPD{} tournaments to date (each time a new strategy is contributed,
 the results are updated). We expand this tournament further by
 including all of the original Fortran strategies (omitting the Python duplicates). 
 This produces a tournament with
-\input{../assets/number_of_strategies_in_full_tournament.tex} strategies.
+\input{./assets/number_of_strategies_in_full_tournament.tex} strategies.
 \textbf{Extended Data Table 3} shows the top 16 strategies of the tournament.
 
 Rank changes relative to the reproduced tournament are shown in
@@ -634,9 +634,9 @@ Several mid performing strategies from the original tournament rise into top
 positions in this more complex environment. Notably, \texttt{k42r} performs
 best among the original strategies, ranking 16th overall. The cooperation rate
 of the library-only tournament (excluding the original Fortran strategies) is
-\input{../assets/library_tournament_cooperation_rate.tex}\unskip.
+\input{./assets/library_tournament_cooperation_rate.tex}\unskip.
 By contrast, the overall cooperation rate of the expanded tournament that includes
-the Fortran strategies is \input{../assets/full_tournament_overall_cooperation_rate.tex}
+the Fortran strategies is \input{./assets/full_tournament_overall_cooperation_rate.tex}
 (see Fig.~\ref{fig:rank_change_in_axelrod_python_tournament}\textbf{c}).
 
 Pairwise interactions are shown in
@@ -818,6 +818,8 @@ open source ecosystem that enabled this work, including NumPy, pandas, and
 Matplotlib. This study would not have been possible without the broader
 open source community.
 
+This work was not supported by any funding grants.
+
 
 \section*{Author contributions}
 V.K., O.C., M.H.,  and N.E.G. designed the study. 
@@ -825,11 +827,15 @@ V.K., O.C., T.J.G., and M.H. wrote the \AXLFortran{} software.
 V.K. and N.E.G. performed the analysis.
 V.K., M.H., and N.E.G. discussed the results and wrote the manuscript.
 
+\section*{Competing Interests}
+
+There is no conflict of interest.
+
 
 %%%% FIGURES %%%%
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.88\textwidth]{../assets/reproduced_with_noise.pdf}
+    \includegraphics[width=.88\textwidth]{./assets/reproduced_with_noise.pdf}
     \caption{\textbf{Axelrod's second tournament with 1\% noise.}
     \textbf{a,} Comparison of the original rankings and the rankings of the second
     tournament with noise. In the left column, strategies are ordered by their
@@ -844,7 +850,8 @@ V.K., M.H., and N.E.G. discussed the results and wrote the manuscript.
     \textbf{d,} Pairwise cooperation rates between strategies. For each
     pair we calculate the cooperation rate of the row strategy towards the column
     strategy and vice versa. The strategies are ordered by the ranks in this
-    tournament. For a full list of strategies see \SI 4 Tables 1 and 2.
+    tournament. For a full list of strategies see \SI~2 Table 1, \SI~3 Table 2
+    and \SI~6.
     \textbf{e,} Differences in cooperation rates for each pair of strategies, again 
     ordered by their rank in the reproduced tournament with noise.}
     \label{fig:reproduced_with_noise}
@@ -853,7 +860,7 @@ V.K., M.H., and N.E.G. discussed the results and wrote the manuscript.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.90\textwidth]{../assets/stewart_and_plotkin_tournament.pdf}
+    \includegraphics[width=.90\textwidth]{./assets/stewart_and_plotkin_tournament.pdf}
     \caption{\textbf{Reproduction of Axelrod's second tournament with the addition
     of the strategies from Stewart's and Plotkin's tournament~\cite{Stewart2012}.}
     Similar to Figure~\ref{fig:reproduced_with_noise}. The right column shows the
@@ -864,7 +871,7 @@ V.K., M.H., and N.E.G. discussed the results and wrote the manuscript.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.90\textwidth]{../assets/axelrod_python_tournament.pdf}
+    \includegraphics[width=.90\textwidth]{./assets/axelrod_python_tournament.pdf}
     \caption{\textbf{Reproduction of Axelrod's second tournament with the addition
     of the strategies from the \AXL.}
     Similar to Figure~\ref{fig:rank_change_in_sp_tournament}.}
@@ -875,7 +882,7 @@ V.K., M.H., and N.E.G. discussed the results and wrote the manuscript.
 
 %%%% REFERENCES %%%%
 \bibliographystyle{naturemag}
-\bibliography{../bibliography.bib}
+\bibliography{bibliography.bib}
 
 
 %%%% EXTENDED DATA %%%%
@@ -884,7 +891,7 @@ V.K., M.H., and N.E.G. discussed the results and wrote the manuscript.
 \begin{table}[!hbtp]
   \centering
   \resizebox{.9\textwidth}{!}{
-    \input{../assets/original_tournament_rankings.tex}}
+    \input{./assets/original_tournament_rankings.tex}}
   \caption*{\textbf{Extended Data Table 1. Top 15 strategies in the reproduced tournament.}
   The table lists the top 15 strategies from Axelrod's original tournament
   along with their rankings in our reproduced tournament. For each strategy, we
@@ -932,12 +939,12 @@ C TYPED BY JM 3/27/79
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=\textwidth]{../assets/Figure_linear_regression_results.pdf}
+    \includegraphics[width=\textwidth]{./assets/Figure_linear_regression_results.pdf}
     \caption*{\textbf{Extended Data Fig.~2. Reproduction of Axelrod's linear model.}
     \textbf{a,} The representative strategies and their effect on average score.
     We reproduce the linear model described in~\cite{Axelrod1980b}, which reports
     \(R^2 = 0.979\). Fitting a new model to the same five strategies yields
-    \(R^2 = \protect\input{../assets/original_tournament_predictive_with_axelrod_5_r_squared.tex}\).
+    \(R^2 = \protect\input{./assets/original_tournament_predictive_with_axelrod_5_r_squared.tex}\).
     \textbf{b,} \(R^2\) as a function of the number of strategies included (subset size),
     obtained using recursive feature elimination (RFE)~\cite{guyon2002gene}.
     Starting from the full set of strategies, we iteratively remove the least
@@ -952,7 +959,7 @@ C TYPED BY JM 3/27/79
 \begin{table}[!hbtp]
         \centering
         \resizebox{.8\textwidth}{!}{
-        \input{../assets/sp_tournament_rankings_top_fifteen.tex}}
+        \input{./assets/sp_tournament_rankings_top_fifteen.tex}}
         \caption*{\textbf{Extended Data Table 2. Top 15 strategies in the Stewart and Plotkin tournament.}
         We report the mean score, rank, and mean cooperation rate. For comparison,
         we also include the cooperation rate from our reproduced tournament,
@@ -963,7 +970,7 @@ C TYPED BY JM 3/27/79
 \begin{table}[!hbtp]
     \centering
     \resizebox{.9\textwidth}{!}{
-    \input{../assets/axelord_python_tournament_rankings_top_sixteen.tex}}
+    \input{./assets/axelord_python_tournament_rankings_top_sixteen.tex}}
     \caption*{\textbf{Extended Data Table 3. Top 16 strategies in the \AXL{} tournament.} This
     tournament includes all strategies from the \AXL{} library alongside the
     original Fortran strategies. In total, there are 272 strategies competing.
@@ -974,7 +981,7 @@ C TYPED BY JM 3/27/79
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.90\textwidth]{../assets/axelrod_python_tournament_noise_1.pdf}
+    \includegraphics[width=.90\textwidth]{./assets/axelrod_python_tournament_noise_1.pdf}
     \caption*{\textbf{Extended Data Fig. 3. Reproduction of Axelrod's second tournament with the addition
     of the strategies from the \AXL and with noise 1\%.}
     Similar to Figure~\ref{fig:rank_change_in_sp_tournament}.}
@@ -983,7 +990,7 @@ C TYPED BY JM 3/27/79
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.90\textwidth]{../assets/axelrod_python_tournament_noise_5.pdf}
+    \includegraphics[width=.90\textwidth]{./assets/axelrod_python_tournament_noise_5.pdf}
     \caption*{\textbf{Extended Data Fig. 4. Reproduction of Axelrod's second tournament with the addition
     of the strategies from the \AXL and with noise 5\%.}
     Similar to Figure~\ref{fig:rank_change_in_sp_tournament}.}

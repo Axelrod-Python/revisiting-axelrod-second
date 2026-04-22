@@ -248,3 +248,9 @@ src/data/extra_player/*.csv
 src/.ipynb_checkpoints/
 
 .DS_Store
+
+archive/
+archive.tar.gz
+output.tar.gz
+src.tar.gz
+*.xdv
