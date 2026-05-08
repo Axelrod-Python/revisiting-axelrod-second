@@ -84,6 +84,9 @@ it is organized as follows.
     \item \textbf{Section~\ref{app:list_of_all_players}} lists all 270 original
         submissions and \AXL{} library strategies, including their rank in each
         of the new tournaments.
+    \item \textbf{Section~\ref{app:opponents_distributions}} includes plots of the
+    interaction distributions, in terms of cooperation rates and payoffs, for both
+    the original tournament and the expanded \AXL{} tournament.
 \end{itemize}
 
 \section{List of strategies from Axelrod's second tournament}\label{app:list_of_original_players}
@@ -309,6 +312,34 @@ in original tournament (if an original strategy).
             \input{../paper/assets/list_of_all_players.tex}
     \end{enumerate}
 \end{multicols}
+
+\section{Interaction distributions}\label{app:opponents_distributions}
+
+Here we show the distributions of interactions in terms of cooperation rates and
+payoffs for both the original tournament and the expanded \AXL{} tournament.
+
+\begin{figure}[!hbtp]
+    \begin{center}
+        \includegraphics[width=\textwidth]{../paper/assets/distribution_of_opponents_comparison.pdf}
+        \caption{\textbf{Interaction distributions in the original and \AXL{} tournaments.}
+        Distributions of pairwise interaction cooperation rates and payoffs for
+        the \AXL{} tournament and the original tournament. The
+        cooperation rate distributions are strongly skewed towards one,
+        indicating that a large fraction of interactions are highly cooperative.
+        In the \AXL{} tournament, however, there is also a visible tail
+        close to zero cooperation, indicating the presence of exploitative
+        interactions that are largely absent from the original tournament. This
+        difference may help explain why highly cooperative strategies such as
+        \TFT{} become less effective in more diverse tournaments, where
+        strategies capable of exploiting others are more successful. The payoff
+        distributions are similarly skewed around mutual cooperation payoffs,
+        although noticeable differences between the tournaments remain. Overall,
+        these results suggest that the interaction environments induced by the
+        tournaments are highly structured rather than uniform across behavioural
+        space.}
+        \label{fig:original_tournament_interaction_distributions}
+    \end{center}
+\end{figure}
 
 \bibliographystyle{naturemag}
 \bibliography{../bibliography.bib}
