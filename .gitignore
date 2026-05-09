@@ -10,6 +10,7 @@
 *.fot
 *.cb
 *.cb2
+main-diffcomms_ai_comp*
 
 ## Intermediate documents:
 *.dvi
