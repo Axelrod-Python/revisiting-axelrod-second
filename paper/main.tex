@@ -192,10 +192,9 @@ design allows us to call the original functions without modification.
 
 Although Axelrod's reported results are impossible to replicate, we are able
 to recover the main conclusions of Axelrod's study. At the same time, we extend
-the analysis in several directions by incorporating both classical strategies
-from the repeated games literature and additional strategies from the \AXL{}
-library, ultimately conducting one of the largest \IPD{} tournament studies to
-date. These extensions shed new light on the robustness and context dependence
+the analysis by incorporating additional strategies from the \AXL{}
+library and ultimately conducting one of the largest \IPD{} tournaments to
+date. These extensions shed new light on the robustness
 of the original findings. Overall,
 this work makes three contributions. First, it provides the first systematic
 attempt to reproduce the results of Axelrod's second tournament, which have been
@@ -262,14 +261,16 @@ Axelrod's work to date.
 
 \noindent
 \textbf{Running the tournament.}
-Axelrod's second tournament included 63 strategies. While Axelrod
-named a few explicitly, most were referred to only by their ranking in the
-original tournament or by the names of the individuals who submitted them. We
-now have access to the function names of the Fortran implementations. In what
-follows, we refer to strategies by their function names, supplemented by
-Axelrod's names when available. A complete list of the strategies, their
-authors, their original rankings, the names provided by Axelrod (where
-available), and their function names is given in the \SI~(S1).
+Axelrod's second tournament included 63 strategies. While Axelrod named a few
+explicitly, most were referred to only by their ranking in the original
+tournament or by the names of the individuals who submitted them. We now have
+access to the function names of the Fortran implementations. In what follows, we
+refer to strategies by their function names, supplemented by Axelrod's names
+when available. A complete list of the strategies, their authors, their original
+rankings, the names provided by Axelrod (where available), and their function
+names is given in the \SI~(S1). Notably, the original tournament did not include
+several strategies that are now considered standard benchmarks in the repeated games literature, such as Cooperator (Always
+Cooperate), Defector (Always Defect), or Win--Stay--Lose--Shift~\cite{nowak1993strategy}.
 
 Axelrod use the same payoff matrix as in the first tournament, with
 \(T=5\), \(R=3\), \(P=1\), and \(S=0\).
@@ -505,37 +506,50 @@ with one another at the same rate.}
 We investigate how the tournament outcomes would change if Axelrod had received
 additional submissions. To this end, we begin by asking what would have happened
 had several well-known strategies from the \IPD{} literature been submitted to
-the original tournament. We consider strategies such as Cooperator, Defector,
-Win--Stay--Lose--Shift, and \GTFT, among others. We also include
-more recent strategies, such as All-or-nothing-2 (\AON) and EvolvedLookerUp2 2
+the original tournament. We consider classical strategies such as Cooperator, Defector,
+Win--Stay--Lose--Shift, and Generous \TFT{}~\cite{nowak1992tit} (\GTFT), among
+others. We also include more recent strategies, such as
+``All-or-nothing-2''~\cite{hilbe2017memory} (\AON) and EvolvedLookerUp2 2
 2~\cite{Knight2017}.
 
 We rerun the tournament using the original set of strategies while adding each
 of the strategies listed in
 Table~\ref{tbl:extra_invitations_classic_strategies}. For each tournament, we
 record the rank of the ``newly invited'' strategy, while also reporting
-\TFT{}'s rank and the winner of the tournament. In this section, we use
+\TFT{}'s rank and the winner of the tournament. Throughout this section, we use
 Axelrod's original tournament setting, consisting of five repetitions of
 matches with the lengths described in the previous section. For computational
 efficiency, each tournament is repeated 250 times.
 
-Notably, several benchmark strategies, including Win--Stay--Lose--Shift and
-\AON{} (a delayed version of Win--Stay--Lose--Shift), do not
-outperform \TFT{}. Even the strategy EvolvedLookerUp2 2 2 capable of exploiting
-weaker opponents fails to surpass it. \GTFT{} ranks third overall
-but this remains insufficient to dethrone \TFT{}.
-We find that the only strategy capable of dethroning \TFT{} is Anti Tit For Tat.
-This strategy begins with cooperation and subsequently plays the opposite of its
-opponent's previous move. Although simple and seemingly counterintuitive, in
-repeated games with a finite expected number of rounds it can achieve a higher
-payoff than \TFT{}. Interestingly, the more complex strategy \texttt{k42r} is
-able to exploit Anti Tit For Tat, achieving an average score of 3.5337 and
-ultimately rising to the top of the tournament.
+Several benchmark strategies, including Win--Stay--Lose--Shift and
+\AON{} (a delayed version of Win--Stay--Lose--Shift), fail to outperform
+\TFT{}. Similarly, EvolvedLookerUp2 2 2, despite its ability to exploit weaker
+opponents, does not surpass \TFT{}. \GTFT{} achieves the third highest score
+overall, but none of these strategies alters \TFT{}'s position as the winner of
+the tournament.
 
-However, this advantage does not persist when all nine additional strategies
-are introduced simultaneously. Under these conditions, \TFT{} is able to
-benefit from interactions with a broader and more cooperative set of
-opponents, weakening the disadvantage introduced by Anti Tit For Tat.
+We find that the only strategy capable of changing the outcome of the
+tournament is Anti Tit For Tat. This strategy begins with cooperation and
+subsequently plays the opposite of its opponent's previous move. Although
+simple and seemingly counterintuitive, in repeated games with a finite expected
+number of rounds it can outperform \TFT{}. Importantly, Anti Tit For Tat is
+another strategy that exploits \TFT{}, in the sense that it induces \TFT{} to
+cooperate more frequently than it cooperates itself. \TFT{} obtains a payoff of
+2.2437 against Anti Tit For Tat, which is not its lowest pairwise payoff.
+However, the key effect is that interactions with Anti Tit For Tat reduce
+\TFT{}'s overall average payoff while simultaneously leaving Anti Tit For Tat
+highly vulnerable to exploitation by other strategies.
+In particular, the more complex strategy \texttt{k42r} exploits Anti Tit For
+Tat especially effectively, achieving an average score of 3.5337 and rising to
+the top of the tournament. Thus, introducing Anti Tit For Tat has a dual
+effect: it lowers the average payoff of \TFT{}, while simultaneously creating
+opportunities for exploitative strategies such as \texttt{k42r} to achieve
+exceptionally high scores.
+
+This effect does not persist when all nine additional strategies are introduced
+simultaneously. Under these conditions, \TFT{} benefits from interactions with
+a broader and more cooperative set of opponents, thereby weakening the
+disadvantage introduced by Anti Tit For Tat (Table~\ref{tbl:extra_invitations_classic_strategies}).
 
 \begin{table}[!hbtp]
     \centering
@@ -638,13 +652,12 @@ tournament outcomes. We now extend this analysis to the full \AXL{} strategy
 library, substantially increasing both the diversity of opponents and the
 number of possible tournament configurations.
 
-The \AXL{} library includes
-\input{./assets/number_of_strategies_in_full_tournament.tex} strategies that did
-not appear in the original tournament. As before, we begin with the original
-tournament consisting of the 63 submitted strategies and examine what happens
-when additional strategies are introduced. For a given subset size, we consider
-every possible combination of strategies drawn from the pool of all additional
-strategies and add them to the original tournament. 
+The \AXL{} library includes 209 strategies that did not appear in the original
+tournament. As before, we begin with the original tournament consisting of the
+63 submitted strategies and examine what happens when additional strategies are
+introduced. For a given subset size, we consider every possible combination of
+strategies drawn from the 209 additional \AXL{} strategies and add them to the
+original tournament.
 
 Due to the combinatorial growth in the number of possible tournaments, we limit
 our analysis to introducing up to four additional strategies. Even under this
@@ -670,23 +683,30 @@ include \TFT{}, and high-scoring strategies such as \texttt{k75r},
 
 A striking pattern is that the effect of additional invitees on \TFT{} remains
 non-monotonic, even when considering the much larger \AXL{} strategy library.
-As in the classical strategy analysis, the probability that \TFT{} wins does
-not simply decrease as more strategies are introduced. Instead, the winning
-probability fluctuates with subset size: adding a single additional strategy
-substantially increases the probability that \TFT{} wins (to about 85\%); with
-two invitees the probability is lower (\(\sim\)71\%), with four invitees it
-increases again (\(\sim\)75\%), and only with three invitees do we observe a
-larger reduction (to \(\sim\)60\%).
+The probability that \TFT{} wins does not simply decrease as more strategies
+are introduced. Instead, it fluctuates with subset size: adding a single
+additional strategy increases the probability that \TFT{} wins to
+approximately \(85\%\); with two invitees the probability decreases to
+approximately \(71\%\); with three invitees it falls further to approximately
+\(60\%\); and with four invitees it increases again to approximately
+\(75\%\).
 
 The previous analysis with classical strategies demonstrated that such
-non-monotonic behaviour can emerge from the combinatorial structure of the
-introduced subsets, where specific strategies disproportionately alter the
-tournament dynamics. In the present setting, however, the number of possible
-tournaments becomes substantially larger, making it considerably more difficult
-to identify the precise structural causes of these fluctuations.
+non-monotonic behaviour can arise from the combinatorial interaction structure
+generated by particular subsets of opponents. In that setting, a single
+strategy, Anti Tit For Tat, was sufficient to substantially alter the
+performance of \TFT{} by simultaneously lowering its payoff and creating
+opportunities for more exploitative strategies such as \texttt{k42r}. This
+suggests that the observed fluctuations are not simply a property of the
+distribution of strategies, but can instead emerge from the interaction
+structures induced by specific combinations of opponents.
 
-Nevertheless, these results further highlight the robustness of \TFT{} in
-Axelrod's second tournament: it remains difficult to unseat as the top
+In the present setting, however, the number of possible tournaments and
+interaction structures becomes substantially larger, making it difficult to
+fully characterize the precise mechanisms driving these fluctuations.
+Nevertheless, the results further highlight the robustness of \TFT{} in
+Axelrod's second tournament: despite the introduction of large numbers of
+additional strategies, \TFT{} remains difficult to unseat as the top
 performer. The next most successful strategy, \texttt{k42r}, remains competitive
 (e.g., winning up to \(\sim\)37\% of tournaments with three additional
 invitees), whereas strategies such as \texttt{k32r} and \texttt{k75r}, which
@@ -865,8 +885,7 @@ adapted to noisy or diverse environments.
 
 This observation aligns with a broader literature showing that \TFT{} is not
 universally optimal. Variants such as
-Win--Stay--Lose--Shift~\cite{nowak1993strategy}, Generous
-\TFT{}~\cite{nowak1992tit} (\GTFT), and ``All-or-nothing''~\cite{hilbe2017memory}
+Win--Stay--Lose--Shift, \GTFT, and ``All-or-nothing''
 strategies, as well as ``friendly rivals''~\cite{murase2020five} and strategies
 discovered via reinforcement learning~\cite{Knight2017}, can outperform \TFT{}.
 Our contribution is to show that, even within Axelrod's original submission set,
@@ -875,24 +894,31 @@ original tournament can excel when the environment is more diverse, or noisier.
 These results also help revise the common impression, shaped by the original
 tournament, that \TFT{} is universally the best performing strategy.
 
-More broadly, our results raise questions about the extent to which tournament
-rankings can be considered ``objective''. In repeated game tournaments,
-strategies are not evaluated in isolation, but relative to the interaction
-environment generated by the participating strategies. As demonstrated by our
-extra invitation experiments, modifying the tournament composition can
-substantially alter both rankings and cooperation dynamics.
+More broadly, our results highlight that tournament rankings in repeated games
+are inherently shaped by the composition of the participating strategies.
+Strategies are not evaluated in isolation, but through the interactions that
+the tournament environment allows them to generate.
+In the \SI{}, we compare the interaction structures generated by the original
+tournament and the \AXL{} tournament. Specifically, we examine the
+distributions of cooperation rates and payoffs across pairwise interactions in
+both settings. In both cases, the interaction distributions are highly skewed
+towards cooperation. However, the \AXL{} tournament additionally contains a
+substantial tail towards low cooperation levels, corresponding to more
+exploitative interactions.
+This difference helps explain why \TFT{} performs especially well in the
+original tournament environment. The original tournament is dominated by highly
+cooperative interactions, which strongly favour reciprocal strategies such as
+\TFT{}. In contrast, the broader \AXL{} tournament includes a wider range of
+exploitative interactions, creating environments in which more exploitative or
+noise-tolerant strategies can become increasingly competitive.
 
-In the \SI, we examine the distributions of cooperation
-rates and payoffs across pairwise interactions for both the original tournament
-and the expanded \AXL{} tournament. In both cases, these distributions are
-highly skewed, indicating that the tournaments do not sample interactions
-uniformly across behavioural space. This raises a broader open question: what
-would constitute an ``objective'' tournament environment for evaluating
-strategies? Should tournaments aim to sample interactions uniformly across
-behavioural space, or balance different forms of reciprocity, exploitation, and
-cooperation? Our results suggest that tournament rankings are inherently linked
-to the interaction structures induced by the participating strategies, rather
-than representing absolute measures of strategic quality.
+This also raises a broader question regarding the environments in which these
+strategies are evaluated. To what extent are such tournament environments
+``objective''? What would constitute an objective tournament environment for
+evaluating strategies? Should tournaments aim to sample interactions uniformly
+across behavioural space, or instead balance different forms of reciprocity,
+exploitation, and cooperation? We believe these are interesting questions for
+future work.
 
 A second contribution of this work is methodological. To our knowledge, this is
 the first effort to package and reproduce, according to contemporary best
