@@ -4,6 +4,12 @@ python run_original_tournament.py 1 1000 > ./logs/run_original_tournament_1.log
 python run_original_tournament.py 2 1000 > ./logs/run_original_tournament_2.log
 python run_original_tournament.py 3 1000 > ./logs/run_original_tournament_3.log
 python run_original_tournament.py 4 1000 > ./logs/run_original_tournament_4.log
+# Run original tournament with probabilistic ending
+python run_original_tournament_with_probabilistic_ending.py 0 1000 > ./logs/run_original_tournament_with_prob_end_0.log
+python run_original_tournament_with_probabilistic_ending.py 1 1000 > ./logs/run_original_tournament_with_prob_end_1.log
+python run_original_tournament_with_probabilistic_ending.py 2 1000 > ./logs/run_original_tournament_with_prob_end_2.log
+python run_original_tournament_with_probabilistic_ending.py 3 1000 > ./logs/run_original_tournament_with_prob_end_3.log
+python run_original_tournament_with_probabilistic_ending.py 4 1000 > ./logs/run_original_tournament_with_prob_end_4.log
 # Run full tournament
 python run_full_tournament.py 0 250 > ./logs/run_full_tournament_0.log
 python run_full_tournament.py 1 250 > ./logs/run_full_tournament_1.log
