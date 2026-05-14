@@ -297,22 +297,27 @@ probabilistic sampling) would be useful.
 
 Our choice of a match length of 156 follows directly from Axelrod's reported
 average match length of 151 moves under the five tournament lengths used in the
-second tournament. However, the incomplete description of the match lengths in
+second tournament. However, the incomplete description of the stopping rule in
 the original paper introduces some uncertainty regarding the precise
 implementation of the tournament.
 
 To address this point, we now additionally perform a sensitivity analysis in
 which matches end probabilistically rather than after a fixed number of turns.
-Specifically, we consider a continuation probability corresponding to an average
-match length of 151 turns.
+Specifically, we consider a continuation probability corresponding to an
+expected match length of 151 turns.
 
 Overall, we find that the main conclusions remain unchanged under probabilistic
 ending conditions. In particular, the ranking of strategies remains consistent
-with the original analysis, and \TFT{} continues to perform robustly. %ToDo
+with the original analysis, and \TFT{} continues to perform robustly.
 
 \changes
-
-... %ToDo
+We have included a new section in the Supplementary Information (S8)
+describing the sensitivity analysis with probabilistic match ending. In this
+analysis, we reproduce the original tournament using a true probabilistic
+stopping rule rather than fixed sampled match lengths. We use a continuation
+probability corresponding to an expected match length of 151 turns and repeat
+the full tournament 1000 times for each of five random seeds. We now
+discuss this analysis in the Conclusion section.
 
 \begin{reviewercomment}
 (2) The 78+ million tournaments are subsampled from the full interaction matrix.
