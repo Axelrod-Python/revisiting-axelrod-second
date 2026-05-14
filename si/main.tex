@@ -87,6 +87,10 @@ it is organized as follows.
     \item \textbf{Section~\ref{app:opponents_distributions}} includes plots of the
     interaction distributions, in terms of cooperation rates and payoffs, for both
     the original tournament and the expanded \AXL{} tournament.
+    \item \textbf{Section~\ref{app:probiblitist_distributions}} presents the
+        results of the tournament under probabilistic match endings, which more
+        closely reflect the intended stopping rule of Axelrod's second
+        tournament.
 \end{itemize}
 
 \section{List of strategies from Axelrod's second tournament}\label{app:list_of_original_players}
@@ -338,6 +342,54 @@ payoffs for both the original tournament and the expanded \AXL{} tournament.
         tournaments are highly structured rather than uniform across behavioural
         space.}
         \label{fig:original_tournament_interaction_distributions}
+    \end{center}
+\end{figure}
+
+\section{Probabilistic ending tournament}\label{app:probiblitist_distributions}
+
+Axelrod originally intended the second tournament to use probabilistic match
+endings rather than fixed match lengths. However, in practice, for a given
+continuation probability, he sampled five different match lengths, and each
+pair of strategies used each of these five match lengths once. This is also
+the approach we followed when replicating the tournament.
+
+Here, we perform an additional sensitivity analysis to evaluate whether our
+results depend sensitively on the precise interpretation of the tournament
+stopping rule by considering matches that end probabilistically rather than
+after a fixed number of turns.
+
+Specifically, we consider a continuation probability corresponding to an
+expected match length of 151 turns. Under this implementation, after each turn
+the match continues with probability $150/151$ and ends with probability
+$1/151$. We use five different random seeds and, for each seed, repeat the
+full tournament 1000 times. The results are shown in
+Figure~\ref{fig:probabilistic_ending_tournament}.
+
+Overall, the main conclusions remain unchanged. In particular, TFT ($k92r$)
+still ranks first, while $k36r$ remains the lowest-performing strategy.
+Although some strategies experience modest rank shifts under probabilistic
+endings, these changes are relatively small and remain within the range of
+variation already observed when reproducing the tournament using fixed match
+lengths.
+
+\begin{figure}[!hbtp]
+    \begin{center}
+        \includegraphics[width=.75\textwidth]{../paper/assets/probalistic_ending_tournament.pdf}
+        \caption{
+        \textbf{Probabilistic ending tournament.}
+        Comparison between the original tournament rankings and reproduced
+        rankings under probabilistic and fixed match lengths. Panels~\textbf{a}
+        and~\textbf{b} show the reproduced ranks against the original ranks for
+        the probabilistic-ending and fixed-length implementations,
+        respectively. Panels~\textbf{c} and~\textbf{d} show the corresponding
+        rank differences relative to the original tournament. Despite small
+        variations for some strategies, the overall tournament structure and
+        the identities of the highest- and lowest-ranked strategies remain
+        unchanged. Panels~\textbf{b} and~\textbf{d} are also shown in the main
+        text (Figure~1); however, we reproduce them here to allow for direct
+        comparison with the probabilistic-ending tournament results.
+        }
+        \label{fig:probabilistic_ending_tournament}
     \end{center}
 \end{figure}
 
