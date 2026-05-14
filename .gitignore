@@ -244,6 +244,8 @@ src/data/training_strategies/*.gz
 src/data/training_strategies/*summary.csv
 
 src/data/extra_player/*.csv
+src/data/original_tournament_with_probabilistic_end/*csv
+src/data/original_tournament_with_probabilistic_end/*gz
 
 
 src/.ipynb_checkpoints/
