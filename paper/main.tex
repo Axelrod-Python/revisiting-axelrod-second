@@ -41,9 +41,9 @@
 \author[4]{T. J. Gaffney}
 \author[5, 6]{Nikoleta E. Glynatsi}
 
-\affil[1]{School of Mathematics, Cardiff University, United Kingdom}
+\affil[1]{School of Mathematics, Cardiff University, Cardiff, United Kingdom}
 \affil[2]{Independent Researcher, Cardiff, United Kingdom}
-\affil[3]{Google Inc., California, USA}
+\affil[3]{Google Inc., Mountain View, California, USA}
 \affil[4]{Independent Researcher, Nevada, USA}
 \affil[5]{Discrete Event Simulations Teams, RIKEN Center for Computational Science, Kobe, Japan}
 \affil[6]{Mathematical Social Science Team, RIKEN Center for Interdisciplinary Theoretical and Mathematical Sciences, Wako, Japan}
@@ -140,9 +140,9 @@ These pioneering tournaments shaped decades of research on cooperation, yet the
 archival record surrounding them is incomplete. For the first tournament, only
 the published report survives; the original source code has been lost. For the
 second tournament, the Fortran implementation of the submitted strategies
-remains available online\footnote{See
-\url{http://www-personal.umich.edu/~axe/research/Software/CC/CC2/TourExec1.1.f.html}
-accessed on 2025-09-30.},
+remains available online (see
+\url{http://www-personal.umich.edu/~axe/research/Software/CC/CC2/TourExec1.1.f.html},
+accessed on 2025-09-30),
 but the final code used in Axelrod's reported tournaments has not been preserved.
 
 This highlights a broader challenge of software reproducibility in
@@ -368,8 +368,12 @@ only 1-3 positions, though a few exhibit larger changes, including Champion
 \textbf{c,} Mean scores of all strategies. Champion's
 average score drops relative to the other three strategies but remains close to
 the rest of the top ten.
-\textbf{d,} Violin plots showing the distribution of scores for the top 15
-strategies across all repetitions.
+\textbf{d,} Violin plots showing the distribution of mean scores for the top 15
+strategies across all repetitions (n = 25{,}000 independent tournament
+repetitions). For each strategy the orange marker is the mean score and the
+vertical orange bars span the extrema (minimum to maximum) of the distribution
+over the repetitions. The brown dashed line marks the maximum attainable mean
+score of 2.9.
 \textbf{e,} Results under alternative replication approaches, including with and
 without self-interactions and using a Python re-implementation of Champion.
 Across all settings, \TFT{} remains the winner, while Champion exhibits the
@@ -1007,10 +1011,15 @@ The data generated and analysed in this study are available in the Zenodo reposi
 
 \section*{Code availability}
 The code used to generate and run the tournaments, as well as all analysis
-scripts, has been archived alongside the data at the same Zenodo repository and
-is also accessible via the project's online repository:
-\url{https://github.com/Axelrod-Python/revisiting-axelrod-second/}. Instructions for
-installation and reproduction are provided in the repository README.
+scripts, has been archived alongside the data in the Zenodo
+repository~\cite{knight_2025_17250038} at
+\url{https://doi.org/10.5281/zenodo.17250038}, which provides a permanent and
+citable reference to the exact version used in this study. The code is also
+accessible via the project's online repository:
+\url{https://github.com/Axelrod-Python/revisiting-axelrod-second/}, and is
+released under the MIT License, an Open Source Initiative approved licence.
+Instructions for installation and reproduction are provided in the repository
+README.
 
 \section*{Acknowledgements}
 We thank all contributors to the \AXL{} library. We also acknowledge the
@@ -1018,6 +1027,7 @@ open source ecosystem that enabled this work, including NumPy, pandas, and
 Matplotlib. This study would not have been possible without the broader
 open source community.
 
+\section*{Funding}
 This work was not supported by any funding grants.
 
 
@@ -1063,8 +1073,22 @@ There is no conflict of interest.
     \includegraphics[width=.90\textwidth]{./assets/stewart_and_plotkin_tournament.pdf}
     \caption{\textbf{Reproduction of Axelrod's second tournament with the addition
     of the strategies from Stewart's and Plotkin's tournament~\cite{Stewart2012}.}
-    Similar to Figure~\ref{fig:reproduced_with_noise}. The right column shows the
-    rankings on the original strategies in this new tournament.}
+    The panels follow the same layout as Figure~\ref{fig:reproduced_with_noise}.
+    \textbf{a,} Comparison of the original rankings (left column) and the rankings
+    in this expanded tournament (right column), with strategies ordered by their
+    original ranks. Arrows indicate the change in rank; arrow widths are
+    proportional to the size of the change. Blue arrows indicate a positive change
+    in rank, red arrows a negative change, and grey arrows no change.
+    \textbf{b,} Cooperation rates of strategies ordered by rank in this tournament.
+    \textbf{c,} Tournament cooperation rates across all repetitions for this
+    tournament (green) and the reproduced tournament without the additional
+    strategies (blue); the solid line shows the average cooperation rate, whose
+    value is reported.
+    \textbf{d,} Pairwise cooperation rates between strategies. For each pair we
+    compute the cooperation rate of the row strategy towards the column strategy
+    and vice versa, with strategies ordered by their rank in this tournament.
+    \textbf{e,} Differences in pairwise cooperation rates, again ordered by rank
+    in this tournament.}
   \label{fig:rank_change_in_sp_tournament}
 \end{figure}
 
@@ -1073,8 +1097,23 @@ There is no conflict of interest.
     \centering
     \includegraphics[width=.90\textwidth]{./assets/axelrod_python_tournament.pdf}
     \caption{\textbf{Reproduction of Axelrod's second tournament with the addition
-    of the strategies from the \AXL.}
-    Similar to Figure~\ref{fig:rank_change_in_sp_tournament}.}
+    of the strategies from the \AXL{} library.}
+    The panels follow the same layout as
+    Figure~\ref{fig:rank_change_in_sp_tournament}.
+    \textbf{a,} Comparison of the original rankings (left column) and the rankings
+    in this expanded tournament (right column), with strategies ordered by their
+    original ranks. Arrows indicate the change in rank, with widths proportional to
+    the size of the change; blue arrows indicate a positive change in rank, red
+    arrows a negative change, and grey arrows no change.
+    \textbf{b,} Cooperation rates of strategies ordered by rank in this tournament.
+    \textbf{c,} Tournament cooperation rates across all repetitions for this
+    tournament (green) and the reproduced tournament without the additional
+    strategies (blue); the solid line shows the average cooperation rate, whose
+    value is reported.
+    \textbf{d,} Pairwise cooperation rates between strategies, ordered by their
+    rank in this tournament.
+    \textbf{e,} Differences in pairwise cooperation rates, again ordered by rank
+    in this tournament.}
   \label{fig:rank_change_in_axelrod_python_tournament}
 \end{figure}
 
