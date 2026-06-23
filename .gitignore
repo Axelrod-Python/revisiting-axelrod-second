@@ -255,5 +255,11 @@ src/.ipynb_checkpoints/
 archive/
 archive.tar.gz
 output.tar.gz
+summary_data_and_code.tar.gz
 src.tar.gz
 *.xdv
+*.zip
+*.docx
+
+# Large per-directory data archives (upload artifacts, not source)
+src/data/*.tar.gz

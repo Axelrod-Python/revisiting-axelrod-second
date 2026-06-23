@@ -1,0 +1,573 @@
+\documentclass{article}
+
+\usepackage[margin=1.5cm, includefoot, footskip=30pt]{geometry}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{lmodern}
+\usepackage{multicol}
+\usepackage{standalone}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{makecell}
+\usepackage{authblk}
+\usepackage[symbol]{footmisc}
+\usepackage[sort&compress,comma,numbers]{natbib}
+
+\usepackage{tikz}
+\usetikzlibrary{calc, shapes, patterns}
+
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.3}
+
+\renewcommand\thesection{S\arabic{section}}
+
+\renewcommand{\figurename}{Supplementary Figure}
+\renewcommand{\tablename}{Supplementary Table}
+
+
+\newcommand{\TFT}{\emph{TFT}}
+\newcommand{\IPD}{\emph{IPD}}
+\newcommand{\AXL}{\texttt{Axelrod-Python}}
+\newcommand{\AXLFortran}{\texttt{Axelrod\_fortran}}
+\newcommand{\SI}{\textbf{Supplementary Information}}
+
+\title{Supplementary Information: Reviving, reproducing, and revisiting Axelrod's second tournament}
+\author[1, $*$]{Vincent Knight}
+\author[2]{Owen Campbell}
+\author[3]{Marc Harper}
+\author[4]{T. J. Gaffney}
+\author[5, 6]{Nikoleta E. Glynatsi}
+
+\affil[1]{School of Mathematics, Cardiff University, Cardiff, United Kingdom}
+\affil[2]{Independent Researcher, Cardiff, United Kingdom}
+\affil[3]{Google Inc., Mountain View, California, USA}
+\affil[4]{Independent Researcher, Las Vegas, Nevada, USA}
+\affil[5]{Discrete Event Simulations Teams, RIKEN Center for Computational Science, Kobe, Japan}
+\affil[6]{Mathematical Social Science Team, RIKEN Center for Interdisciplinary Theoretical and Mathematical Sciences, Wako, Japan}
+\affil[$*$]{Corresponding author: KnightVA@cardiff.ac.uk.}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent\textbf{Overview.} In this paper, we focus on reproducing Axelrod's second
+tournament~\cite{Axelrod1980b}. The \SI{} provides additional
+information and results that complement the main text. Namely,
+it is organized as follows.
+
+\begin{itemize}
+    \item \textbf{Section~\ref{app:list_of_original_players}} lists all 63 original
+    submissions, including each strategy's author and the name of its Fortran
+    function in the \AXLFortran{} library.
+
+    \item \textbf{Section~\ref{app:tournament_rankings}} reports how the original
+    strategies rank across multiple tournaments considered in the paper,
+    including our faithful reproduction, noisy variants, the Stewart and Plotkin
+    tournament, and \AXL{} tournaments.
+
+    \item \textbf{Section~\ref{app:reproduction_details}} provides additional
+    detail on the reproduction, including the corrected Fortran source code of
+    \emph{Champion} (\texttt{k61r}) and a reproduction of Axelrod's linear model.
+
+    \item \textbf{Section~\ref{app:stewart_and_plotkin}} provides the complete
+    roster and ranks for the Stewart and Plotkin tournament~\cite{Stewart2012},
+    which now includes all original strategies.
+
+    \item \textbf{Section~\ref{app:axl}} points to the full list of strategies and
+    ranks for the comprehensive \AXL{} tournament (including the original
+    submissions), available online.
+
+    \item \textbf{Section~\ref{app:axl_noise}} presents the expanded \AXL{}
+    tournament under 1\% and 5\% noise.
+
+    \item \textbf{Section~\ref{app:k42r_fortran}} shows the original Fortran
+    source code of \texttt{k42r} and summarizes its behavior.
+
+    \item \textbf{Section~\ref{app:list_of_all_players}} lists all 270 original
+        submissions and \AXL{} library strategies, including their rank in each
+        of the new tournaments.
+    \item \textbf{Section~\ref{app:opponents_distributions}} includes plots of the
+    interaction distributions, in terms of cooperation rates and payoffs, for both
+    the original tournament and the expanded \AXL{} tournament.
+    \item \textbf{Section~\ref{app:probiblitist_distributions}} presents the
+        results of the tournament under probabilistic match endings, which more
+        closely reflect the intended stopping rule of Axelrod's second
+        tournament.
+\end{itemize}
+
+\section{List of strategies from Axelrod's second tournament}\label{app:list_of_original_players}
+
+Here we provide a complete list of the 63 strategies that participated in
+Axelrod's second tournament. The list includes the originally reported rank of each strategy, its
+author, and the name of its Fortran function implementation in the
+\AXLFortran{} library.
+
+\begin{multicols}{2}
+    \begin{enumerate}
+        \input{./assets/list_of_original_tournament_players.tex}
+    \end{enumerate}
+\end{multicols}
+
+\section{Original submissions and their tournament rankings}\label{app:tournament_rankings}
+
+Supplementary Table~\ref{tbl:original_tournament_top_fifteen} lists the top 15
+strategies from Axelrod's original tournament along with their rankings in our
+reproduced tournament.
+
+\begin{table}[!hbtp]
+  \centering
+  \resizebox{.9\textwidth}{!}{
+    \input{./assets/original_tournament_rankings.tex}}
+  \caption{\textbf{Top 15 strategies in the reproduced tournament.}
+  The table lists the top 15 strategies from Axelrod's original tournament
+  along with their rankings in our reproduced tournament. For each strategy, we
+  report the average score and the average cooperation rate in the reproduced
+  tournament, as well as the proportion of wins across our repetitions of the
+  original tournament. \TFT{} wins 63.3\% of these repetitions, indicating that
+  in 36.7\% of runs a different winner emerges.}
+  \label{tbl:original_tournament_top_fifteen}
+\end{table}
+
+For the original strategies, we evaluate performance in the following
+tournaments:
+\begin{itemize}
+    \item \textbf{Reproduced tournament:} A faithful reproduction of Axelrod's second tournament.
+    \item \textbf{Noisy tournament:} The original tournament with a noise (error) probability of 0.01.
+    \item \textbf{Stewart and Plotkin tournament~\cite{Stewart2012}:} A tournament with the original submission and the submissions used by Stewart \& Plotkin.
+    \item \textbf{\AXL{} tournament:} A tournament including all strategies from the \AXL{} library and the original submissions.
+    \item \textbf{\AXL{} tournament with 1\% noise:} As above, with 1\% noise.
+    \item \textbf{\AXL{} tournament with 5\% noise:} As above, with 5\% noise.
+\end{itemize}
+
+Supplementary Table~\ref{tbl:original_tournament_rankings_all_tournaments} shows
+the strategies and their ranks across these tournaments.
+
+\begin{table}[!hbtp]
+    \resizebox{\textwidth}{!}{
+    \centering
+    \input{./assets/original_strategies_rankings.tex}}
+    \caption{\textbf{Ranks of the original strategies across different tournaments.}}
+    \label{tbl:original_tournament_rankings_all_tournaments}
+\end{table}
+
+
+\section{Reproducing Champion and Axelrod's linear model}\label{app:reproduction_details}
+
+Here we provide additional detail on the reproduction of Axelrod's second
+tournament. Supplementary Figure~\ref{fig:champion_fortran} shows the corrected
+Fortran source code of \emph{Champion} (\texttt{k61r}), and
+Supplementary Figure~\ref{fig:linear_regression} reproduces Axelrod's linear
+model relating strategy features to average score.
+
+\begin{figure}[!hbtp]
+    \begin{center}
+        \begin{lstlisting}[language=Fortran,
+                           basicstyle=\ttfamily\small,
+                           frame=single,
+                           keywordstyle=\color{red}\bfseries,
+                           commentstyle=\color{teal}\itshape]
+      FUNCTION K61R(ISPICK,ITURN,K,L,R, JA)
+C BY DANNY C. CHAMPION
+C TYPED BY JM 3/27/79
+      k61r=ja    ! Added 7/27/93 to report own old value
+      IF (ITURN .EQ. 1) ICOOP = 0  ! Added 10/8/2017 to fix bug for multiple runs
+      IF (ITURN .EQ. 1) K61R = 0
+      IF (ISPICK .EQ. 0) ICOOP = ICOOP + 1
+      IF (ITURN .LE. 10) RETURN
+      K61R = ISPICK
+      IF (ITURN .LE. 25) RETURN
+      K61R = 0
+      COPRAT = FLOAT(ICOOP) / FLOAT(ITURN)
+      IF (ISPICK .EQ. 1 .AND. COPRAT .LT. .6 .AND. R .GT. COPRAT)
+     +K61R = 1
+      RETURN
+      END
+        \end{lstlisting}
+    \caption{\textbf{Fortran source code for \texttt{k61r} (Champion).}
+    The original implementation contained a bug: the variable \texttt{ICOOP} was not
+    initialized within the function. In the first match it effectively started at 0,
+    but in subsequent matches it could have kept its value from the previous match or be reset to 0,
+    depending on the compiler and runtime environment. Line~5 shows the fix, which
+    explicitly initializes \texttt{ICOOP} at the start of each match.}
+    \label{fig:champion_fortran}
+    \end{center}
+\end{figure}
+
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=\textwidth]{./assets/Figure_linear_regression_results.pdf}
+    \caption{\textbf{Reproduction of Axelrod's linear model.}
+    \textbf{a,} The representative strategies and their effect on average score.
+    We reproduce the linear model described in~\cite{Axelrod1980b}, which reports
+    \(R^2 = 0.979\). Fitting a new model to the same five strategies yields
+    \(R^2 = \protect\input{./assets/original_tournament_predictive_with_axelrod_5_r_squared.tex}\).
+    The fit is an ordinary least squares linear regression; the reported \(R^2\)
+    values are coefficients of determination, and no significance tests or
+    multiple-comparison adjustments were applied.
+    \textbf{b,} \(R^2\) as a function of the number of strategies included (subset size),
+    obtained using recursive feature elimination (RFE)~\cite{guyon2002gene}.
+    Starting from the full set of strategies, we iteratively remove the least
+    informative one, refit the model, and record the resulting \(R^2\).
+    For each subset size (from 1 to 25), the subset yielding the highest \(R^2\)
+    is retained. The estimated \(R^2\) rises rapidly from about 0.75 to 0.95 as
+    the number of included strategies increases from 1 to 5, after which
+    improvements are smaller.}
+    \label{fig:linear_regression}
+\end{figure}
+
+
+\section{Full list of strategies and ranks of Stewart and Plotkin tournament}\label{app:stewart_and_plotkin}
+
+Supplementary Table~\ref{tbl:sp_tournament_top_fifteen} reports the top 15
+strategies in the Stewart and Plotkin tournament~\cite{Stewart2012}, and
+Supplementary Table~\ref{tbl:sp_tournament_full_rankings} gives the full list of
+strategies and their ranks in that tournament, which now includes the original
+strategies.
+
+\begin{table}[!hbtp]
+        \centering
+        \resizebox{.8\textwidth}{!}{
+        \input{./assets/sp_tournament_rankings_top_fifteen.tex}}
+        \caption{\textbf{Top 15 strategies in the Stewart and Plotkin tournament.}
+        We report the mean score, rank, and mean cooperation rate. For comparison,
+        we also include the cooperation rate from our reproduced tournament,
+        alongside the cooperation rates originally reported by Stewart and Plotkin.}
+        \label{tbl:sp_tournament_top_fifteen}
+\end{table}
+
+\begin{table}[!hbtp]
+        \resizebox{\textwidth}{.5\textheight}{
+        \centering
+        \input{./assets/sp_tournament_full_rankings.tex}}
+        \caption{Stewart and Plotkin tournament full list of rankings.}
+        \label{tbl:sp_tournament_full_rankings}
+\end{table}
+
+
+\section{Full list of strategies and ranks for \AXL{} tournament}\label{app:axl}
+
+The full list of strategies and their ranks in the \AXL{} tournament, which now
+includes the original strategies, can be found online at
+\url{https://github.com/Axelrod-Python/tournament}.
+This includes tournaments with and without noise.
+Supplementary Table~\ref{tbl:axl_tournament_top_sixteen} reports the top 16
+strategies in this tournament.
+
+\begin{table}[!hbtp]
+    \centering
+    \resizebox{.9\textwidth}{!}{
+    \input{./assets/axelord_python_tournament_rankings_top_sixteen.tex}}
+    \caption{\textbf{Top 16 strategies in the \AXL{} tournament.} This
+    tournament includes all strategies from the \AXL{} library alongside the
+    original Fortran strategies. In total, there are 272 strategies competing.
+    Strategies denoted by $^\dagger$ were not designed but, they were trained
+    via reinforcement learning, as described in~\cite{Harper2017}.}
+    \label{tbl:axl_tournament_top_sixteen}
+\end{table}
+
+
+\section{The expanded \AXL{} tournament under noise}\label{app:axl_noise}
+
+We repeat the expanded \AXL{} tournament under noise, where with a fixed
+probability each intended action is flipped. Supplementary
+Figure~\ref{fig:axl_noise_1} shows the results under 1\% noise and
+Supplementary Figure~\ref{fig:axl_noise_5} under 5\% noise. As expected, noise
+reduces the advantage of highly cooperative strategies, but the overall
+structure of the tournament is preserved.
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.90\textwidth]{./assets/axelrod_python_tournament_noise_1.pdf}
+    \caption{\textbf{Reproduction of Axelrod's second tournament with the addition
+    of the strategies from the \AXL{} library and 1\% noise.}
+    \textbf{a,} Comparison of the original rankings (left column) and the rankings
+    in this tournament (right column), with strategies ordered by their original
+    ranks. Arrows indicate the change in rank, with widths proportional to the size
+    of the change; blue arrows indicate a positive change in rank, red arrows a
+    negative change, and grey arrows no change.
+    \textbf{b,} Cooperation rates of strategies ordered by rank in this tournament.
+    \textbf{c,} Tournament cooperation rates across all repetitions for this
+    tournament (green) and the reproduced tournament without the additional
+    strategies (blue); the solid line shows the average cooperation rate.
+    \textbf{d,} Pairwise cooperation rates between strategies, ordered by their
+    rank in this tournament.
+    \textbf{e,} Differences in pairwise cooperation rates, again ordered by rank
+    in this tournament.}
+    \label{fig:axl_noise_1}
+\end{figure}
+
+
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=.90\textwidth]{./assets/axelrod_python_tournament_noise_5.pdf}
+    \caption{\textbf{Reproduction of Axelrod's second tournament with the addition
+    of the strategies from the \AXL{} library and 5\% noise.}
+    The panels follow the same layout as
+    Supplementary Figure~\ref{fig:axl_noise_1}.
+    \textbf{a,} Comparison of the original rankings (left column) and the rankings
+    in this tournament (right column), with strategies ordered by their original
+    ranks. Arrows indicate the change in rank, with widths proportional to the size
+    of the change; blue arrows indicate a positive change in rank, red arrows a
+    negative change, and grey arrows no change.
+    \textbf{b,} Cooperation rates of strategies ordered by rank in this tournament.
+    \textbf{c,} Tournament cooperation rates across all repetitions for this
+    tournament (green) and the reproduced tournament without the additional
+    strategies (blue); the solid line shows the average cooperation rate.
+    \textbf{d,} Pairwise cooperation rates between strategies, ordered by their
+    rank in this tournament.
+    \textbf{e,} Differences in pairwise cooperation rates, again ordered by rank
+    in this tournament.}
+    \label{fig:axl_noise_5}
+\end{figure}
+
+
+\section{Fortran source code for k42r}\label{app:k42r_fortran}
+
+From inspection of the 
+source code, the behaviour of the strategy can be described as follows 
+(these descriptions are taken from the re-implementation in Python 
+from~\cite{AxelrodProject}, which has been verified to reproduce the original 
+Fortran behaviour accurately):
+
+This player keeps track of the opponent's responses to own behavior:
+
+    \begin{itemize}
+        \item \texttt{cd\_count} counts: Opponent cooperates as response to player defecting.
+        \item \texttt{cc\_count} counts: Opponent cooperates as response to player cooperating.
+    \end{itemize}
+
+The player has a defect mode and a normal mode.  In defect mode, the
+player will always defect.  In normal mode, the player obeys the following
+ranked rules:
+
+    \begin{enumerate}
+        \item If in the last three turns, both the player/opponent defected, then
+            cooperate for a single turn.
+        \item If in the last three turns, the player/opponent acted differently from
+            each other and they're alternating, then change next defect to
+            cooperate.  (Doesn't block third rule.)
+        \item Otherwise, do tit-for-tat.
+    \end{enumerate}
+
+Start in normal mode, but every 25 turns starting with the 27th turn,
+re-evaluate the mode.  Enter defect mode if any of the following
+conditions hold:
+
+    \begin{itemize}
+        \item Detected random:  Opponent cooperated 7-18 times since last mode
+evaluation (or start) AND less than 70\% of opponent cooperation was in
+response to player's cooperation, i.e.
+    \texttt{cc\_count} / (\texttt{cc\_count}+\texttt{cd\_count}) < 0.7
+\item Detect defective:  Opponent cooperated fewer than 3 times since last mode
+evaluation.
+    \end{itemize}
+
+When switching to defect mode, defect immediately. The first two rules for
+normal mode require that the last three turns were in normal mode.  When starting
+normal mode from defect mode, defect on first move.
+
+
+\begin{figure}[!hbtp]
+    \begin{center}
+        \scriptsize
+        \begin{lstlisting}[language=Fortran,
+                           basicstyle=\ttfamily\tiny,
+                           frame=single,
+                           keywordstyle=\color{red}\bfseries,
+                           commentstyle=\color{teal}\itshape]
+       FUNCTION K42R(JPICK,MOVEN,ISCORE,JSCORE,RANDOM, JA)
+C BY OTTO BORUFSEN
+C TYPED FROM FORTRAN BY AX, 1/25/79
+      DIMENSION MHIST(2,2)
+      k42r=ja    ! Added 7/27/93 to report own old value
+C INITIALIZE FIRST MOVE
+      IF(MOVEN.NE.1)GOTO 20
+         L3MOV=0
+         L3ECH=0
+         IDEF=0
+         ICOOP=0
+         IPICK=0
+         DO 10 I=1,2
+         DO 10 J=1,2
+10       MHIST(I,J)=0
+         GO TO 500
+20    IF(MOVEN.EQ.2)GOTO 25
+C UPDATE MOVE HISTORY
+      MHIST(I2PCK+1,JPICK+1)=MHIST(I2PCK+1,JPICK+1)+1
+25    IF(IDEF.EQ.0)GOTO 30
+C OPPONENT HAS BEEN PROVED "RANDOM" OR
+C "DEFECTIVE",I DEFECT FOR 25 MOVES
+      K42R=1
+      GO TO 100
+30    IF(IPICK.EQ.0.OR.JPICK.EQ.0)GOTO 40
+C MUTUAL DEFECTIONS ON LAST MOVE.
+      L3MOV=L3MOV+1
+      IF(L3MOV.LT.3)GOTO 50
+C MUTUAL DEFECTION ON
+C LAST THREE MOVES.
+C I COOPERATE ONCE ON NEXT MOVE.
+      K42R=0
+      L3MOV=0
+      L3ECH=0
+      GOTO 100
+C ONE (OR BOTH) COOPERATED ON LAST MOVE.
+40    L3MOV=0
+      IF(IPICK.EQ.JPICK)GOTO 45
+      IF(JPICK.NE.I2PCK.OR.IPICK.NE.J2PCK)GOTO 45
+C ECHO-EFFECT ON LAST MOVE.
+      L3ECH=L3ECH+1
+      IF(L3ECH.LT.3)GOTO 50
+C ECHO-EFFECT ON LAST THREE MOVES.
+C MY NEXT DEFECTION WILL BE SUBSTITUTED
+C BY A COOPERATION.
+      L3ECH=0
+      L3MOV=0
+      ICOOP=1
+      GOTO 50
+45    L3ECH=0
+C PLAY 'TIT FOR TAT' AS MAIN RULE.
+50    K42R=JPICK
+100   IF(MOD(MOVEN-2,25).NE.0.OR.MOVEN.EQ.2)GOTO 650
+C ON EVERY 25 MOVES:
+C CHECK IF OPPONENT SEEMS TO BE
+C 'RANDOM' OR 'DEFECTIVE'.
+      IDEF=0
+      JNCOP=MHIST(1,1)+MHIST(2,1)
+C IS OPPONENT 'RANDOM'?
+      IF(JNCOP.GT.17)GOTO 155
+      IF(JNCOP.LT.8)GOTO 130
+      IF(100*MHIST(1,1)/JNCOP.LT.70)IDEF=1
+      GOTO 155
+C IS OPPONENT 'DEFECTIVE'?
+130   IF(JNCOP.LT.3)IDEF=1
+155   DO 160 I=1,2
+      DO 160 J=1,2
+160   MHIST(I,J)=0
+      IF(IDEF.EQ.0)GOTO 650
+C OPPONENT SEEMS TO BE
+C 'RANDOM' OR 'DEFECTIVE'.
+C I DEFECT FOR NEXT 25 MOVES.
+      ICOOP=0
+      L3MOV=0
+      L3ECH=0
+      GOTO 600
+C I COOPERATE.
+500   K42R=0
+      GOTO 650
+C I DEFECT.
+600   K42R=1
+650   IF(ICOOP.EQ.0.OR.K42R.EQ.0)GOTO 660
+         ICOOP=0
+         K42R=0
+660   I2PCK=IPICK
+      J2PCK=JPICK
+      IPICK=K42R
+      RETURN
+      END
+        \end{lstlisting}
+        \caption{Fortran Source code for original k42r strategy submitted
+        to Axelrod's second tournament.}
+        \label{fig:k42r_fortran}
+    \end{center}
+\end{figure}
+
+\section{List of all strategies}\label{app:list_of_all_players}
+
+Here we list all the strategies including both the original and the ones from
+the \AXL{} library. Their ranks are shown as: Rank in full tournament / Rank in
+full tournament with 1\% noise / Rank in full tournament with 5\% noise / Rank
+in original tournament (if an original strategy).
+
+\begin{multicols}{2}
+    \begin{enumerate}
+            \input{./assets/list_of_all_players.tex}
+    \end{enumerate}
+\end{multicols}
+
+\section{Interaction distributions}\label{app:opponents_distributions}
+
+Here we show the distributions of interactions in terms of cooperation rates and
+payoffs for both the original tournament and the expanded \AXL{} tournament.
+
+\begin{figure}[!hbtp]
+    \begin{center}
+        \includegraphics[width=.75\textwidth]{./assets/distribution_of_opponents_comparison.pdf}
+        \caption{\textbf{Interaction distributions in the original and \AXL{} tournaments.}
+        Distributions of pairwise interaction cooperation rates and payoffs for
+        the \AXL{} tournament and the original tournament. The
+        cooperation rate distributions are strongly skewed towards one,
+        indicating that a large fraction of interactions are highly cooperative.
+        In the \AXL{} tournament, however, there is also a visible tail
+        close to zero cooperation, indicating the presence of exploitative
+        interactions that are largely absent from the original tournament. This
+        difference may help explain why highly cooperative strategies such as
+        \TFT{} become less effective in more diverse tournaments, where
+        strategies capable of exploiting others are more successful. The payoff
+        distributions are similarly skewed around mutual cooperation payoffs,
+        although noticeable differences between the tournaments remain. Overall,
+        these results suggest that the interaction environments induced by the
+        tournaments are highly structured rather than uniform across behavioural
+        space.}
+        \label{fig:original_tournament_interaction_distributions}
+    \end{center}
+\end{figure}
+
+\section{Probabilistic ending tournament}\label{app:probiblitist_distributions}
+
+Axelrod originally intended the second tournament to use probabilistic match
+endings rather than fixed match lengths. However, in practice, for a given
+continuation probability, what is described in the paper is that he sampled five different match lengths, and each
+pair of strategies used each of these five match lengths once. This is also
+the approach we followed when replicating the tournament.
+
+Here, we perform an additional sensitivity analysis to evaluate whether our
+results depend sensitively on the precise interpretation of the tournament
+stopping rule by considering matches that end probabilistically rather than
+after a fixed number of turns.
+
+Specifically, we consider a continuation probability corresponding to an
+expected match length of 151 turns. Under this implementation, after each turn
+the match continues with probability $150/151$ and ends with probability
+$1/151$. We repeat this
+full tournament 1000 times. The results are shown in
+Supplementary Figure~\ref{fig:probabilistic_ending_tournament}.
+
+Overall, the main conclusions remain unchanged. In particular, TFT ($k92r$)
+still ranks first, while $k36r$ remains the lowest-performing strategy.
+Although some strategies experience modest rank shifts under probabilistic
+endings, these changes are relatively small and remain within the range of
+variation already observed when reproducing the tournament using fixed match
+lengths.
+
+\begin{figure}[!hbtp]
+    \begin{center}
+        \includegraphics[width=.75\textwidth]{./assets/probalistic_ending_tournament.pdf}
+        \caption{
+        \textbf{Probabilistic ending tournament.}
+        Comparison between the original tournament rankings and reproduced
+        rankings under probabilistic and fixed match lengths. Panels~\textbf{a}
+        and~\textbf{b} show the reproduced ranks against the original ranks for
+        the probabilistic-ending and fixed-length implementations,
+        respectively. Panels~\textbf{c} and~\textbf{d} show the corresponding
+        rank differences relative to the original tournament. Despite small
+        variations for some strategies, the overall tournament structure and
+        the identities of the highest- and lowest-ranked strategies remain
+        unchanged. Panels~\textbf{b} and~\textbf{d} are also shown in the main
+        text (Figure~2); however, we reproduce them here to allow for direct
+        comparison with the probabilistic-ending tournament results.
+        }
+        \label{fig:probabilistic_ending_tournament}
+    \end{center}
+\end{figure}
+
+\bibliographystyle{naturemag}
+\bibliography{bibliography.bib}
+
+\end{document}

@@ -1,4 +1,7 @@
 \documentclass{article}
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL /tmp/main_old.tex   Tue Jun 23 10:50:41 2026
+%DIF ADD main.tex            Tue Jun 23 10:11:16 2026
 
 \usepackage[margin=1.5cm, includefoot, footskip=30pt]{geometry}
 
@@ -25,8 +28,10 @@
 \renewcommand{\baselinestretch}{1.3}
 
 \newcommand{\TFT}{\emph{TFT}}
-\newcommand{\GTFT}{\emph{GTFT}}
-\newcommand{\AON}{\emph{AON2}}
+%DIF 28a28-29
+\newcommand{\GTFT}{\emph{GTFT}} %DIF > 
+\newcommand{\AON}{\emph{AON2}} %DIF > 
+%DIF -------
 \newcommand{\IPD}{\emph{IPD}}
 \newcommand{\AXL}{\texttt{Axelrod-Python}}
 \newcommand{\AXLFortran}{\texttt{Axelrod\_fortran}}
@@ -41,14 +46,104 @@
 \author[4]{T. J. Gaffney}
 \author[5, 6]{Nikoleta E. Glynatsi}
 
-\affil[1]{School of Mathematics, Cardiff University, Cardiff, United Kingdom}
+%DIF 42c44
+%DIF < \affil[1]{School of Mathematics, Cardiff University, United Kingdom}
+%DIF -------
+\affil[1]{School of Mathematics, Cardiff University, Cardiff, United Kingdom} %DIF > 
+%DIF -------
 \affil[2]{Independent Researcher, Cardiff, United Kingdom}
-\affil[3]{Google Inc., Mountain View, California, USA}
-\affil[4]{Independent Researcher, Las Vegas, Nevada, USA}
+%DIF 44-45c46-47
+%DIF < \affil[3]{Google Inc., California, USA}
+%DIF < \affil[4]{Independent Researcher, Nevada, USA}
+%DIF -------
+\affil[3]{Google Inc., Mountain View, California, USA} %DIF > 
+\affil[4]{Independent Researcher, Las Vegas, Nevada, USA} %DIF > 
+%DIF -------
 \affil[5]{Discrete Event Simulations Teams, RIKEN Center for Computational Science, Kobe, Japan}
 \affil[6]{Mathematical Social Science Team, RIKEN Center for Interdisciplinary Theoretical and Mathematical Sciences, Wako, Japan}
 \affil[$*$]{Corresponding author: KnightVA@cardiff.ac.uk.}
 \date{}
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
+\providecommand{\DIFmodend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF HYPERREF PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{\texorpdfstring{\DIFaddtex{#1}}{#1}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{\texorpdfstring{\DIFdeltex{#1}}{}} %DIF PREAMBLE
+\newcommand{\DIFscaledelfig}{0.5}
+%DIF HIGHLIGHTGRAPHICS PREAMBLE %DIF PREAMBLE
+\RequirePackage{settobox} %DIF PREAMBLE
+\RequirePackage{letltxmacro} %DIF PREAMBLE
+\newsavebox{\DIFdelgraphicsbox} %DIF PREAMBLE
+\newlength{\DIFdelgraphicswidth} %DIF PREAMBLE
+\newlength{\DIFdelgraphicsheight} %DIF PREAMBLE
+% store original definition of \includegraphics %DIF PREAMBLE
+\LetLtxMacro{\DIFOincludegraphics}{\includegraphics} %DIF PREAMBLE
+\newcommand{\DIFaddincludegraphics}[2][]{{\color{blue}\fbox{\DIFOincludegraphics[#1]{#2}}}} %DIF PREAMBLE
+\newcommand{\DIFdelincludegraphics}[2][]{% %DIF PREAMBLE
+\sbox{\DIFdelgraphicsbox}{\DIFOincludegraphics[#1]{#2}}% %DIF PREAMBLE
+\settoboxwidth{\DIFdelgraphicswidth}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\settoboxtotalheight{\DIFdelgraphicsheight}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\scalebox{\DIFscaledelfig}{% %DIF PREAMBLE
+\parbox[b]{\DIFdelgraphicswidth}{\usebox{\DIFdelgraphicsbox}\\[-\baselineskip] \rule{\DIFdelgraphicswidth}{0em}}\llap{\resizebox{\DIFdelgraphicswidth}{\DIFdelgraphicsheight}{% %DIF PREAMBLE
+\setlength{\unitlength}{\DIFdelgraphicswidth}% %DIF PREAMBLE
+\begin{picture}(1,1)% %DIF PREAMBLE
+\thicklines\linethickness{2pt} %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\framebox(1,1){}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\line( 1,1){1}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,1){\line(1,-1){1}}}% %DIF PREAMBLE
+\end{picture}% %DIF PREAMBLE
+}\hspace*{3pt}}} %DIF PREAMBLE
+} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbegin}{\DIFaddbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddend}{\DIFaddend} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbegin}{\DIFdelbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelend}{\DIFdelend} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbegin}{\DIFOaddbegin \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbegin}{\DIFOdelbegin \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbeginFL}{\DIFaddbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddendFL}{\DIFaddendFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbeginFL}{\DIFdelbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelendFL}{\DIFdelendFL} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbeginFL}{\DIFOaddbeginFL \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+%DIF COLORLISTINGS PREAMBLE %DIF PREAMBLE
+\RequirePackage{listings} %DIF PREAMBLE
+\RequirePackage{color} %DIF PREAMBLE
+\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
+%DIF DIFCODE_UNDERLINE %DIF PREAMBLE
+  moredelim=[il][\color{red}\sout]{\%DIF\ <\ }, %DIF PREAMBLE
+  moredelim=[il][\color{blue}\uwave]{\%DIF\ >\ } %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
+	language=DIFcode, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
 
 \begin{document}
 
@@ -76,7 +171,7 @@ under noise.
 \textbf{keywords:} iterated prisoner's dilemma, evolution of cooperation,
 replication study, reproducible social science.
 
-\section*{Introduction}\label{sec:introduction}
+\section*{\DIFdelbegin \DIFdel{Main}\DIFdelend \DIFaddbegin \DIFadd{Introduction}\DIFaddend }\label{sec:introduction}
 
 Cooperation is fundamental to the organization of societies, yet its
 persistence remains a central puzzle in evolutionary biology and the social
@@ -138,10 +233,16 @@ These pioneering tournaments shaped decades of research on cooperation, yet the
 archival record surrounding them is incomplete. For the first tournament, only
 the published report survives; the original source code has been lost. For the
 second tournament, the Fortran implementation of the submitted strategies
-remains available online (see
-\url{http://www-personal.umich.edu/~axe/research/Software/CC/CC2/TourExec1.1.f.html},
+remains available online \DIFdelbegin \footnote{\DIFdel{See
+}%DIFDELCMD < \url{http://www-personal.umich.edu/~axe/research/Software/CC/CC2/TourExec1.1.f.html}
+%DIFDELCMD < %%%
+\DIFdel{accessed on 2025-09-30.}}%DIFAUXCMD
+\addtocounter{footnote}{-1}%DIFAUXCMD
+\DIFdel{,
+}\DIFdelend \DIFaddbegin \DIFadd{(see
+}\url{http://www-personal.umich.edu/~axe/research/Software/CC/CC2/TourExec1.1.f.html}\DIFadd{,
 accessed on 2025-09-30),
-but the final code used in Axelrod's reported tournaments has not been preserved.
+}\DIFaddend but the final code used in Axelrod's reported tournaments has not been preserved.
 
 This highlights a broader challenge of software reproducibility in
 the \IPD{} literature. Over the past 50 years, hundreds of strategies have been
@@ -203,9 +304,13 @@ for future use the strategies of his second tournament.
 
 \section*{Results}\label{sec:reviving}
 
-\subsection*{Reviving the tournament.}
+%DIF <  \section{Reviving the tournament}\label{sec:reviving}
+\DIFaddbegin \subsection*{\DIFadd{Reviving the tournament.}}
+\DIFaddend 
 
-Axelrod's original tournaments cannot be fully replicated. For the first
+\DIFdelbegin \textbf{\DIFdel{Reviving the tournament.}}
+%DIFAUXCMD
+\DIFdelend Axelrod's original tournaments cannot be fully replicated. For the first
 tournament, the only surviving record is the published report; the source code
 has been lost. For the second tournament, however, the implementations of the 63
 submitted strategies remain available. As an example, the Fortran implementation
@@ -221,25 +326,77 @@ assemble tournaments (Fig.~\ref{fig:reviving_diagram}\textbf{b},\textbf{c}). For
 details on recovering, packaging, and releasing the original source code, see
 \textbf{Methods}.
 
-The major advantage of this approach is that no subjective reinterpretation was
+\DIFdelbegin %DIFDELCMD < \begin{figure}[t]
+%DIFDELCMD <   \begin{center}
+%DIFDELCMD <     \includegraphics[width=.755\textwidth]{./assets/Figure1.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\textbf{\DIFdelFL{Reviving Axelrod's second tournament code.}}
+    %DIFAUXCMD
+\textbf{\DIFdelFL{a,}} %DIFAUXCMD
+\DIFdelFL{Fortran code for \TFT{} (}\texttt{\DIFdelFL{k92r.f}}%DIFAUXCMD
+\DIFdelFL{). Each strategy takes as input the match state
+    (}\texttt{\DIFdelFL{J}}%DIFAUXCMD
+\DIFdelFL{: opponent's previous move; }\texttt{\DIFdelFL{M}}%DIFAUXCMD
+\DIFdelFL{: current turn number; }\texttt{\DIFdelFL{K}}%DIFAUXCMD
+\DIFdelFL{: player's cumulative score; }\texttt{\DIFdelFL{L}}%DIFAUXCMD
+\DIFdelFL{: opponent's cumulative score; }\texttt{\DIFdelFL{R}}%DIFAUXCMD
+\DIFdelFL{: random number in $[0,1]$; }\texttt{\DIFdelFL{JA}}%DIFAUXCMD
+\DIFdelFL{: player's previous move) and returns 0 (cooperate) or 1 (defect).
+    }\textbf{\DIFdelFL{b,}} %DIFAUXCMD
+\DIFdelFL{Overview of how the three codebases interact. }%DIFDELCMD < \AXLFortran{} %%%
+\DIFdelFL{creates strategy instances for each
+    player. Tournaments and matches are managed by \AXL{}, which, at each turn, calls
+    the corresponding }%DIFDELCMD < \AXLFortran{} %%%
+\DIFdelFL{instance; this, in turn, invokes the original
+    Fortran code to produce a decision from the match history.
+    }\textbf{\DIFdelFL{c,}} %DIFAUXCMD
+\DIFdelFL{Turn-by-turn execution. On the first turn, }%DIFDELCMD < \AXLFortran{} %%%
+\DIFdelFL{initializes
+    the parameters required by the Fortran implementation, queries it for a
+    decision, and returns the move to \AXL{}, which plays it and updates the
+    history. On each subsequent turn: (1) the previous outcome is recorded and the
+    history updated; (2) }%DIFDELCMD < \AXLFortran{} %%%
+\DIFdelFL{accesses the updated history; (3) formats it
+    into the inputs expected by the Fortran code; (4) calls the Fortran function and
+    receives a decision; and (5) \AXL{} plays the decision. The process repeats until
+    the match ends.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:reviving_diagram}
+%DIFDELCMD <   \end{center}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend The major advantage of this approach is that no subjective reinterpretation was
 introduced. The only modifications were minimal adjustments for compiler
 compatibility. For several strategies, the Fortran source code is the only
 surviving description; these strategies are therefore run and evaluated exactly
 as originally written. This constitutes the most faithful reproduction of
 Axelrod's work to date.
 
-\subsection*{Reproducing Axelrod's second tournament.}
+\DIFdelbegin %DIFDELCMD < \noindent
+%DIFDELCMD < %%%
+\DIFdelend \subsection*{Reproducing Axelrod's second tournament.}
 
-Axelrod's second tournament included 63 strategies. While Axelrod named a few
+\DIFdelbegin %DIFDELCMD < \noindent
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Running the tournament.}}
+%DIFAUXCMD
+\DIFdelend Axelrod's second tournament included 63 strategies. While Axelrod named a few
 explicitly, most were referred to only by their ranking in the original
 tournament or by the names of the individuals who submitted them. We now have
 access to the function names of the Fortran implementations. In what follows, we
 refer to strategies by their function names, supplemented by Axelrod's names
 when available. A complete list of the strategies, their authors, their original
 rankings, the names provided by Axelrod (where available), and their function
-names is given in the \SI~(S1). Notably, the original tournament did not include
+names is given in the \SI~(S1). \DIFaddbegin \DIFadd{Notably, the original tournament did not include
 several strategies that are now considered standard benchmarks in the repeated games literature, such as Cooperator (Always
-Cooperate), Defector (Always Defect), or Win--Stay--Lose--Shift~\cite{nowak1993strategy}.
+Cooperate), Defector (Always Defect), or Win--Stay--Lose--Shift~\mbox{%DIFAUXCMD
+\cite{nowak1993strategy}}\hskip0pt%DIFAUXCMD
+.
+}\DIFaddend 
 
 Axelrod use the same payoff matrix as in the first tournament, with
 \(T=5\), \(R=3\), \(P=1\), and \(S=0\).
@@ -265,10 +422,11 @@ same set to every pair of players. The text lists only four lengths
 (\(63, 77, 151, 308\)) even though five games were played. Using the reported
 average length of 151 moves, the missing length can be inferred to be \(156\),
 so we assume the complete set of match lengths to be \(\{63, 77, 151, 156, 308\}\).
-In \SI{} (\textbf{S10}), we consider the original set of players with a truly
+\DIFaddbegin \DIFadd{In \SI{} (}\textbf{\DIFadd{S10}}\DIFadd{), we consider the original set of players with a truly
 probabilistic match length (with an average of 151 turns). We find that this
 does not lead to any meaningfully different conclusions from the analysis
 presented here.
+}\DIFaddend 
 
 It also appears that the only mechanism for averaging out stochastic variation in
 the original setup was the use of these five fixed repetitions. Without access to
@@ -278,7 +436,11 @@ Axelrod's second tournament a total of \input{./assets/number_of_original_repeti
 For each run of the tournament, we use the same five match lengths
 (\(63, 77, 151, 156, 308\)) for every pairing of strategies. \\
 
-In Fig.~\ref{fig:replicated_tournament}\textbf{a}, we compare the original rankings with
+\DIFdelbegin %DIFDELCMD < \noindent
+%DIFDELCMD < %%%
+\textbf{\DIFdel{The winners, the losers, and the differences.}}
+%DIFAUXCMD
+\DIFdelend In Fig.~\ref{fig:replicated_tournament}\textbf{a}, we compare the original rankings with
 those obtained in our replication, with strategies sorted according to their
 original ranks. As we can see, the winner of the tournament remains \TFT, while the strategy
 \texttt{k36r}, authored by Roger Hotz, again ranks last.
@@ -305,7 +467,8 @@ first call \texttt{ICOOP} is effectively treated as $0$, but in later matches th
 assumption no longer holds, meaning that while in the first match \texttt{ICOOP}
 starts at $0$ and increases as expected, in subsequent matches its (undefined)
 value can persist across calls. The corrected version of this strategy is shown in
-Supplementary Figure~1. It is unclear whether this bug affected the tournament
+\DIFdelbegin \textbf{\DIFdel{Extended Data Fig. 1}}%DIFAUXCMD
+\DIFdel{. }\DIFdelend \DIFaddbegin \DIFadd{Supplementary Figure~1. }\DIFaddend It is unclear whether this bug affected the tournament
 results reported in 1980. One possibility is that each match was run in isolation,
 which would have prevented the error from arising. In our analysis we use the
 corrected version of the strategy.
@@ -313,7 +476,8 @@ corrected version of the strategy.
 In Fig.~\ref{fig:replicated_tournament}\textbf{c}, we examine the average scores of the
 strategies. Champion shows a noticeable drop relative to the now
 second and third ranked strategies. However, its mean score remains very close to that
-of the rest of the top ten (see Supplementary Table~1).
+of the rest of the top ten (see \DIFdelbegin \textbf{\DIFdel{Extended Data Table 1}}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \DIFadd{Supplementary Table~1}\DIFaddend ).
 Fig.~\ref{fig:replicated_tournament}\textbf{d} presents violin plots of the
 score distributions for these top 15 strategies across the
 \input{./assets/number_of_original_repetitions.tex} repetitions. Champion
@@ -321,21 +485,60 @@ rarely outperforms the second or third ranked strategies, doing so in only a
 single tournament, confirming that, at least in this version, Champion
 is not as strong as originally reported.
 
-An interesting observation is that strategies such as \texttt{k32r} and
+\DIFdelbegin %DIFDELCMD < \begin{figure}[!hbtp]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=.9\textwidth]{./assets/original_tournament_reproducing.pdf}
+%DIFDELCMD < %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\textbf{\DIFdelFL{Reproducing Axelrod's second tournament.}}
+%DIFAUXCMD
+\textbf{\DIFdelFL{a,}} %DIFAUXCMD
+\DIFdelFL{Comparison of the original rankings and the replicated rankings.
+Strategies are ordered by their original ranks; \TFT{} again
+emerges as the overall winner, while }\texttt{\DIFdelFL{k36r}} %DIFAUXCMD
+\DIFdelFL{again ranks last.
+}\textbf{\DIFdelFL{b,}} %DIFAUXCMD
+\DIFdelFL{Differences in rank between the original and reproduced tournaments,
+ordered from most negative to most positive change. Most strategies shift by
+only 1-3 positions, though a few exhibit larger changes, including Champion
+(}\texttt{\DIFdelFL{k61r}}%DIFAUXCMD
+\DIFdelFL{).
+}\textbf{\DIFdelFL{c,}} %DIFAUXCMD
+\DIFdelFL{Mean scores of all strategies. Champion's
+average score drops relative to the other three strategies but remains close to
+the rest of the top ten.
+}\textbf{\DIFdelFL{d,}} %DIFAUXCMD
+\DIFdelFL{Violin plots showing the distribution of scores for the top 15
+strategies across all repetitions.
+}\textbf{\DIFdelFL{e,}} %DIFAUXCMD
+\DIFdelFL{Results under alternative replication approaches, including with and
+without self-interactions and using a Python re-implementation of Champion.
+Across all settings, \TFT{} remains the winner, while Champion exhibits the
+largest change in ranking.}}
+  %DIFAUXCMD
+%DIFDELCMD < \label{fig:replicated_tournament}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend An interesting observation is that strategies such as \texttt{k32r} and
 \texttt{k75r} occasionally achieve the maximum possible score of 2.9. Across all
 repetitions, these strategies won 0.8\% and 2.3\% of the tournaments,
-respectively (Supplementary Table~1).
+respectively (\DIFdelbegin \textbf{\DIFdel{Extended Data Table 1}}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \DIFadd{Supplementary Table~1}\DIFaddend ).
 They received little attention in the original tournament, likely because their
 high variance obscured their potential relative to consistently strong
 performers such as \TFT{}. Another strong and comparatively stable strategy is
 \texttt{k42r}, which won 31.5\% of our replicated tournaments; for comparison,
-\TFT{} won 63.3\% (Supplementary Table~1).
+\TFT{} won 63.3\% (\DIFdelbegin \textbf{\DIFdel{Extended Data Table 1}}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \DIFadd{Supplementary Table~1}\DIFaddend ).
 Because the original tournament is a single realization, a different random seed
 could plausibly have produced a different winner: namely, on another roll of the
 dice, \texttt{k42r} (Otto Borufsen) might well have been crowned the winner.
 
 The source code for \texttt{k42r}, together with a description of the strategy's
-behaviour, is provided in the \SI~(S7, Supplementary Figure~5). In summary, the strategy has two states:
+behaviour, is provided in \DIFdelbegin \DIFdel{in }\DIFdelend the \SI~(\DIFdelbegin \DIFdel{S5, Figure 1}\DIFdelend \DIFaddbegin \DIFadd{S7, Supplementary Figure~5}\DIFaddend ). In summary, the strategy has two states:
 \emph{normal} and \emph{defecting}. In its normal state, it behaves much like
 \TFT{}, but it includes mechanisms to recover from mutual defection and to
 escape alternating defections. Every 25 turns, it evaluates the opponent's
@@ -344,7 +547,7 @@ or highly defective. The \texttt{k42r} strategy can thus be viewed as a more
 sophisticated and adaptive variant of \TFT{}. These mechanisms are likely
 intended to prevent endless retaliation and to guard against exploitation by
 less cooperative opponents. However, in Axelrod's original tournament,
-\texttt{k42r} ranked only 3rd, suggesting that these mechanisms were not
+\texttt{k42r} ranked only \DIFdelbegin \DIFdel{3th}\DIFdelend \DIFaddbegin \DIFadd{3rd}\DIFaddend , suggesting that these mechanisms were not
 particularly advantageous/or used against the original pool of strategies
 and highly cooperative environment.
 
@@ -369,7 +572,11 @@ commands, though the implemented version seems to
 interact as expected.
 \end{itemize}
 
-Axelrod conducted an analysis to identify what he termed ``representative
+\DIFdelbegin %DIFDELCMD < \noindent
+%DIFDELCMD < %%%
+\textbf{\DIFdel{The representative strategies.}}
+%DIFAUXCMD
+\DIFdelend Axelrod conducted an analysis to identify what he termed ``representative
 strategies''~\cite{Axelrod1980b}. These were strategies that, according to a
 linear regression model, served as strong predictors of overall performance
 (average score). The representative strategies identified in the original
@@ -379,7 +586,10 @@ an \(R^2\) value of 0.979,
 indicating that 97\% of the variance in overall
 performance could be explained by the model. For completeness, the coefficients
 of this regression (as reported in~\cite{Axelrod1980b}) are listed in
-Supplementary Figure~2.
+\DIFdelbegin \textbf{\DIFdel{Extended Data Fig. 2}}%DIFAUXCMD
+\DIFdel{.
+}\DIFdelend \DIFaddbegin \DIFadd{Supplementary Figure~2.
+}\DIFaddend 
 
 We replicated Axelrod's linear regression analysis and evaluated the predictive
 power of the original model using our reproduced tournament data. We
@@ -391,12 +601,17 @@ discrepancies in individual rankings.
 To further assess the robustness of the model, we performed a backward
 elimination procedure to examine how \(R^2\) changes as the number of predictor
 strategies increases. We find that the largest gain occurs when five predictors
-are included, after which improvements are small (Supplementary Figure~2.). This suggests that
+are included, after which improvements are small (\DIFdelbegin \textbf{\DIFdel{Extended Data Fig. 2}}%DIFAUXCMD
+\DIFdel{.}\DIFdelend \DIFaddbegin \DIFadd{Supplementary Figure~2.}\DIFaddend ). This suggests that
 Axelrod's choice of five representative strategies was reasonable. Whether this
 selection was the outcome of a systematic feature selection procedure or a
 judgment call remains unclear; in either case, it appears well chosen.\\
 
-Here we ask: \emph{what was the original tournament like?} The answer is that it
+\DIFdelbegin %DIFDELCMD < \noindent
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Cooperation in the original tournament.}}
+%DIFAUXCMD
+\DIFdelend Here we ask: \emph{what was the original tournament like?} The answer is that it
 was, in fact, highly cooperative. The mean cooperation rate across the
 tournaments is 75\%. When we plot cooperation rates against the original
 rankings (Fig.~\ref{fig:original_tournament_cooperation}\textbf{a}), most strategies are
@@ -425,34 +640,80 @@ were explicitly designed to resemble \TFT{} or to cooperate effectively with
 \TFT{}-like rules, hence their high levels of cooperation and the
 symmetry in their interactions.\\
 
-\subsection*{Revisiting the tournament.}
+\DIFdelbegin %DIFDELCMD < \begin{figure}[!hbtp]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=\textwidth]{./assets/original_tournament_cooperation.pdf}
+%DIFDELCMD < %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\textbf{\DIFdelFL{Cooperation in Axelrod's second tournament.}}
+%DIFAUXCMD
+\textbf{\DIFdelFL{a,}} %DIFAUXCMD
+\DIFdelFL{Mean cooperation rate by original ranking. Most strategies are highly
+cooperative, with the exception of those at the bottom of the ranking, which fall
+below 50\%. }\textbf{\DIFdelFL{b,}} %DIFAUXCMD
+\DIFdelFL{Cooperation rates between each pair of players, players
+are ordered by their original ranking. }\textbf{\DIFdelFL{c,}} %DIFAUXCMD
+\DIFdelFL{Deviation from symmetry in
+pairwise cooperation rates, defined as the difference between cooperation matrices
+and their transposes. Values close to zero indicate that both strategies cooperate
+with one another at the same rate.}}
+  %DIFAUXCMD
+%DIFDELCMD < \label{fig:original_tournament_cooperation}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
 
-We investigate how the tournament outcomes would change if Axelrod had received
-additional submissions. To this end, we begin by asking what would have happened
+%DIFDELCMD < %%%
+\DIFdelend \subsection*{Revisiting the tournament.}
+
+\DIFdelbegin %DIFDELCMD < \noindent
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Extra invitations.}}
+%DIFAUXCMD
+\DIFdelend We investigate how the \DIFdelbegin \DIFdel{results }\DIFdelend \DIFaddbegin \DIFadd{tournament outcomes }\DIFaddend would change if Axelrod had received
+additional submissions. \DIFdelbegin \DIFdel{The \AXL{} library includes
+209 strategies that did not appear in the }\DIFdelend \DIFaddbegin \DIFadd{To this end, we begin by asking what would have happened
 had several well-known strategies from the \IPD{} literature been submitted to
-the original tournament. We consider classical strategies such as Cooperator, Defector,
-Win--Stay--Lose--Shift, and Generous \TFT{}~\cite{nowak1992tit} (\GTFT), among
+the }\DIFaddend original tournament. We \DIFdelbegin \DIFdel{therefore examine the effect of including new strategies . We do this by first simulating a tournament with all 
+}%DIFDELCMD < \input{./assets/number_of_strategies_in_full_tournament.tex} %%%
+\DIFdel{strategies
+repeating each match-length }\DIFdelend \DIFaddbegin \DIFadd{consider classical strategies such as Cooperator, Defector,
+Win--Stay--Lose--Shift, and Generous \TFT{}~\mbox{%DIFAUXCMD
+\cite{nowak1992tit} }\hskip0pt%DIFAUXCMD
+(\GTFT), among
 others. We also include more recent strategies, such as
-``All-or-nothing-2''~\cite{hilbe2017memory} (\AON) and EvolvedLookerUp2 2
-2~\cite{Knight2017}.
+``All-or-nothing-2''~\mbox{%DIFAUXCMD
+\cite{hilbe2017memory} }\hskip0pt%DIFAUXCMD
+(\AON) and EvolvedLookerUp2 2
+2~\mbox{%DIFAUXCMD
+\cite{Knight2017}}\hskip0pt%DIFAUXCMD
+.
+}
 
-We rerun the tournament using the original set of strategies while adding each
+\DIFadd{We rerun the tournament using the original set of strategies while adding each
 of the strategies listed in
 Table~\ref{tbl:extra_invitations_classic_strategies}. For each tournament, we
 record the rank of the ``newly invited'' strategy, while also reporting
 \TFT{}'s rank and the winner of the tournament. Throughout this section, we use
 Axelrod's original tournament setting, consisting of five repetitions of
 matches with the lengths described in the previous section. For computational
-efficiency, each tournament is repeated 250 times.
+efficiency, each tournament is repeated }\DIFaddend 250 times.
+\DIFdelbegin \DIFdel{This reduced number of repetitions was
+due to
+the combinatorial difficulty of running such a large tournament. This
+full tournament will be discussed subsequently. We use the interactions
+from this full tournament to see the
+effect of first adding a single new strategy, then considering all possible pairs, triples, and quadruples }\DIFdelend \DIFaddbegin 
 
-Several benchmark strategies, including Win--Stay--Lose--Shift and
+\DIFadd{Several benchmark strategies, including Win--Stay--Lose--Shift and
 \AON{} (a delayed version of Win--Stay--Lose--Shift), fail to outperform
 \TFT{}. Similarly, EvolvedLookerUp2 2 2, despite its ability to exploit weaker
 opponents, does not surpass \TFT{}. \GTFT{} achieves the third highest score
 overall, but none of these strategies alters \TFT{}'s position as the winner of
 the tournament.
+}
 
-We find that the only strategy capable of changing the outcome of the
+\DIFadd{We find that the only strategy capable of changing the outcome of the
 tournament is Anti Tit For Tat. This strategy begins with cooperation and
 subsequently plays the opposite of its opponent's previous move. Although
 simple and seemingly counterintuitive, in repeated games with a finite expected
@@ -463,33 +724,35 @@ cooperate more frequently than it cooperates itself. \TFT{} obtains a payoff of
 However, the key effect is that interactions with Anti Tit For Tat reduce
 \TFT{}'s overall average payoff while simultaneously leaving Anti Tit For Tat
 highly vulnerable to exploitation by other strategies.
-In particular, the more complex strategy \texttt{k42r} exploits Anti Tit For
+In particular, the more complex strategy }\texttt{\DIFadd{k42r}} \DIFadd{exploits Anti Tit For
 Tat especially effectively, achieving an average score of 3.5337 and rising to
 the top of the tournament. Thus, introducing Anti Tit For Tat has a dual
 effect: it lowers the average payoff of \TFT{}, while simultaneously creating
-opportunities for exploitative strategies such as \texttt{k42r} to achieve
+opportunities for exploitative strategies such as }\texttt{\DIFadd{k42r}} \DIFadd{to achieve
 exceptionally high scores.
+}
 
-This effect does not persist when all nine additional strategies are introduced
+\DIFadd{This effect does not persist when all nine additional strategies are introduced
 simultaneously. Under these conditions, \TFT{} benefits from interactions with
 a broader and more cooperative set of opponents, thereby weakening the
 disadvantage introduced by Anti Tit For Tat (Table~\ref{tbl:extra_invitations_classic_strategies}).
+}
 
 \begin{table}[!hbtp]
     \centering
     \resizebox{.65\textwidth}{!}{
     \input{./assets/extra_invitations_classic_strategies.tex}}
-    \caption{\textbf{Effect of adding classical strategies to Axelrod's second tournament.}
-    We examine how the results change when a single strategy from a set of
+    \caption{\textbf{\DIFaddFL{Effect of adding classical strategies to Axelrod's second tournament.}}
+    \DIFaddFL{We examine how the results change when a single strategy from a set of
     classical strategies from the literature is added to the original
     tournament. We also consider the case in which all of these strategies are
     included simultaneously. For each scenario, we report the added strategy,
     its rank, the rank of \TFT{}, the tournament winner, and both the winner's
-    average score and the overall average score of the tournament.}
+    average score and the overall average score of the tournament.}}
     \label{tbl:extra_invitations_classic_strategies}
 \end{table}
 
-We next extend this analysis by considering combinations of classical
+\DIFadd{We next extend this analysis by considering combinations of classical
 strategies, rather than introducing them individually or all at once.
 Specifically, we examine all possible subsets of the classical strategy set.
 For each subset size, we consider every possible combination of strategies that
@@ -501,75 +764,82 @@ strategies.
 This allows us to evaluate how the performance of \TFT{} changes as increasing
 numbers of classical strategies are introduced, and to identify patterns in how
 the composition of the tournament affects the outcomes. We also keep track of
-the performance of \texttt{k42r} to provide a broader comparison of how the
+the performance of }\texttt{\DIFadd{k42r}} \DIFadd{to provide a broader comparison of how the
 additional strategies influence tournament dynamics.
+}
 
-In Table~\ref{tbl:classical_strategies_combinations}, we show the winning
-probabilities of \TFT{} and \texttt{k42r} as a function of the subset size.
+\DIFadd{In Table~\ref{tbl:classical_strategies_combinations}, we show the winning
+probabilities of \TFT{} and }\texttt{\DIFadd{k42r}} \DIFadd{as a function of the subset size.
 For each subset size, the number of possible combinations differs; we denote
 this quantity by \(N\). We observe that the winning probability of \TFT{}
 displays an approximately symmetric pattern around the midpoint of the subset
 sizes: it initially decreases and then increases again. This symmetry arises
 directly from the combinatorial structure of the subsets.
 In particular, whenever Anti Tit For Tat is included in the tournament,
-\TFT{} ranks second while \texttt{k42r} ranks first. As a result, the winning
+\TFT{} ranks second while }\texttt{\DIFadd{k42r}} \DIFadd{ranks first. As a result, the winning
 probability of \TFT{} is determined entirely by how many subsets contain Anti
 Tit For Tat. For example, when two new strategies are introduced, there are
 \(36\) possible combinations, of which \(7\) include Anti Tit For Tat. These
 are precisely the tournaments in which \TFT{} fails to win. The same symmetry
 appears for subset sizes seven and two, six and three, and so forth, producing
 the symmetric pattern observed in Table~\ref{tbl:classical_strategies_combinations}.
+}
 
-In Figure~\ref{fig:classical_strategies_combinations}\textbf{a}, we show the
-distribution of the average payoffs achieved by \TFT{} and \texttt{k42r} across
+\DIFadd{In Figure~\ref{fig:classical_strategies_combinations}}\textbf{\DIFadd{a}}\DIFadd{, we show the
+distribution of the average payoffs achieved by \TFT{} and }\texttt{\DIFadd{k42r}} \DIFadd{across
 tournaments for each subset size. As the number of possible combinations
 increases, the diversity of tournament outcomes also increases, leading to
 broader payoff distributions. At the same time, the average payoffs tend to
 decrease as more strategies are included. Although the number of tournaments won
-by \texttt{k42r} increases for intermediate subset sizes, the average payoff of
+by }\texttt{\DIFadd{k42r}} \DIFadd{increases for intermediate subset sizes, the average payoff of
 \TFT{} remains consistently higher, indicating that \TFT{} still performs
 better overall on average.
-In Figure~\ref{fig:classical_strategies_combinations}\textbf{b}, we additionally
+In Figure~\ref{fig:classical_strategies_combinations}}\textbf{\DIFadd{b}}\DIFadd{, we additionally
 show the average cooperation levels across tournaments as a function of subset
 size. The cooperation distributions become widest for intermediate subset sizes,
 indicating greater diversity in the resulting interaction structures.
 Interestingly, these are also the conditions under which the performance of
 \TFT{} is reduced most strongly, suggesting that \TFT{} struggles most in
 environments with highly variable cooperation levels.
+}
 
 \begin{table}[!hbtp]
     \centering
     \resizebox{\textwidth}{!}{
     \input{./assets/classical_strategies_combinations.tex}}
-    \caption{\textbf{Winning probabilities of \TFT{} and \texttt{k42r} with
-    different combinations of classical strategies.} We consider all possible
+    \caption{\textbf{\DIFaddFL{Winning probabilities of \TFT{} and }\texttt{\DIFaddFL{k42r}} \DIFaddFL{with
+    different combinations of classical strategies.}} \DIFaddFL{We consider all possible
     combinations of the nine classical strategies listed in
     Table~\ref{tbl:extra_invitations_classic_strategies}. For each subset size,
     we evaluate every possible combination of strategies added to
     the original tournament, and we record the winning probabilities of \TFT{}
-    and \texttt{k42r}. The number of combinations for each subset size is
-    denoted by \(N\).}
+    and }\texttt{\DIFaddFL{k42r}}\DIFaddFL{. The number of combinations for each subset size is
+    denoted by \(N\).}}
     \label{tbl:classical_strategies_combinations}
 \end{table}
 
-The previous analysis focused on a small set of well-known classical strategies,
+\DIFadd{The previous analysis focused on a small set of well-known classical strategies,
 allowing us to systematically investigate how additional invitees alter
 tournament outcomes. We now extend this analysis to the full \AXL{} strategy
 library, substantially increasing both the diversity of opponents and the
 number of possible tournament configurations.
+}
 
-The \AXL{} library includes 209 strategies that did not appear in the original
+\DIFadd{The \AXL{} library includes 209 strategies that did not appear in the original
 tournament. As before, we begin with the original tournament consisting of the
 63 submitted strategies and examine what happens when additional strategies are
 introduced. For a given subset size, we consider every possible combination of
-strategies drawn from the 209 additional \AXL{} strategies and add them to the
+strategies }\DIFaddend drawn from the \DIFdelbegin \DIFdel{remaining pool.
+This yields a total of
+}\DIFdelend \DIFaddbegin \DIFadd{209 additional \AXL{} strategies and add them to the
 original tournament.
+}
 
-Due to the combinatorial growth in the number of possible tournaments, we limit
+\DIFadd{Due to the combinatorial growth in the number of possible tournaments, we limit
 our analysis to introducing up to four additional strategies. Even under this
 restriction, the total number of modified tournaments considered, obtained by
 summing over all subset sizes from one to four additional strategies, is
-78{,}760{,}569:
+}\DIFaddend 78{,}760{,}\DIFdelbegin \DIFdel{605 tournaments}\DIFdelend \DIFaddbegin \DIFadd{569}\DIFaddend :
 
 \begin{enumerate}
     \item Adding 1 strategy: $\binom{209}{1}=209$ tournaments.
@@ -587,36 +857,46 @@ winning the tournament when 1, 2, 3, or 4 additional strategies are included
 include \TFT{}, and high-scoring strategies such as \texttt{k75r},
 \texttt{k32r}, and \texttt{k42r}.
 
-A striking pattern is that the effect of additional invitees on \TFT{} remains
+A striking pattern is that the effect of \DIFdelbegin \DIFdel{extra invitations on \TFT{} is
+}\emph{\DIFdel{non-monotonic}}%DIFAUXCMD
+\DIFdel{.
+Adding }\DIFdelend \DIFaddbegin \DIFadd{additional invitees on \TFT{} remains
 non-monotonic, even when considering the much larger \AXL{} strategy library.
 The probability that \TFT{} wins does not simply decrease as more strategies
-are introduced. Instead, it fluctuates with subset size: adding a single
-additional strategy increases the probability that \TFT{} wins to
-approximately \(85\%\); with two invitees the probability decreases to
+are introduced. Instead, it fluctuates with subset size: adding }\DIFaddend a single
+additional \DIFdelbegin \DIFdel{invitee substantially
+}\emph{\DIFdel{increases}} %DIFAUXCMD
+\DIFdelend \DIFaddbegin \DIFadd{strategy increases }\DIFaddend the probability that \TFT{} wins \DIFdelbegin \DIFdel{(to
+about 85\%)}\DIFdelend \DIFaddbegin \DIFadd{to
+approximately \(85\%\)}\DIFaddend ; with two invitees the probability \DIFdelbegin \DIFdel{is lower (\(\sim\)71\%), with four invitees it is
+higher again (\(\sim\)75\%), and only with three invitees do we observe a drop
+(to \(\sim\)60\%). Overall, these results }\DIFdelend \DIFaddbegin \DIFadd{decreases to
 approximately \(71\%\); with three invitees it falls further to approximately
 \(60\%\); and with four invitees it increases again to approximately
 \(75\%\).
+}
 
-The previous analysis with classical strategies demonstrated that such
+\DIFadd{The previous analysis with classical strategies demonstrated that such
 non-monotonic behaviour can arise from the combinatorial interaction structure
 generated by particular subsets of opponents. In that setting, a single
 strategy, Anti Tit For Tat, was sufficient to substantially alter the
 performance of \TFT{} by simultaneously lowering its payoff and creating
-opportunities for more exploitative strategies such as \texttt{k42r}. This
+opportunities for more exploitative strategies such as }\texttt{\DIFadd{k42r}}\DIFadd{. This
 suggests that the observed fluctuations are not simply a property of the
 distribution of strategies, but can instead emerge from the interaction
 structures induced by specific combinations of opponents.
+}
 
-In the present setting, however, the number of possible tournaments and
+\DIFadd{In the present setting, however, the number of possible tournaments and
 interaction structures becomes substantially larger, making it difficult to
 fully characterize the precise mechanisms driving these fluctuations.
-Nevertheless, the results further highlight the robustness of \TFT{} in
-Axelrod's second tournament: despite the introduction of large numbers of
-additional strategies, \TFT{} remains difficult to unseat as the top
+Nevertheless, the results further }\DIFaddend highlight the robustness of \TFT{} in
+Axelrod's second tournament: \DIFdelbegin \DIFdel{it is }\DIFdelend \DIFaddbegin \DIFadd{despite the introduction of large numbers of
+additional strategies, \TFT{} remains }\DIFaddend difficult to unseat as the top
 performer. The next most successful strategy, \texttt{k42r}, remains competitive
-(e.g., winning up to \(\sim\)37\% of tournaments with three additional
+(e.g., winning up to \(\sim\)37\% \DIFaddbegin \DIFadd{of tournaments }\DIFaddend with three additional
 invitees), whereas strategies such as \texttt{k32r} and \texttt{k75r}, which
-can achieve high mean scores in some realizations, tend to become less
+can achieve high mean scores in some realizations, tend to \DIFdelbegin \DIFdel{be even }\DIFdelend \DIFaddbegin \DIFadd{become }\DIFaddend less
 effective as more entrants are introduced. \\
 
 \begin{table}[!hbtp]
@@ -630,7 +910,7 @@ effective as more entrants are introduced. \\
         five fixed match lengths, repeated
         250 times. Additional
         invitees are strategies drawn from the open-source \AXL{} library; a
-        full list is provided in \SI{} (S5 and S8), and source code/documentation are
+        full list is provided in \SI{} \DIFdelbeginFL \DIFdelFL{4 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{(S5 }\DIFaddendFL and \DIFdelbeginFL \DIFdelFL{6}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{S8)}\DIFaddendFL , and source code/documentation are
         referenced therein. We consider four cases: adding 1, 2, 3, or 4 extra
         strategies to the original field. The last row reports the sum across
         these strategies (noting that some wins accrue to strategies not
@@ -638,7 +918,11 @@ effective as more entrants are introduced. \\
         \label{tbl:alternate_extra_strategy_tournament_winner_proportion}
 \end{table}
 
-A natural question is how the results would change if the original tournament
+\DIFdelbegin %DIFDELCMD < \noindent
+%DIFDELCMD < %%%
+\textbf{\DIFdel{A noisy tournament.}}
+%DIFAUXCMD
+\DIFdelend A natural question is how the results would change if the original tournament
 had included \emph{noise}, i.e., a small probability that a player's intended
 action is flipped. Noise was among the main criticisms of Axelrod's study, since
 \TFT{} is not robust to accidental defections~\cite{molander1985optimal,
@@ -667,7 +951,11 @@ entirely fair: many authors would likely have incorporated explicit
 error-correction or forgiveness mechanisms had noise been part of the original
 rules.\\
 
-In this section, we examine how the original strategies perform in larger and more
+\DIFdelbegin %DIFDELCMD < \noindent
+%DIFDELCMD < %%%
+\textbf{\DIFdel{Large tournaments.}}
+%DIFAUXCMD
+\DIFdelend In this section, we examine how the original strategies perform in larger and more
 diverse tournaments. First, we combine the original submissions with the strategies
 from the Stewart and Plotkin (S \& P) tournament~\cite{Stewart2012}. Next, we run
 three large-scale tournaments using the full \AXL{} library under three noise
@@ -683,11 +971,15 @@ Axelrod's second tournament, the resulting relative rank changes for the origina
 strategies are modest (Fig.~\ref{fig:rank_change_in_sp_tournament}). The overall
 level of cooperation remains high (mean \(\approx 0.73\)), and the leading
 strategies are highly cooperative with one another, mirroring the qualitative
-pattern of the original tournament. Supplementary Table~3
-lists the top-performing strategies (see the \SI~(S4) for the full ranking). In
+pattern of the original tournament. \DIFdelbegin \textbf{\DIFdel{Extended Data Table 2}}
+%DIFAUXCMD
+\DIFdelend \DIFaddbegin \DIFadd{Supplementary Table~3
+}\DIFaddend lists the top-performing strategies (see the \SI~(\DIFdelbegin \DIFdel{S3}\DIFdelend \DIFaddbegin \DIFadd{S4}\DIFaddend ) for the full ranking). In
 this new tournament, ZD strategies are distributed across the ranking rather than
-concentrated at the top (\SI~(S4)), while \TFT{}, \texttt{k42r}, and generous variants
-(e.g., GTFT and ZD-GTFT-2) perform particularly well.
+concentrated at the top (\SI~(\DIFdelbegin \DIFdel{S3}\DIFdelend \DIFaddbegin \DIFadd{S4}\DIFaddend )), while \TFT{}, \texttt{k42r}, and generous variants
+(e.g., GTFT \DIFdelbegin \DIFdel{~\mbox{%DIFAUXCMD
+\cite{nowak1992tit} }\hskip0pt%DIFAUXCMD
+}\DIFdelend and ZD-GTFT-2) perform particularly well.
 
 The \AXL{} library contains more than 200 strategies and regularly hosts
 the largest \IPD{} tournaments to date (each time a new strategy is contributed,
@@ -695,7 +987,8 @@ the results are updated). We expand this tournament further by
 including all of the original Fortran strategies (omitting the Python duplicates). 
 This produces a tournament with
 \input{./assets/number_of_strategies_in_full_tournament.tex} strategies.
-Supplementary Table~5 shows the top 16 strategies of the tournament.
+\DIFdelbegin \textbf{\DIFdel{Extended Data Table 3}} %DIFAUXCMD
+\DIFdelend \DIFaddbegin \DIFadd{Supplementary Table~5 }\DIFaddend shows the top 16 strategies of the tournament.
 
 Rank changes relative to the reproduced tournament are shown in
 Fig.~\ref{fig:rank_change_in_axelrod_python_tournament}\textbf{a}.
@@ -734,7 +1027,8 @@ Instead, they align more closely with the principles identified in
 
 Finally, we consider the \AXL{} tournament with noise, using noise probabilities
 of \(1\%\) and \(5\%\). The results are shown in
-Supplementary Figures~3 and~4. As expected, the
+\DIFdelbegin \textbf{\DIFdel{Extended Data Figs. 3--4}}%DIFAUXCMD
+\DIFdel{. }\DIFdelend \DIFaddbegin \DIFadd{Supplementary Figures~3 and~4. }\DIFaddend As expected, the
 overall cooperation rate is lower than in the noiseless, reproduced, and
 reproduced with noise tournaments. Notably, several of the original submissions
 perform very well: the best performer from the original set ranks 5th with
@@ -746,7 +1040,7 @@ exploiting others'' was optimal. In the presence of errors, and against
 more complex competitors, these strategies make use of their additional
 mechanisms to maintain competitive payoffs and robust rankings.
 
-\section*{Discussion}\label{sec:discussion}
+\section*{\DIFdelbegin \DIFdel{Conclusion}\DIFdelend \DIFaddbegin \DIFadd{Discussion}\DIFaddend }\label{sec:discussion}
 
 Our study revisits one of the most influential computational experiments in the
 social sciences: Axelrod's second Iterated Prisoner's Dilemma (\IPD) tournament.
@@ -781,8 +1075,16 @@ adapted to noisy or diverse environments.
 
 This observation aligns with a broader literature showing that \TFT{} is not
 universally optimal. Variants such as
-Win--Stay--Lose--Shift, \GTFT, and ``All-or-nothing''
-strategies, as well as ``friendly rivals''~\cite{murase2020five} and strategies
+Win--Stay--Lose--Shift\DIFdelbegin \DIFdel{~\mbox{%DIFAUXCMD
+\cite{nowak1993strategy}}\hskip0pt%DIFAUXCMD
+, Generous
+\TFT{}~\mbox{%DIFAUXCMD
+\cite{nowak1992tit}}\hskip0pt%DIFAUXCMD
+}\DIFdelend , \DIFaddbegin \DIFadd{\GTFT, }\DIFaddend and ``All-or-nothing''
+\DIFdelbegin \DIFdel{~\mbox{%DIFAUXCMD
+\cite{hilbe2017memory}
+}\hskip0pt%DIFAUXCMD
+}\DIFdelend strategies, as well as ``friendly rivals''~\cite{murase2020five} and strategies
 discovered via reinforcement learning~\cite{Knight2017}, can outperform \TFT{}.
 Our contribution is to show that, even within Axelrod's original submission set,
 strategies that received little attention due to modest performance in the
@@ -790,7 +1092,7 @@ original tournament can excel when the environment is more diverse, or noisier.
 These results also help revise the common impression, shaped by the original
 tournament, that \TFT{} is universally the best performing strategy.
 
-More broadly, our results highlight that tournament rankings in repeated games
+\DIFaddbegin \DIFadd{More broadly, our results highlight that tournament rankings in repeated games
 are inherently shaped by the composition of the participating strategies.
 Strategies are not evaluated in isolation, but through the interactions that
 the tournament environment allows them to generate.
@@ -807,16 +1109,18 @@ cooperative interactions, which strongly favour reciprocal strategies such as
 \TFT{}. In contrast, the broader \AXL{} tournament includes a wider range of
 exploitative interactions, creating environments in which more exploitative or
 noise-tolerant strategies can become increasingly competitive.
+}
 
-This also raises a broader question regarding the environments in which these
+\DIFadd{This also raises a broader question regarding the environments in which these
 strategies are evaluated. To what extent are such tournament environments
 ``objective''? What would constitute an objective tournament environment for
 evaluating strategies? Should tournaments aim to sample interactions uniformly
 across behavioural space, or instead balance different forms of reciprocity,
 exploitation, and cooperation? We believe these are interesting questions for
 future work.
+}
 
-A second contribution of this work is methodological. To our knowledge, this is
+\DIFaddend A second contribution of this work is methodological. To our knowledge, this is
 the first effort to package and reproduce, according to contemporary best
 practices, code originally written in the 1980s. The archived materials~\cite{knight_2025_17250038} (at
 \url{https://doi.org/10.5281/zenodo.17250038})
@@ -896,19 +1200,24 @@ code.
 \section*{Data availability}
 The data generated and analysed in this study are available in the Zenodo
 repository~\cite{knight_2025_17250038} at
-\url{https://doi.org/10.5281/zenodo.17250038}. This archive includes the source
+\url{https://doi.org/10.5281/zenodo.17250038}. \DIFaddbegin \DIFadd{This archive includes the source
 data underlying every main-text figure, that is, the numerical results from which
 the graphs and charts are produced.
+}\DIFaddend 
 
 \section*{Code availability}
 The code used to generate and run the tournaments, as well as all analysis
-scripts, has been archived alongside the data in the Zenodo
-repository~\cite{knight_2025_17250038} at
-\url{https://doi.org/10.5281/zenodo.17250038}, which provides a permanent and
-citable reference to the exact version used in this study. The code is also
+scripts, has been archived alongside the data \DIFdelbegin \DIFdel{at the same Zenodo
+repositoryand
+}\DIFdelend \DIFaddbegin \DIFadd{in the Zenodo
+repository~\mbox{%DIFAUXCMD
+\cite{knight_2025_17250038} }\hskip0pt%DIFAUXCMD
+at
+}\url{https://doi.org/10.5281/zenodo.17250038}\DIFadd{, which provides a permanent and
+citable reference to the exact version used in this study. The code }\DIFaddend is also
 accessible via the project's online repository:
-\url{https://github.com/Axelrod-Python/revisiting-axelrod-second/}, and is
-released under the MIT License, an Open Source Initiative approved licence.
+\url{https://github.com/Axelrod-Python/revisiting-axelrod-second/}\DIFaddbegin \DIFadd{, and is
+released under the MIT License, an Open Source Initiative approved licence}\DIFaddend .
 Instructions for installation and reproduction are provided in the repository
 README.
 
@@ -918,8 +1227,8 @@ open source ecosystem that enabled this work, including NumPy, pandas, and
 Matplotlib. This study would not have been possible without the broader
 open source community.
 
-\section*{Funding}
-This work was not supported by any funding grants.
+\DIFaddbegin \section*{\DIFadd{Funding}}
+\DIFaddend This work was not supported by any funding grants.
 
 \section*{Author contributions}
 V.K., O.C., M.H.,  and N.E.G. designed the study. 
@@ -931,144 +1240,317 @@ V.K., M.H., and N.E.G. discussed the results and wrote the manuscript.
 
 There is no conflict of interest.
 
-\newpage
-
-\bibliographystyle{naturemag}
-\bibliography{bibliography.bib}
-
-% Main figures, grouped at the end per the journal layout requirements.
-\clearpage
-\begin{figure}[t]
-  \begin{center}
-    \includegraphics[width=\textwidth]{Figure_1.pdf}
-    \caption{\textbf{Reviving Axelrod's second tournament code.}
-    \textbf{a,} Fortran code for \TFT{} (\texttt{k92r.f}). Each strategy takes as input the match state
-    (\texttt{J}: opponent's previous move; \texttt{M}: current turn number; \texttt{K}: player's cumulative score; \texttt{L}: opponent's cumulative score; \texttt{R}: random number in $[0,1]$; \texttt{JA}: player's previous move) and returns 0 (cooperate) or 1 (defect).
-    \textbf{b,} Overview of how the three codebases interact. \AXLFortran{} creates strategy instances for each
-    player. Tournaments and matches are managed by \AXL{}, which, at each turn, calls
-    the corresponding \AXLFortran{} instance; this, in turn, invokes the original
-    Fortran code to produce a decision from the match history.
-    \textbf{c,} Turn-by-turn execution. On the first turn, \AXLFortran{} initializes
-    the parameters required by the Fortran implementation, queries it for a
-    decision, and returns the move to \AXL{}, which plays it and updates the
-    history. On each subsequent turn: (1) the previous outcome is recorded and the
-    history updated; (2) \AXLFortran{} accesses the updated history; (3) formats it
-    into the inputs expected by the Fortran code; (4) calls the Fortran function and
-    receives a decision; and (5) \AXL{} plays the decision. The process repeats until
-    the match ends.}
-    \label{fig:reviving_diagram}
-  \end{center}
-\end{figure}
-
-\clearpage
-\begin{figure}[!hbtp]
-    \centering
-    \includegraphics[width=.9\textwidth]{Figure_2.pdf}
-\caption{\textbf{Reproducing Axelrod's second tournament.}
-\textbf{a,} Comparison of the original rankings and the replicated rankings.
-Strategies are ordered by their original ranks; \TFT{} again
-emerges as the overall winner, while \texttt{k36r} again ranks last.
-\textbf{b,} Differences in rank between the original and reproduced tournaments,
-ordered from most negative to most positive change. Most strategies shift by
-only 1-3 positions, though a few exhibit larger changes, including Champion
-(\texttt{k61r}).
-\textbf{c,} Mean scores of all strategies. Champion's
-average score drops relative to the other three strategies but remains close to
-the rest of the top ten.
-\textbf{d,} Violin plots showing the distribution of mean scores for the top 15
-strategies across all repetitions (n = 25{,}000 independent tournament
-repetitions). For each strategy the orange marker is the mean score and the
-vertical orange bars span the extrema (minimum to maximum) of the distribution
-over the repetitions. The brown dashed line marks the maximum attainable mean
-score of 2.9.
-\textbf{e,} Results under alternative replication approaches, including with and
-without self-interactions and using a Python re-implementation of Champion.
-Across all settings, \TFT{} remains the winner, while Champion exhibits the
-largest change in ranking.}
-  \label{fig:replicated_tournament}
-\end{figure}
-
-\clearpage
-\begin{figure}[!hbtp]
-    \centering
-    \includegraphics[width=\textwidth]{Figure_3.pdf}
-\caption{\textbf{Cooperation in Axelrod's second tournament.}
-\textbf{a,} Mean cooperation rate by original ranking. Most strategies are highly
-cooperative, with the exception of those at the bottom of the ranking, which fall
-below 50\%. \textbf{b,} Cooperation rates between each pair of players, players
-are ordered by their original ranking. \textbf{c,} Deviation from symmetry in
-pairwise cooperation rates, defined as the difference between cooperation matrices
-and their transposes. Values close to zero indicate that both strategies cooperate
-with one another at the same rate.}
-  \label{fig:original_tournament_cooperation}
-\end{figure}
-
-\clearpage
-\begin{figure}[!hbtp]
-    \centering
-    \includegraphics[width=\textwidth]{Figure_4.pdf}
-    \caption{\textbf{Effect of additional classical strategies on average payoffs and tournament cooperation.}
-    \textbf{a,} Distributions of the average tournament payoffs achieved by
-    \TFT{} (\texttt{k92r}) and \texttt{k42r} as a function of the number of added classical
-    strategies. Violins show the distribution of outcomes across all possible
-    combinations of additional invitees, while lines indicate the mean payoff
-    for each subset size. \textbf{b,} Distribution of the average cooperation
-    levels across tournaments for each subset size. Intermediate subset sizes
-    produce the widest cooperation distributions, indicating greater diversity
-    in the resulting tournament interactions. These are also the conditions
-    under which \TFT{} performs least effectively relative to \texttt{k42r}. All
-    tournaments use the original tournament setting of five fixed match lengths
-    and are repeated 250 times. }
-  \label{fig:classical_strategies_combinations}
-\end{figure}
-
-\clearpage
-\begin{figure}[!hbtp]
-    \centering
-    \includegraphics[width=.88\textwidth]{Figure_5.pdf}
-    \caption{\textbf{Axelrod's second tournament with 1\% noise.}
-    \textbf{a,} Comparison of the original rankings and the rankings of the second
+%DIF < %%% FIGURES %%%%
+\DIFdelbegin %DIFDELCMD < \begin{figure}[!hbtp]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=.88\textwidth]{./assets/reproduced_with_noise.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\textbf{\DIFdelFL{Axelrod's second tournament with 1\% noise.}}
+    %DIFAUXCMD
+\textbf{\DIFdelFL{a,}} %DIFAUXCMD
+\DIFdelFL{Comparison of the original rankings and the rankings of the second
     tournament with noise. In the left column, strategies are ordered by their
     original ranks, and arrows indicate their ranks in the noisy tournament (right
     column). The arrow widths are proportional to the change in rank. Blue arrows
     indicate a positive change in rank, red arrows indicate a negative change in
     rank, and grey arrows indicate no change in rank.
-    \textbf{b,} Cooperation rates of strategies ordered by rank in this tournament.
-    \textbf{c,} Tournament cooperation rates across all repetitions for
+    }\textbf{\DIFdelFL{b,}} %DIFAUXCMD
+\DIFdelFL{Cooperation rates of strategies ordered by rank in this tournament.
+    }\textbf{\DIFdelFL{c,}} %DIFAUXCMD
+\DIFdelFL{Tournament cooperation rates across all repetitions for
     this tournament (green) and the reproduced tournament without noise (blue).
     We also plot the average cooperation rate (green or blue line) and report its value.
-    \textbf{d,} Pairwise cooperation rates between strategies. For each
+    }\textbf{\DIFdelFL{d,}} %DIFAUXCMD
+\DIFdelFL{Pairwise cooperation rates between strategies. For each
+    pair we calculate the cooperation rate of the row strategy towards the column
+    strategy and vice versa. The strategies are ordered by the ranks in this
+    tournament. For a full list of strategies see \SI~2 Table 1, \SI~3 Table 2
+    and \SI~6.
+    }\textbf{\DIFdelFL{e,}} %DIFAUXCMD
+\DIFdelFL{Differences in cooperation rates for each pair of strategies, again 
+    ordered by their rank in the reproduced tournament with noise.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:reproduced_with_noise}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < \begin{figure}[!hbtp]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=.90\textwidth]{./assets/stewart_and_plotkin_tournament.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\textbf{\DIFdelFL{Reproduction of Axelrod's second tournament with the addition
+    of the strategies from Stewart's and Plotkin's tournament~\mbox{%DIFAUXCMD
+\cite{Stewart2012}}\hskip0pt%DIFAUXCMD
+.}}
+    %DIFAUXCMD
+\DIFdelFL{Similar to Figure~\ref{fig:reproduced_with_noise}. The right column shows the
+    rankings on the original strategies in this new tournament.}}
+  %DIFAUXCMD
+%DIFDELCMD < \label{fig:rank_change_in_sp_tournament}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < \begin{figure}[!hbtp]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=.90\textwidth]{./assets/axelrod_python_tournament.pdf}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\textbf{\DIFdelFL{Reproduction of Axelrod's second tournament with the addition
+    of the strategies from the \AXL.}}
+    %DIFAUXCMD
+\DIFdelFL{Similar to Figure~\ref{fig:rank_change_in_sp_tournament}.}}
+  %DIFAUXCMD
+%DIFDELCMD < \label{fig:rank_change_in_axelrod_python_tournament}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \newpage
+
+%DIF < %%% REFERENCES %%%%
+\bibliographystyle{naturemag}
+\bibliography{bibliography.bib}
+
+%DIF < %%% EXTENDED DATA %%%%
+\DIFdelbegin \section*{\DIFdel{Extended Data}}
+%DIFAUXCMD
+%DIFDELCMD < 
+
+%DIFDELCMD < \begin{table}[!hbtp]
+%DIFDELCMD <   \centering
+%DIFDELCMD <   \resizebox{.9\textwidth}{!}{
+%DIFDELCMD <     \input{./assets/original_tournament_rankings.tex}}
+%DIFDELCMD <   \caption*{\textbf{Extended Data Table 1. Top 15 strategies in the reproduced tournament.}
+%DIFDELCMD <   The table lists the top 15 strategies from Axelrod's original tournament
+%DIFDELCMD <   along with their rankings in our reproduced tournament. For each strategy, we
+%DIFDELCMD <   report the average score and the average cooperation rate in the reproduced
+%DIFDELCMD <   tournament, as well as the proportion of wins across our repetitions of the
+%DIFDELCMD <   original tournament. \TFT{} wins 63.3\% of these repetitions, indicating that
+%DIFDELCMD <   in 36.7\% of runs a different winner emerges.}
+%DIFDELCMD < \end{table}
+%DIFDELCMD < 
+
+%DIFDELCMD < \begin{figure}[!hbtp]
+%DIFDELCMD <     %%%
+\DIFdelendFL %DIF >  Main figures, grouped at the end per the journal layout requirements.
+\DIFaddbeginFL \clearpage
+\begin{figure}[t]
+  \DIFaddendFL \begin{center}
+    \DIFdelbeginFL %DIFDELCMD < \begin{lstlisting}[language=Fortran,
+%DIFDELCMD < %DIFVRB                            basicstyle=\ttfamily\scriptsize,
+%DIFDELCMD < %DIFVRB                            frame=single,
+%DIFDELCMD < %DIFVRB                            keywordstyle=\color{red}\bfseries,
+%DIFDELCMD < %DIFVRB                            commentstyle=\color{teal}\itshape]
+%DIFDELCMD < %%%
+%DIF < DIFVRB       FUNCTION K61R(ISPICK,ITURN,K,L,R, JA)
+%DIF < DIFVRB C BY DANNY C. CHAMPION
+%DIF < DIFVRB C TYPED BY JM 3/27/79
+%DIF < DIFVRB       k61r=ja    ! Added 7/27/93 to report own old value
+%DIF < DIFVRB       IF (ITURN .EQ. 1) ICOOP = 0  ! Added 10/8/2017 to fix bug for multiple runs
+%DIF < DIFVRB       IF (ITURN .EQ. 1) K61R = 0
+%DIF < DIFVRB       IF (ISPICK .EQ. 0) ICOOP = ICOOP + 1
+%DIF < DIFVRB       IF (ITURN .LE. 10) RETURN
+%DIF < DIFVRB       K61R = ISPICK
+%DIF < DIFVRB       IF (ITURN .LE. 25) RETURN
+%DIF < DIFVRB       K61R = 0
+%DIF < DIFVRB       COPRAT = FLOAT(ICOOP) / FLOAT(ITURN)
+%DIF < DIFVRB       IF (ISPICK .EQ. 1 .AND. COPRAT .LT. .6 .AND. R .GT. COPRAT)
+%DIF < DIFVRB      +K61R = 1
+%DIF < DIFVRB       RETURN
+%DIF < DIFVRB       END
+%DIF < DIFVRB         
+%DIFDELCMD < \end{lstlisting}
+%DIFDELCMD <     \caption*{\textbf{Extended Data Fig 1. Fortran source code for \texttt{k61r} (Champion).}
+%DIFDELCMD <     The original implementation contained a bug: the variable \texttt{ICOOP} was not
+%DIFDELCMD <     initialized within the function. In the first match it effectively started at 0,
+%DIFDELCMD <     but in subsequent matches it could have kept its value from the previous match or be reset to 0,
+%DIFDELCMD <     depending on the compiler and runtime environment. Line~5 shows the fix, which
+%DIFDELCMD <     explicitly initializes \texttt{ICOOP} at the start of each match.}
+%DIFDELCMD <     %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{Figure_1.pdf}
+    \caption{\textbf{\DIFaddFL{Reviving Axelrod's second tournament code.}}
+    \textbf{\DIFaddFL{a,}} \DIFaddFL{Fortran code for \TFT{} (}\texttt{\DIFaddFL{k92r.f}}\DIFaddFL{). Each strategy takes as input the match state
+    (}\texttt{\DIFaddFL{J}}\DIFaddFL{: opponent's previous move; }\texttt{\DIFaddFL{M}}\DIFaddFL{: current turn number; }\texttt{\DIFaddFL{K}}\DIFaddFL{: player's cumulative score; }\texttt{\DIFaddFL{L}}\DIFaddFL{: opponent's cumulative score; }\texttt{\DIFaddFL{R}}\DIFaddFL{: random number in $[0,1]$; }\texttt{\DIFaddFL{JA}}\DIFaddFL{: player's previous move) and returns 0 (cooperate) or 1 (defect).
+    }\textbf{\DIFaddFL{b,}} \DIFaddFL{Overview of how the three codebases interact. }\AXLFortran{} \DIFaddFL{creates strategy instances for each
+    player. Tournaments and matches are managed by \AXL{}, which, at each turn, calls
+    the corresponding }\AXLFortran{} \DIFaddFL{instance; this, in turn, invokes the original
+    Fortran code to produce a decision from the match history.
+    }\textbf{\DIFaddFL{c,}} \DIFaddFL{Turn-by-turn execution. On the first turn, }\AXLFortran{} \DIFaddFL{initializes
+    the parameters required by the Fortran implementation, queries it for a
+    decision, and returns the move to \AXL{}, which plays it and updates the
+    history. On each subsequent turn: (1) the previous outcome is recorded and the
+    history updated; (2) }\AXLFortran{} \DIFaddFL{accesses the updated history; (3) formats it
+    into the inputs expected by the Fortran code; (4) calls the Fortran function and
+    receives a decision; and (5) \AXL{} plays the decision. The process repeats until
+    the match ends.}}
+    \label{fig:reviving_diagram}
+  \DIFaddendFL \end{center}
+\end{figure}
+
+\DIFaddbegin \clearpage
+\DIFaddend \begin{figure}[!hbtp]
+    \centering
+    \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{./assets/Figure_linear_regression_results.pdf}
+%DIFDELCMD <     \caption*{\textbf{Extended Data Fig.~2. Reproduction of Axelrod's linear model.}
+%DIFDELCMD <     \textbf{a,} The representative strategies and their effect on average score.
+%DIFDELCMD <     We reproduce the linear model described in~\cite{Axelrod1980b}, which reports
+%DIFDELCMD <     \(R^2 = 0.979\). Fitting a new model to the same five strategies yields
+%DIFDELCMD <     \(R^2 = \protect\input{./assets/original_tournament_predictive_with_axelrod_5_r_squared.tex}\).
+%DIFDELCMD <     \textbf{b,} \(R^2\) as a function of the number of strategies included (subset size),
+%DIFDELCMD <     obtained using recursive feature elimination (RFE)~\cite{guyon2002gene}.
+%DIFDELCMD <     Starting from the full set of strategies, we iteratively remove the least
+%DIFDELCMD <     informative one, refit the model, and record the resulting \(R^2\).
+%DIFDELCMD <     For each subset size (from 1 to 25), the subset yielding the highest \(R^2\)
+%DIFDELCMD <     is retained. The estimated \(R^2\) rises rapidly from about 0.75 to 0.95 as
+%DIFDELCMD <     the number of included strategies increases from 1 to 5, after which
+%DIFDELCMD <     improvements are smaller.}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=.9\textwidth]{Figure_2.pdf}
+\caption{\textbf{\DIFaddFL{Reproducing Axelrod's second tournament.}}
+\textbf{\DIFaddFL{a,}} \DIFaddFL{Comparison of the original rankings and the replicated rankings.
+Strategies are ordered by their original ranks; \TFT{} again
+emerges as the overall winner, while }\texttt{\DIFaddFL{k36r}} \DIFaddFL{again ranks last.
+}\textbf{\DIFaddFL{b,}} \DIFaddFL{Differences in rank between the original and reproduced tournaments,
+ordered from most negative to most positive change. Most strategies shift by
+only 1-3 positions, though a few exhibit larger changes, including Champion
+(}\texttt{\DIFaddFL{k61r}}\DIFaddFL{).
+}\textbf{\DIFaddFL{c,}} \DIFaddFL{Mean scores of all strategies. Champion's
+average score drops relative to the other three strategies but remains close to
+the rest of the top ten.
+}\textbf{\DIFaddFL{d,}} \DIFaddFL{Violin plots showing the distribution of mean scores for the top 15
+strategies across all repetitions (n = 25}{\DIFaddFL{,}}\DIFaddFL{000 independent tournament
+repetitions). For each strategy the orange marker is the mean score and the
+vertical orange bars span the extrema (minimum to maximum) of the distribution
+over the repetitions. The brown dashed line marks the maximum attainable mean
+score of 2.9.
+}\textbf{\DIFaddFL{e,}} \DIFaddFL{Results under alternative replication approaches, including with and
+without self-interactions and using a Python re-implementation of Champion.
+Across all settings, \TFT{} remains the winner, while Champion exhibits the
+largest change in ranking.}}
+  \label{fig:replicated_tournament}
+\DIFaddendFL \end{figure}
+
+\DIFdelbegin %DIFDELCMD < \begin{table}[!hbtp]
+%DIFDELCMD <         %%%
+\DIFdelendFL \DIFaddbeginFL \clearpage
+\begin{figure}[!hbtp]
+    \DIFaddendFL \centering
+    \DIFdelbeginFL %DIFDELCMD < \resizebox{.8\textwidth}{!}{
+%DIFDELCMD <         \input{./assets/sp_tournament_rankings_top_fifteen.tex}}
+%DIFDELCMD <         \caption*{\textbf{Extended Data Table 2. Top 15 strategies in the Stewart and Plotkin tournament.}
+%DIFDELCMD <         We report the mean score, rank, and mean cooperation rate. For comparison,
+%DIFDELCMD <         we also include the cooperation rate from our reproduced tournament,
+%DIFDELCMD <         alongside the cooperation rates originally reported by Stewart and Plotkin.}
+%DIFDELCMD < \end{table}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \includegraphics[width=\textwidth]{Figure_3.pdf}
+\caption{\textbf{\DIFadd{Cooperation in Axelrod's second tournament.}}
+\textbf{\DIFadd{a,}} \DIFadd{Mean cooperation rate by original ranking. Most strategies are highly
+cooperative, with the exception of those at the bottom of the ranking, which fall
+below 50\%. }\textbf{\DIFadd{b,}} \DIFadd{Cooperation rates between each pair of players, players
+are ordered by their original ranking. }\textbf{\DIFadd{c,}} \DIFadd{Deviation from symmetry in
+pairwise cooperation rates, defined as the difference between cooperation matrices
+and their transposes. Values close to zero indicate that both strategies cooperate
+with one another at the same rate.}}
+  \label{fig:original_tournament_cooperation}
+\end{figure}
+\DIFaddend 
+
+\DIFdelbegin %DIFDELCMD < \begin{table}[!hbtp]
+%DIFDELCMD <     %%%
+\DIFdelendFL \DIFaddbeginFL \clearpage
+\begin{figure}[!hbtp]
+    \DIFaddendFL \centering
+    \DIFdelbeginFL %DIFDELCMD < \resizebox{.9\textwidth}{!}{
+%DIFDELCMD <     \input{./assets/axelord_python_tournament_rankings_top_sixteen.tex}}
+%DIFDELCMD <     \caption*{\textbf{Extended Data Table 3. Top 16 strategies in the \AXL{} tournament.} This
+%DIFDELCMD <     tournament includes all strategies from the \AXL{} library alongside the
+%DIFDELCMD <     original Fortran strategies. In total, there are 272 strategies competing.
+%DIFDELCMD <     Strategies denoted by $^\dagger$ were not designed but, they were trained
+%DIFDELCMD <     via reinforcement learning, as described in~\cite{Harper2017}.}
+%DIFDELCMD < \end{table}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \includegraphics[width=\textwidth]{Figure_4.pdf}
+    \caption{\textbf{\DIFadd{Effect of additional classical strategies on average payoffs and tournament cooperation.}}
+    \textbf{\DIFadd{a,}} \DIFadd{Distributions of the average tournament payoffs achieved by
+    \TFT{} (}\texttt{\DIFadd{k92r}}\DIFadd{) and }\texttt{\DIFadd{k42r}} \DIFadd{as a function of the number of added classical
+    strategies. Violins show the distribution of outcomes across all possible
+    combinations of additional invitees, while lines indicate the mean payoff
+    for each subset size. }\textbf{\DIFadd{b,}} \DIFadd{Distribution of the average cooperation
+    levels across tournaments for each subset size. Intermediate subset sizes
+    produce the widest cooperation distributions, indicating greater diversity
+    in the resulting tournament interactions. These are also the conditions
+    under which \TFT{} performs least effectively relative to }\texttt{\DIFadd{k42r}}\DIFadd{. All
+    tournaments use the original tournament setting of five fixed match lengths
+    and are repeated 250 times. }}
+  \label{fig:classical_strategies_combinations}
+\end{figure}
+\DIFaddend 
+
+\DIFaddbegin \clearpage
+\DIFaddend \begin{figure}[!hbtp]
+    \centering
+    \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=.90\textwidth]{./assets/axelrod_python_tournament_noise_1.pdf}
+%DIFDELCMD <     \caption*{\textbf{Extended Data Fig. 3. Reproduction of Axelrod's second tournament with the addition
+%DIFDELCMD <     of the strategies from the \AXL and with noise 1\%.}
+%DIFDELCMD <     Similar to Figure~\ref{fig:rank_change_in_sp_tournament}.}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=.88\textwidth]{Figure_5.pdf}
+    \caption{\textbf{\DIFaddFL{Axelrod's second tournament with 1\% noise.}}
+    \textbf{\DIFaddFL{a,}} \DIFaddFL{Comparison of the original rankings and the rankings of the second
+    tournament with noise. In the left column, strategies are ordered by their
+    original ranks, and arrows indicate their ranks in the noisy tournament (right
+    column). The arrow widths are proportional to the change in rank. Blue arrows
+    indicate a positive change in rank, red arrows indicate a negative change in
+    rank, and grey arrows indicate no change in rank.
+    }\textbf{\DIFaddFL{b,}} \DIFaddFL{Cooperation rates of strategies ordered by rank in this tournament.
+    }\textbf{\DIFaddFL{c,}} \DIFaddFL{Tournament cooperation rates across all repetitions for
+    this tournament (green) and the reproduced tournament without noise (blue).
+    We also plot the average cooperation rate (green or blue line) and report its value.
+    }\textbf{\DIFaddFL{d,}} \DIFaddFL{Pairwise cooperation rates between strategies. For each
     pair we calculate the cooperation rate of the row strategy towards the column
     strategy and vice versa. The strategies are ordered by the ranks in this
     tournament. For a full list of strategies see Supplementary Table~2,
     Supplementary Table~4, and \SI~(S8).
-    \textbf{e,} Differences in cooperation rates for each pair of strategies, again 
-    ordered by their rank in the reproduced tournament with noise.}
+    }\textbf{\DIFaddFL{e,}} \DIFaddFL{Differences in cooperation rates for each pair of strategies, again 
+    ordered by their rank in the reproduced tournament with noise.}}
     \label{fig:reproduced_with_noise}
-\end{figure}
+\DIFaddendFL \end{figure}
 
-\clearpage
-\begin{figure}[!hbtp]
+\DIFaddbegin \clearpage
+\DIFaddend \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.9\textwidth]{Figure_6.pdf}
-    \caption{\textbf{Reproduction of Axelrod's second tournament with the addition
-    of the strategies from Stewart's and Plotkin's tournament~\cite{Stewart2012}.}
-    The panels follow the same layout as Figure~\ref{fig:reproduced_with_noise}.
-    \textbf{a,} Comparison of the original rankings (left column) and the rankings
+    \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=.90\textwidth]{./assets/axelrod_python_tournament_noise_5.pdf}
+%DIFDELCMD <     \caption*{\textbf{Extended Data Fig. 4. Reproduction of Axelrod's second tournament with the addition
+%DIFDELCMD <     of the strategies from the \AXL and with noise 5\%.}
+%DIFDELCMD <     Similar to Figure~\ref{fig:rank_change_in_sp_tournament}.}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=.9\textwidth]{Figure_6.pdf}
+    \caption{\textbf{\DIFaddFL{Reproduction of Axelrod's second tournament with the addition
+    of the strategies from Stewart's and Plotkin's tournament~\mbox{%DIFAUXCMD
+\cite{Stewart2012}}\hskip0pt%DIFAUXCMD
+.}}
+    \DIFaddFL{The panels follow the same layout as Figure~\ref{fig:reproduced_with_noise}.
+    }\textbf{\DIFaddFL{a,}} \DIFaddFL{Comparison of the original rankings (left column) and the rankings
     in this expanded tournament (right column), with strategies ordered by their
     original ranks. Arrows indicate the change in rank; arrow widths are
     proportional to the size of the change. Blue arrows indicate a positive change
     in rank, red arrows a negative change, and grey arrows no change.
-    \textbf{b,} Cooperation rates of strategies ordered by rank in this tournament.
-    \textbf{c,} Tournament cooperation rates across all repetitions for this
+    }\textbf{\DIFaddFL{b,}} \DIFaddFL{Cooperation rates of strategies ordered by rank in this tournament.
+    }\textbf{\DIFaddFL{c,}} \DIFaddFL{Tournament cooperation rates across all repetitions for this
     tournament (green) and the reproduced tournament without the additional
     strategies (blue); the solid line shows the average cooperation rate, whose
     value is reported.
-    \textbf{d,} Pairwise cooperation rates between strategies. For each pair we
+    }\textbf{\DIFaddFL{d,}} \DIFaddFL{Pairwise cooperation rates between strategies. For each pair we
     compute the cooperation rate of the row strategy towards the column strategy
     and vice versa, with strategies ordered by their rank in this tournament.
-    \textbf{e,} Differences in pairwise cooperation rates, again ordered by rank
-    in this tournament.}
+    }\textbf{\DIFaddFL{e,}} \DIFaddFL{Differences in pairwise cooperation rates, again ordered by rank
+    in this tournament.}}
   \label{fig:rank_change_in_sp_tournament}
 \end{figure}
 
@@ -1076,26 +1558,26 @@ with one another at the same rate.}
 \begin{figure}[!hbtp]
     \centering
     \includegraphics[width=.9\textwidth]{Figure_7.pdf}
-    \caption{\textbf{Reproduction of Axelrod's second tournament with the addition
-    of the strategies from the \AXL{} library.}
-    The panels follow the same layout as
+    \caption{\textbf{\DIFaddFL{Reproduction of Axelrod's second tournament with the addition
+    of the strategies from the \AXL{} library.}}
+    \DIFaddFL{The panels follow the same layout as
     Figure~\ref{fig:rank_change_in_sp_tournament}.
-    \textbf{a,} Comparison of the original rankings (left column) and the rankings
+    }\textbf{\DIFaddFL{a,}} \DIFaddFL{Comparison of the original rankings (left column) and the rankings
     in this expanded tournament (right column), with strategies ordered by their
     original ranks. Arrows indicate the change in rank, with widths proportional to
     the size of the change; blue arrows indicate a positive change in rank, red
     arrows a negative change, and grey arrows no change.
-    \textbf{b,} Cooperation rates of strategies ordered by rank in this tournament.
-    \textbf{c,} Tournament cooperation rates across all repetitions for this
+    }\textbf{\DIFaddFL{b,}} \DIFaddFL{Cooperation rates of strategies ordered by rank in this tournament.
+    }\textbf{\DIFaddFL{c,}} \DIFaddFL{Tournament cooperation rates across all repetitions for this
     tournament (green) and the reproduced tournament without the additional
     strategies (blue); the solid line shows the average cooperation rate, whose
     value is reported.
-    \textbf{d,} Pairwise cooperation rates between strategies, ordered by their
+    }\textbf{\DIFaddFL{d,}} \DIFaddFL{Pairwise cooperation rates between strategies, ordered by their
     rank in this tournament.
-    \textbf{e,} Differences in pairwise cooperation rates, again ordered by rank
-    in this tournament.}
+    }\textbf{\DIFaddFL{e,}} \DIFaddFL{Differences in pairwise cooperation rates, again ordered by rank
+    in this tournament.}}
   \label{fig:rank_change_in_axelrod_python_tournament}
-\end{figure}
+\DIFaddendFL \end{figure}
 
 
 \end{document}
