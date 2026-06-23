@@ -1,7 +1,7 @@
 \documentclass{article}
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /tmp/main_old.tex   Tue Jun 23 10:50:41 2026
-%DIF ADD main.tex            Tue Jun 23 10:11:16 2026
+%DIF DEL /tmp/main_old.tex   Tue Jun 23 11:23:34 2026
+%DIF ADD main.tex            Tue Jun 23 11:20:18 2026
 
 \usepackage[margin=1.5cm, includefoot, footskip=30pt]{geometry}
 
@@ -1122,8 +1122,14 @@ future work.
 
 \DIFaddend A second contribution of this work is methodological. To our knowledge, this is
 the first effort to package and reproduce, according to contemporary best
-practices, code originally written in the 1980s. The archived materials~\cite{knight_2025_17250038} (at
-\url{https://doi.org/10.5281/zenodo.17250038})
+practices, code originally written in the 1980s. The archived materials~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cite{knight_2025_17250038} }\hskip0pt%DIFAUXCMD
+(at
+}%DIFDELCMD < \url{https://doi.org/10.5281/zenodo.17250038}%%%
+\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cite{knight_2025_20811704} }\hskip0pt%DIFAUXCMD
+(at
+}\url{https://doi.org/10.5281/zenodo.20811704}\DIFaddend )
 are curated to high standards of reproducible research~\cite{wilson2014, sandve2013, wilson2017, stodden2018, turingway2022} and
 accompanied by a fully automated test suite. All changes to the original code
 were made systematically and transparently, with complete records available at
@@ -1199,8 +1205,14 @@ code.
 
 \section*{Data availability}
 The data generated and analysed in this study are available in the Zenodo
-repository~\cite{knight_2025_17250038} at
-\url{https://doi.org/10.5281/zenodo.17250038}. \DIFaddbegin \DIFadd{This archive includes the source
+repository~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cite{knight_2025_17250038} }\hskip0pt%DIFAUXCMD
+at
+}%DIFDELCMD < \url{https://doi.org/10.5281/zenodo.17250038}%%%
+\DIFdel{. }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cite{knight_2025_20811704} }\hskip0pt%DIFAUXCMD
+at
+}\url{https://doi.org/10.5281/zenodo.20811704}\DIFadd{. This archive includes the source
 data underlying every main-text figure, that is, the numerical results from which
 the graphs and charts are produced.
 }\DIFaddend 
@@ -1211,9 +1223,9 @@ scripts, has been archived alongside the data \DIFdelbegin \DIFdel{at the same Z
 repositoryand
 }\DIFdelend \DIFaddbegin \DIFadd{in the Zenodo
 repository~\mbox{%DIFAUXCMD
-\cite{knight_2025_17250038} }\hskip0pt%DIFAUXCMD
+\cite{knight_2025_20811704} }\hskip0pt%DIFAUXCMD
 at
-}\url{https://doi.org/10.5281/zenodo.17250038}\DIFadd{, which provides a permanent and
+}\url{https://doi.org/10.5281/zenodo.20811704}\DIFadd{, which provides a permanent and
 citable reference to the exact version used in this study. The code }\DIFaddend is also
 accessible via the project's online repository:
 \url{https://github.com/Axelrod-Python/revisiting-axelrod-second/}\DIFaddbegin \DIFadd{, and is
