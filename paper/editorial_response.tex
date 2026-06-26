@@ -1,0 +1,274 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{setspace}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+
+\newcommand{\reply}{\vspace{0.25em}{\color{ForestGreen}\textbf{Reply:}}\ }
+
+\newenvironment{editorcomment}
+{\vspace{0.5em}\begin{quote}\color{NavyBlue}}
+{\end{quote}}
+
+\newcommand{\AXL}{Axelrod-Python}
+
+\title{Response to editorial requests}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+We thank the editorial office for the detailed checklist of policy and formatting
+requests. Below we address each request in turn, indicating where in the
+manuscript, the Supplementary Information, or the submitted files the
+corresponding change has been made. As these are editorial and policy items
+rather than scientific points, our replies focus on what was done and where.
+
+\section*{Source data}
+
+\begin{editorcomment}
+All source data, that is, the numerical results underlying the graphs and charts
+presented in the main figures, are mandatory and must be made available as
+Supplementary Data or via a generalist repository.
+\end{editorcomment}
+
+\reply The numerical source data underlying every main-text figure are included
+in the Zenodo archive (DOI \texttt{10.5281/zenodo.20811704}). We have added a
+sentence to the Data availability section stating explicitly that the archive
+contains the source data from which the graphs and charts are produced.
+
+\section*{Display items}
+
+\begin{editorcomment}
+When scaled to fit the article template, text and detail in Figures 1, 4--6 and
+the Extended Data figures might be too small to be readable. Please ensure the
+figures are large enough.
+\end{editorcomment}
+
+\reply We have enlarged the display items. Figure 1 is now set at full text
+width. The figures produced from data have been regenerated with larger fonts:
+the figure-generation notebooks now expose a single font-scaling control so that
+all text in every panel is enlarged uniformly, and the figures were re-exported
+accordingly. The Supplementary code listing has also been enlarged.
+
+\begin{editorcomment}
+Please use different labels for the display items in the Supplementary
+Information (e.g. Supplementary Figure X), to avoid confusion with main article
+display items.
+\end{editorcomment}
+
+\reply All Supplementary display items are now labelled ``Supplementary
+Figure~N'' and ``Supplementary Table~N'', and the main-text references to them
+have been updated accordingly.
+
+\begin{editorcomment}
+Please make sure that the legends of all figures can be understood without
+needing to refer to the main text; any abbreviations, symbols or colours must be
+defined in the associated legends. We notice that Figure 4 and Figure 5 panels
+A--E are not defined in the legend.
+\end{editorcomment}
+
+\reply Every figure legend now defines each panel (a--e) in full, including the
+figures that previously read ``Similar to Figure X''. The colour coding of the
+rank-change arrows (blue, red, grey), the dagger symbol for reinforcement-learned
+strategies, and the other symbols and abbreviations are now defined within the
+legends.
+
+\begin{editorcomment}
+Please refer explicitly to the dashed line in Figure 2d.
+\end{editorcomment}
+
+\reply The legend of Figure 2d now states that the brown dashed line marks the
+maximum attainable mean score of 2.9.
+
+\begin{editorcomment}
+The number of display items should be appropriately balanced with the amount of
+text. Please consider moving some to the Supplementary Information.
+\end{editorcomment}
+
+\reply All Extended Data items have been moved into the Supplementary
+Information, leaving seven main-text figures.
+
+\section*{Code availability}
+
+\begin{editorcomment}
+We notice that your code repositories do not include an explicit license. We
+strongly recommend that you include a valid OSI-approved license, specified in
+your Code Availability statement and the code repository.
+\end{editorcomment}
+
+\reply The code is released under the MIT License, an Open Source Initiative
+approved licence. A \texttt{LICENSE} file has been added to the repository, and
+the Code availability statement now states the licence.
+
+\begin{editorcomment}
+Please make your code citable by obtaining a DOI for the repository, add a
+reference item for it, and cite it in your manuscript text or Code Availability
+statement.
+\end{editorcomment}
+
+\reply The code is archived together with the data in Zenodo with a permanent
+DOI (\texttt{10.5281/zenodo.20811704}). The Code availability statement now
+cites this archive, which is included as a reference item in the bibliography,
+and describes it as the citable record of the exact version used in this study.
+
+\section*{Figures}
+
+\begin{editorcomment}
+Please upload your main Figures (1--7) as individual files, one file per figure,
+titled ``Figure XX'', in an accepted format, with no embedded captions or extra
+text.
+\end{editorcomment}
+
+\reply Figures 1--7 are supplied as individual PDF files named ``Figure\_1.pdf''
+through ``Figure\_7.pdf''. Each file contains only the figure, with all panels
+together; the captions are not embedded in the files.
+
+\begin{editorcomment}
+Please ensure that all main text figure captions (1--7) are grouped together at
+the end of your main manuscript file.
+\end{editorcomment}
+
+\reply All seven figure captions are now grouped together at the end of the
+manuscript file, after the references, with one figure per page.
+
+\section*{Extended Data}
+
+\begin{editorcomment}
+We see that you have submitted Extended Data items, which we do not support.
+Please include these items as part of the combined Supplementary Information
+PDF. Large datasets must be supplied as Supplementary Data files.
+\end{editorcomment}
+
+\reply The Extended Data section has been removed. Its three tables and four
+figures are now part of the combined Supplementary Information as Supplementary
+Tables~1--5 and Supplementary Figures~1--5, and the underlying large datasets are
+available in the Zenodo archive.
+
+\section*{Author information}
+
+\begin{editorcomment}
+Please ensure that each affiliation contains the institution name, city, and
+country. Currently the city name is missing in affiliations 1, 3 and 4.
+\end{editorcomment}
+
+\reply Each affiliation now lists the institution, city, and country.
+
+\section*{Funding}
+
+\begin{editorcomment}
+Any relevant funding should be declared in a separate section entitled
+``Funding''.
+\end{editorcomment}
+
+\reply We have added a separate ``Funding'' section, which states that the work
+was not supported by any funding grants.
+
+\section*{Statistics}
+
+\begin{editorcomment}
+Wherever statistics have been derived, the legend needs to provide and define
+the n number as a precise value. This information is missing in the legend of
+Figure 2d.
+\end{editorcomment}
+
+\reply The legend of Figure 2d now states that the distributions are taken over
+n = 25{,}000 independent tournament repetitions.
+
+\begin{editorcomment}
+Please note that the error bars need to be defined in the legend of Figure 2d.
+\end{editorcomment}
+
+\reply The legend of Figure 2d now defines the markers: the orange marker is the
+mean score and the vertical orange bars span the extrema (minimum to maximum) of
+the distribution over the repetitions.
+
+\begin{editorcomment}
+Please indicate the statistical test used for data analysis, whether it was
+one-sided or two-sided, and whether adjustments were made for multiple
+comparisons, in the legend of Extended Data Figure 2a.
+\end{editorcomment}
+
+\reply Panel a of that figure (now Supplementary Figure~2) presents an ordinary
+least squares linear regression; the reported \(R^2\) values are coefficients of
+determination. We have added a sentence to the legend stating that no
+significance tests or multiple-comparison adjustments were applied.
+
+\section*{Supplementary Information}
+
+\begin{editorcomment}
+Please rename all the figures and tables in the Supplementary Information file as
+``Supplementary figure/table XX''.
+\end{editorcomment}
+
+\reply All Supplementary figures and tables are now labelled in this form.
+
+\begin{editorcomment}
+Please ensure that at least one item in the Supplementary Information PDF is
+cited in the main text.
+\end{editorcomment}
+
+\reply The main text cites numerous Supplementary items, including Supplementary
+Sections S1, S4, S5, S7, S8 and S10, Supplementary Tables~1--5, and Supplementary
+Figures~1--5.
+
+\section*{Main text structure}
+
+\begin{editorcomment}
+The paper should be structured as an Introduction (with the final paragraph
+summarising the major findings), a Results section with a single layer of
+sub-headings (the first appearing immediately after the Results heading), a
+Discussion section without sub-headings, and a Methods section thereafter.
+\end{editorcomment}
+
+\reply We have restructured the manuscript accordingly. The opening section is
+now ``Introduction'', and its final paragraph lists the three contributions of
+the work. ``Results'' uses a single layer of sub-headings, the first of which
+(``Reviving the tournament'') appears immediately after the heading. We removed
+the bold paragraph lead-ins that previously acted as a second layer of headings.
+``Discussion'' contains no sub-headings, and ``Methods'' follows it.
+
+\section*{Tables}
+
+\begin{editorcomment}
+Data in tables must be free from bold or italic formatting unless this has been
+clearly defined in a footnote.
+\end{editorcomment}
+
+\reply The data cells of all tables are free from bold and italic formatting.
+
+\section*{Footnotes}
+
+\begin{editorcomment}
+We see that your manuscript contains footnotes, which are not compatible with our
+style. Please incorporate this text into the main text or the Supplementary
+Information.
+\end{editorcomment}
+
+\reply The single footnote has been removed; its content (the archival URL and
+access date) is now given inline in the Introduction.
+
+\section*{Files}
+
+\begin{editorcomment}
+The main article file was submitted in PDF format, which we are unable to accept.
+Please resubmit in DOC, DOCX or LaTeX format, with a compiled PDF and the
+bibliography data.
+\end{editorcomment}
+
+\reply The manuscript is provided in LaTeX, together with a compiled PDF and the
+bibliography. The article, the Supplementary Information, the bibliography, and
+the bibliography style now reside in a single directory so that the sources
+compile without modification.
+
+\end{document}

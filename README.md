@@ -54,7 +54,7 @@ Running the simulations will generate the tournament data.
 If you prefer **not to rerun** the entire simulation, you can download the
 archived data from Zenodo:
 
-1. Download the dataset archive from https://doi.org/10.5281/zenodo.17250038.
+1. Download the dataset archive from https://doi.org/10.5281/zenodo.20811704.
 2. Unzip it into the `data/` folder.
 
 This will allow you to reproduce the analysis and figures directly.
